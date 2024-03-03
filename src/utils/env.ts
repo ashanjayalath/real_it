@@ -1,0 +1,7 @@
+const company = {
+    companyName:"BiT96",
+    companyOwner:"Ashan Jayalath",
+    companyWeb:"https://bkcity.vercel.app",
+    companyEmail:"shanjayalath225@gmail.com"
+}
+export {company}
