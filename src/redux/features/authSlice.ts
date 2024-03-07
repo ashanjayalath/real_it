@@ -2,13 +2,7 @@ import { createSlice , PayloadAction , current } from "@reduxjs/toolkit";
 import {RootState} from "../store";
 
 const initialState = {
-    user: {
-        image: {
-            url:"",
-            fname:"",
-            role:"",
-        }
-    } as any,
+    user:[] as any,
     accessToken:""
 }
 

@@ -18,10 +18,20 @@ import banner from 'img/auth/banner.png';
 // import avatar from 'img/avatars/avatar4.png';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
+import {useEffect, useState} from "react";
+
 
 export default function ProfileOverview() {
 
-  const userDetails = useSelector((state:RootState) => state.userInfo);
+  const userDetails = useSelector((state:RootState) => state.userInfo.user);
+    const [image,setImage] = useState("img/avatars/avatar4.png");
+    const [userName,setUserName] = useState("There")
+    const [userRole,setUserRole] = useState("User")
+    useEffect(() => {
+        setImage(userDetails.image.url);
+        setUserName(userDetails.fname);
+        setUserRole(userDetails.role);
+    }, [userDetails]);
 
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
@@ -40,9 +50,9 @@ export default function ProfileOverview() {
         <Banner
           gridArea="1 / 1 / 2 / 2"
           banner={banner}
-          avatar={userDetails.user.image.url || "img/avatars/avatar4.png"}
-          name={`${userDetails.user.fname}` || "There"}
-          job={ userDetails.user.role || "User"}
+          avatar={image}
+          name={userName}
+          job={userRole}
           posts="17"
           followers="9.7k"
           following="274"
@@ -78,9 +88,9 @@ export default function ProfileOverview() {
       >
         <Projects
           banner={banner}
-          avatar={ `${userDetails.user.image.url}` || "img/avatars/avatar4.png"}
-          name="Adela Parkson"
-          job="Product Designer"
+          avatar={image}
+          name={userName}
+          job={userRole}
           posts="17"
           followers="9.7k"
           following="274"
