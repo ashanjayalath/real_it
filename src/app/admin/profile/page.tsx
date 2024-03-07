@@ -41,7 +41,7 @@ export default function ProfileOverview() {
           gridArea="1 / 1 / 2 / 2"
           banner={banner}
           avatar={userDetails.user.image.url || "img/avatars/avatar4.png"}
-          name={`${userDetails.user.fname} ${userDetails.user.lname}` || "There"}
+          name={`${userDetails.user.fname}` || "There"}
           job={ userDetails.user.role || "User"}
           posts="17"
           followers="9.7k"
@@ -78,7 +78,7 @@ export default function ProfileOverview() {
       >
         <Projects
           banner={banner}
-          avatar={userDetails.user.image.url || "img/avatars/avatar4.png"}
+          avatar={ `${userDetails.user.image.url}` || "img/avatars/avatar4.png"}
           name="Adela Parkson"
           job="Product Designer"
           posts="17"
