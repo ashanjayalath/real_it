@@ -30,9 +30,12 @@ import routes from 'routes';
 import router from 'next/router';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
+import {useState} from "react";
 
 
 export default function HeaderLinks(props: {
+
+
   secondary: boolean;
   onOpen: boolean | any;
   fixed: boolean | any;
@@ -54,8 +57,10 @@ export default function HeaderLinks(props: {
   );
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
 
-
   const userDetails = useSelector((state:RootState) => state.userInfo);
+
+  const [image,setImage] = useState("img/avatars/avatar4.png");
+  const [userName,setUserName] = useState("There")
 
 
   return (
@@ -209,7 +214,7 @@ export default function HeaderLinks(props: {
           
           <Avatar
             size={'sm'}
-            src={userDetails.user.image.url || "/img/avatars/avatar1.png"}
+            src={image}
           />
 
 
@@ -249,7 +254,7 @@ export default function HeaderLinks(props: {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, {`${userDetails.user.fname} ${userDetails.user.lname}` || "There"} 
+              👋&nbsp; Hey, {userName}
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">
