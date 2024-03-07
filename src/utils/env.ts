@@ -1,5 +1,5 @@
 const company = {
-    companyName:"BiT96",
+    companyName:"Real IT",
     companyOwner:"Ashan Jayalath",
     companyWeb:"https://bkcity.vercel.app",
     companyEmail:"shanjayalath225@gmail.com"

@@ -15,9 +15,14 @@ import Upload from 'views/admin/profile/components/Upload';
 
 // Assets
 import banner from 'img/auth/banner.png';
-import avatar from 'img/avatars/avatar4.png';
+// import avatar from 'img/avatars/avatar4.png';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 export default function ProfileOverview() {
+
+  const userDetails = useSelector((state:RootState) => state.userInfo);
+
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
       {/* Main Fields */}
@@ -35,9 +40,9 @@ export default function ProfileOverview() {
         <Banner
           gridArea="1 / 1 / 2 / 2"
           banner={banner}
-          avatar={avatar}
-          name="Adela Parkson"
-          job="Product Designer"
+          avatar={userDetails.user.image.url || "img/avatars/avatar4.png"}
+          name={`${userDetails.user.fname} ${userDetails.user.lname}` || "There"}
+          job={ userDetails.user.role || "User"}
           posts="17"
           followers="9.7k"
           following="274"
@@ -73,7 +78,7 @@ export default function ProfileOverview() {
       >
         <Projects
           banner={banner}
-          avatar={avatar}
+          avatar={userDetails.user.image.url || "img/avatars/avatar4.png"}
           name="Adela Parkson"
           job="Product Designer"
           posts="17"

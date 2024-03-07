@@ -1,6 +1,6 @@
 {
-  "name": "horizon",
-  "version": "2.2.0",
+  "name": "bit96",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
@@ -17,9 +17,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^25.2.3",
-    "@types/react-dom": "^18.0.6",
-    "antd": "^5.14.1",
     "apexcharts": "^3.35.2",
     "formik": "^2.4.5",
     "framer-motion": "^4.1.17",
@@ -36,7 +33,6 @@
     "react-redux": "^9.1.0",
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "2.0.2",
-    "swr": "^2.2.5",
     "typescript": "^4.9.4",
     "web-vitals": "^1.1.2"
   },

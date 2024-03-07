@@ -10,8 +10,6 @@ import {
   SimpleGrid,
   useColorModeValue,
 } from '@chakra-ui/react';
-// Custom components
-// import MiniCalendar from 'components/calendar/MiniCalendar';
 import MiniStatistics from 'components/card/MiniStatistics';
 import IconBox from 'components/icons/IconBox';
 import {

@@ -28,6 +28,8 @@ import { MdInfoOutline, MdNotificationsNone } from 'react-icons/md';
 import routes from 'routes';
 
 import router from 'next/router';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 
 export default function HeaderLinks(props: {
@@ -51,6 +53,10 @@ export default function HeaderLinks(props: {
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
   );
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+
+
+  const userDetails = useSelector((state:RootState) => state.userInfo);
+
 
   return (
     <Flex
@@ -203,7 +209,7 @@ export default function HeaderLinks(props: {
           
           <Avatar
             size={'sm'}
-            src={'img/avatars/avatar4.png'}
+            src={userDetails.user.image.url || "/img/avatars/avatar1.png"}
           />
 
 
@@ -243,7 +249,7 @@ export default function HeaderLinks(props: {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, {`${userDetails.user.fname} ${userDetails.user.lname}` || "There"} 
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">

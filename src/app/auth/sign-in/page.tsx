@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // Chakra imports
 import {
   Box,
@@ -15,8 +15,11 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  useToast,
+  position,
   useColorModeValue,
 } from '@chakra-ui/react';
+
 // Custom components
 import { HSeparator } from 'components/separator/Separator';
 import DefaultAuthLayout from 'layouts/auth/Default';
@@ -27,34 +30,76 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { company } from 'utils/env';
 import { useFormik } from 'formik';
-import { useSelector, useDispatch } from 'react-redux';
-import { MAIN_URL } from 'ApiLinks/allLins';
-import useSWR from 'swr';
-import { loginUser } from 'redux/features/auth-slice';
+import {useLoginUserMutation} from "../../services/AuthApi"
+import { redirect } from 'next/navigation';
+import { useAppDispatch } from 'app/services/hooks';
+import { useSelector } from 'react-redux';
+// import { setUserInfo } from 'redux/features/authSlice';
+import {RootState} from "../../../redux/store"
+import { setUserInfo } from '../../../redux/features/authSlice';
 
 
 export default function SignIn() {
 
-  const authUserDetails = useSelector((store:any)=>store.AuthSlice.loginUser);
-  const dispatch = useDispatch();
 
-  // const API_LOGIN=MAIN_URL+'/api/admin/login';
+  const toast = useToast()
+  const [keepPass,setKeepPass] = useState(false);
+
+  const userDetails = useSelector((state:RootState) => state.userInfo);
+  const dispatch = useAppDispatch();
+
+  const [loginUser,
+    {
+      data:loginData,
+      isLoading:isLoginLoading,
+      isSuccess:isLoginSuccess,
+      isError:isLoginError,
+      error:LoginError
+    }] = useLoginUserMutation();
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password:''
     },
     onSubmit: async (values) => {
-      console.log(values)
-      const email = values.email
-      const password = values.password
-      // dispatch(loginUser({email,password}));
-
-
+      toast.closeAll();
+      await loginUser(values).then((res)=>{
+         if(isLoginSuccess){
+          toast.closeAll();
+          toast(
+            {
+              title:'Sign In',
+              description:"User Login Success",
+              status:'success',
+              isClosable:true,
+              position:'top-right'
+            }
+          )
+        }
+      })      
+      if(LoginError){
+        toast.closeAll();
+        toast(
+          {
+            title:'Error',
+            description:(LoginError as any).data.error || "User Login Unsuccess.",
+            isClosable:true,
+            status:'error',
+            position:'top-right'
+          }
+        )
+      }
+     
     }
   });
 
-
+  useEffect(()=>{
+    if(isLoginSuccess){
+      dispatch(setUserInfo(loginData))
+      redirect('/admin')
+    }
+  },[isLoginSuccess]);
 
   // Chakra color mode
   const textColor = useColorModeValue('navy.700', 'white');
@@ -171,6 +216,7 @@ export default function SignIn() {
                     id="remember-login"
                     colorScheme="brandScheme"
                     me="10px"
+                    onChange={(e)=>{setKeepPass(e.target.checked)}}
                   />
                   <FormLabel
                     htmlFor="remember-login"
@@ -195,6 +241,8 @@ export default function SignIn() {
               </Flex>
               
               <Button
+                isLoading={isLoginLoading}
+                // loadingText='Sign..'
                 type='submit'
                 fontSize="sm"
                 variant="brand"
