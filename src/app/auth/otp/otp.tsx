@@ -107,7 +107,7 @@ export default function VerifyEmailForm() {
           fontSize={{ base: 'sm', sm: 'md' }}
           >
             <Text fontSize='xs'>Time Left : 00.{counter}</Text>
-            <Text fontSize='sm'>Don't have received code? <Link>resend</Link></Text>
+            <Text fontSize='sm'>Dont have received code? <Link>resend</Link></Text>
 
           </Stack>
         <Stack spacing={6}>

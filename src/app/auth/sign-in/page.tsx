@@ -45,7 +45,7 @@ export default function SignIn() {
   const toast = useToast()
   const [keepPass,setKeepPass] = useState(false);
 
-  const userDetails = useSelector((state:RootState) => state.userInfo);
+  // const userDetails = useSelector((state:RootState) => state.userInfo);
   const dispatch = useAppDispatch();
 
   const [loginUser,
