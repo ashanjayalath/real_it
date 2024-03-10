@@ -43,7 +43,7 @@ function Sidebar(props: SidebarProps) {
     'unset',
   );
   // Chakra Color Mode
-  let sidebarBg = useColorModeValue('white', 'navy.800');
+  let sidebarBg = useColorModeValue('white',  'gray.800');
   let sidebarMargins = '0px';
 
   // SIDEBAR
@@ -75,7 +75,7 @@ function Sidebar(props: SidebarProps) {
 // FUNCTIONS
 
 export function SidebarResponsive(props: SidebarResponsiveProps) {
-  let sidebarBackgroundColor = useColorModeValue('white', 'navy.800');
+  let sidebarBackgroundColor = useColorModeValue('white','gray.800');
   let menuColor = useColorModeValue('gray.400', 'white');
   // // SIDEBAR
   const { isOpen, onOpen, onClose } = useDisclosure();

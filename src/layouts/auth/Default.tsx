@@ -9,7 +9,7 @@ import { ReactNode } from 'react';
 
 function AuthIllustration(props: {children: ReactNode;}) 
 {
-  const authBg = useColorModeValue('white', 'navy.900');
+  const authBg = useColorModeValue('white', 'gray.800');
   const { children } = props;
   // Chakra color mode
   return (
@@ -30,33 +30,8 @@ function AuthIllustration(props: {children: ReactNode;})
         justifyContent="start"
         direction="column"
       >
-        <Link
-          href="/admin"
-          style={{
-            width: 'fit-content',
-            marginTop: '20px',
-          }}
-        >
-          <Flex
-            align="center"
-            ps={{ base: '25px', lg: '0px' }}
-            pt={{ lg: '0px', xl: '0px' }}
-            w="fit-content"
-          >
-            <Icon
-              as={FaChevronLeft}
-              me="12px"
-              h="13px"
-              w="8px"
-              color="secondaryGray.600"
-            />
-            <Text ms="0px" fontSize="sm" color="secondaryGray.600">
-              Back to Dashboard
-            </Text>
-          </Flex>
-        </Link>
         {children}
-        <Box
+        {/* <Box
           display={{ base: 'none', md: 'block' }}
           h="100%"
           minH="100vh"
@@ -64,7 +39,7 @@ function AuthIllustration(props: {children: ReactNode;})
           position="absolute"
           right="0px"
         >
-        </Box>
+        </Box> */}
         {/* <Footer mb={{ xl: '3vh' }} /> */}
       </Flex>
       <FixedPlugin />

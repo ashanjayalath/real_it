@@ -27,9 +27,9 @@ export default function AdminLayout (props: DashboardLayoutProps) {
   // functions for changing the states from components
   const { onOpen } = useDisclosure()
 
-  useEffect(() => {
-    window.document.documentElement.dir = 'ltr'
-  })
+  // useEffect(() => {
+  //   window.document.documentElement.dir = 'ltr'
+  // })
 
   return (
     <Box>
@@ -58,7 +58,7 @@ export default function AdminLayout (props: DashboardLayoutProps) {
             <Box>
               <Navbar
                 onOpen={onOpen}
-                logoText={'Horizon UI Dashboard PRO'}
+                logoText={'BiT96'}
                 brandText={getActiveRoute(routes)}
                 secondary={getActiveNavbar(routes)}
                 message={getActiveNavbarText(routes)}

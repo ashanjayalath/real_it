@@ -8,7 +8,7 @@ import { company } from 'utils/env';
 
 export function SidebarBrand() {
 	//   Chakra color mode
-	let logoColor = useColorModeValue('navy.700', 'white');
+	let logoColor = useColorModeValue( 'gray.600', 'white');
 
 	return (
 		<Flex alignItems='center' flexDirection='column'>

@@ -11,8 +11,8 @@ import {
 import { company } from 'utils/env';
 
 export default function Footer(props: { [x: string]: any }) {
-  let textColor = useColorModeValue('gray.400', 'white');
-  let linkColor = useColorModeValue({ base: 'gray.400', lg: 'white' }, 'white');
+  let textColor = useColorModeValue({ base: 'gray.400', lg: 'gray.400' }, 'gray.400' );
+  let linkColor = useColorModeValue({ base: 'gray.400', lg: 'gray.400' }, 'gray.400' );
   return (
     <Flex
       zIndex="3"
@@ -39,16 +39,16 @@ export default function Footer(props: { [x: string]: any }) {
       >
         {' '}
         &copy; {new Date().getFullYear()}
-        <Text as="span" fontWeight="500" ms="4px">
-          Horizon UI. All Rights Reserved. Made with love by
+        <Text as="span" fontWeight="300" ms="4px">
+        {company.companyName}. All Rights Reserved. Made with
           <Link
             mx="3px"
             color={textColor}
-            href="https://www.simmmple.com"
+            href="#"
             target="_blank"
             fontWeight="700"
           >
-            {company.companyName}
+            Bit96
           </Link>
         </Text>
       </Text>
@@ -62,7 +62,7 @@ export default function Footer(props: { [x: string]: any }) {
           <Link
             fontWeight="500"
             color={linkColor}
-            href="mailto:hello@simmmple.com"
+            href="mailto:bit96software@gmail.com"
           >
             Support
           </Link>
@@ -76,7 +76,7 @@ export default function Footer(props: { [x: string]: any }) {
           <Link
             fontWeight="500"
             color={linkColor}
-            href="https://www.simmmple.com/licenses"
+            href="#"
           >
             License
           </Link>
@@ -90,7 +90,7 @@ export default function Footer(props: { [x: string]: any }) {
           <Link
             fontWeight="500"
             color={linkColor}
-            href="https://simmmple.com/terms-of-service"
+            href="#"
           >
             Terms of Use
           </Link>
@@ -99,7 +99,7 @@ export default function Footer(props: { [x: string]: any }) {
           <Link
             fontWeight="500"
             color={linkColor}
-            href="https://www.blog.simmmple.com/"
+            href="#"
           >
             Blog
           </Link>

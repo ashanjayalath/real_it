@@ -30,7 +30,8 @@ import routes from 'routes';
 import router from 'next/router';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { redirect } from 'next/navigation';
 
 
 export default function HeaderLinks(props: {
@@ -44,13 +45,13 @@ export default function HeaderLinks(props: {
   const { colorMode, toggleColorMode } = useColorMode();
   // Chakra Color Mode
   const navbarIcon = useColorModeValue('gray.400', 'white');
-  let menuBg = useColorModeValue('white', 'navy.800');
+  let menuBg = useColorModeValue('white',  'gray.700');
   const textColor = useColorModeValue('secondaryGray.900', 'white');
   const textColorBrand = useColorModeValue('brand.700', 'brand.400');
   const ethColor = useColorModeValue('gray.700', 'white');
   const borderColor = useColorModeValue('#E6ECFA', 'rgba(135, 140, 189, 0.3)');
-  const ethBg = useColorModeValue('secondaryGray.300', 'navy.900');
-  const ethBox = useColorModeValue('white', 'navy.800');
+  const ethBg = useColorModeValue('secondaryGray.300',  'gray.800');
+  const ethBox = useColorModeValue('white',  'gray.700');
   const shadow = useColorModeValue(
     '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
@@ -59,9 +60,23 @@ export default function HeaderLinks(props: {
 
   const userDetails = useSelector((state:RootState) => state.userInfo);
 
-  const [image,setImage] = useState("img/avatars/avatar4.png");
-  const [userName,setUserName] = useState("There")
+  const [image,setImage] = useState<any>("img/avatars/avatar4.png");
+  const [userName,setUserName] = useState<any>("There")
+  const [shortName,setShortName] = useState<string>();
 
+
+  useEffect(()=>{
+    if(userName.split(' ').length == 2){
+      let f = userName.split(' ')[0][0];
+      let l = userName.split(' ')[1][0];
+      setShortName(f+l);
+    }else{
+      let f = userName.split(' ')[0][0];
+      setShortName(f)
+    }
+  },[shortName])
+  
+  
 
   return (
     <Flex
@@ -163,7 +178,7 @@ export default function HeaderLinks(props: {
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon UI Dashboard PRO" />
+              <ItemContent info="BiT96" />
             </MenuItem>
             <MenuItem
               _hover={{ bg: 'none' }}
@@ -172,7 +187,7 @@ export default function HeaderLinks(props: {
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon Design System Free" />
+              <ItemContent info="BiT96" />
             </MenuItem>
           </Flex>
         </MenuList>
@@ -212,25 +227,30 @@ export default function HeaderLinks(props: {
       <Menu>
         <MenuButton p="0px" style={{ position: 'relative' }}>
           
+          {image ? 
+          
           <Avatar
             size={'sm'}
             src={image}
           />
-
-
-          {/* <Box
-            _hover={{ cursor: 'pointer' }}
-            color="white"
-            bg="#11047A"
-            w="40px"
-            h="40px"
-            borderRadius={'50%'}
-          />
-          <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
-            <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
-              AP
-            </Text>
-          </Center> */}
+          
+          :
+          <>
+            <Box
+              _hover={{ cursor: 'pointer' }}
+              color="white"
+              // bg="#11047A"
+              w="40px"
+              h="40px"
+              borderRadius={'50%'}
+            />
+            <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
+              <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
+                {shortName}
+              </Text>
+            </Center> 
+          </>
+          }
 
 
         </MenuButton>
@@ -259,25 +279,25 @@ export default function HeaderLinks(props: {
           </Flex>
           <Flex flexDirection="column" p="10px">
             <MenuItem
-              _hover={{ bg: 'none' }}
-              _focus={{ bg: 'none' }}
+              _hover={{ bg:'none'}}
+              // _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
-              onClick={()=>router.push('/profile')}
+              onClick={()=>redirect('/profile')}
             >
               <Text fontSize="sm">Profile Settings</Text>
             </MenuItem>
             <MenuItem
-              _hover={{ bg: 'none' }}
-              _focus={{ bg: 'none' }}
+              _hover={{ bg:'none'}}
+              // _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
             >
               <Text fontSize="sm">Newsletter Settings</Text>
             </MenuItem>
             <MenuItem
-              _hover={{ bg: 'none' }}
-              _focus={{ bg: 'none' }}
+              _hover={{ bg: ''}}
+              // _focus={{ bg: 'none' }}
               color="red.400"
               borderRadius="8px"
               px="14px"

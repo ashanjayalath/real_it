@@ -15,8 +15,7 @@ interface AuthProps extends PropsWithChildren {}
 export default function AuthLayout({ children }: AuthProps) {
   // states and functions
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const authBg = useColorModeValue('white', 'navy.900');
-  if (isWindowAvailable()) document.documentElement.dir = 'ltr';
+  const authBg = useColorModeValue('white', 'gray.800');
   return (
     <Box>
       <SidebarContext.Provider

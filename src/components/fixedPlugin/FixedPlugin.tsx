@@ -16,13 +16,13 @@ export default function FixedPlugin (props: { [x: string]: any }) {
   return (
     <Button
       {...rest}
-      h='60px'
-      w='60px'
+      h='40px'
+      w='40px'
       bg={bgButton}
       zIndex='99'
       position='fixed'
       variant='no-effects'
-      left={left}
+      // left={left}
       bottom='30px'
       border='1px solid'
       borderColor='#6A53FF'
@@ -34,8 +34,8 @@ export default function FixedPlugin (props: { [x: string]: any }) {
       justifyContent='center'
     >
       <Icon
-        h='24px'
-        w='24px'
+        h='20px'
+        w='20px'
         color='white'
         as={colorMode === 'light' ? IoMdMoon : IoMdSunny}
       />

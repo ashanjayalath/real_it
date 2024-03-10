@@ -82,12 +82,12 @@ export const globalStyles = {
     global: (props: StyleFunctionProps) => ({
       body: {
         overflowX: "hidden",
-        bg: mode("secondaryGray.300", "navy.900")(props),
+        bg: mode("secondaryGray.300", 'gray.800')(props),
         fontFamily: "DM Sans",
         letterSpacing: "-0.5px",
       },
       input: {
-        color: "gray.700",
+        color: "gray.400",
       },
       html: {
         fontFamily: "DM Sans",

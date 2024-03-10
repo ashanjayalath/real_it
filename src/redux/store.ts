@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {AuthApi} from "../app/services/AuthApi"
+import {apiSlice} from "../redux/features/apiSlice";
 import {setupListeners} from "@reduxjs/toolkit/query/react";
-import authSlice from "./features/authSlice";
+import authSlice from "../redux/auth/authSlice";
 
 export const store = configureStore({
     reducer:{
-        userInfo:authSlice,
-        [AuthApi.reducerPath]:AuthApi.reducer
+        auth:authSlice,
+        [apiSlice.reducerPath]:apiSlice.reducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(AuthApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

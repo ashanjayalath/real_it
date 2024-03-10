@@ -16,7 +16,7 @@ export default function AppWrappers({ children }: { children: ReactNode }) {
        <CacheProvider>
           <ChakraProvider theme={theme}>
           <Provider store={store}>
-            {children}
+              {children}
           </Provider>
           </ChakraProvider>{' '}
        </CacheProvider>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Chakra imports
 import {
   Box,
@@ -30,14 +30,14 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { company } from 'utils/env';
 import { useFormik } from 'formik';
-import {useLoginUserMutation} from "../../services/AuthApi"
+import { useUserLoginMutation } from "../../api/apiSlice";
 import { redirect } from 'next/navigation';
 import { useAppDispatch } from 'app/services/hooks';
 import { useSelector } from 'react-redux';
-// import { setUserInfo } from 'redux/features/authSlice';
 import {RootState} from "../../../redux/store"
-import { setUserInfo } from '../../../redux/features/authSlice';
-
+import { setCredentials } from '../../../redux/auth/authSlice';
+import Loading from '../../../app/loading'
+import { CheckIcon, SmallAddIcon, SmallCloseIcon } from '@chakra-ui/icons';
 
 export default function SignIn() {
 
@@ -55,7 +55,7 @@ export default function SignIn() {
       isSuccess:isLoginSuccess,
       isError:isLoginError,
       error:LoginError
-    }] = useLoginUserMutation();
+    }] = useUserLoginMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -63,41 +63,36 @@ export default function SignIn() {
       password:''
     },
     onSubmit: async (values) => {
-      toast.closeAll();
-      await loginUser(values).then((res)=>{
-         if(isLoginSuccess){
-          toast.closeAll();
-          toast(
-            {
-              title:'Sign In',
-              description:"User Login Success",
-              status:'success',
-              isClosable:true,
-              position:'top-right'
-            }
-          )
-        }
-      })      
-      if(LoginError){
-        toast.closeAll();
-        toast(
-          {
-            title:'Error',
-            description:(LoginError as any).data.error || "User Login Unsuccess.",
-            isClosable:true,
-            status:'error',
-            position:'top-right'
-          }
-        )
-      }
-     
+      await loginUser(values)
     }
   });
 
+    
   useEffect(()=>{
     if(isLoginSuccess){
-      dispatch(setUserInfo(loginData))
+      toast.closeAll();
+      toast(
+        {
+          title:'Sign In',
+          description:"User Login Success",
+          status:'success',
+          isClosable:true,
+          position:'top-right'
+        }
+      )
+      dispatch(setCredentials(loginData))
       redirect('/admin')
+    }else if(LoginError){
+     toast.closeAll();
+      toast(
+        {
+          title:'Error',
+          description:(LoginError as any).message || "User Login Unsuccess.",
+          isClosable:true,
+          status:'error',
+          position:'top-right'
+        }
+      )
     }
   },[isLoginSuccess]);
 
@@ -118,8 +113,16 @@ export default function SignIn() {
     { bg: 'whiteAlpha.200' },
   );
   const [show, setShow] = React.useState(false);
+  const [clear , setClear] = React.useState(false);
   const handleClick = () => setShow(!show);
-  return (
+  const hanleClear = () => setClear(!clear);
+  // return (
+
+  const content = 
+      isLoginLoading ? 
+      <Loading/> 
+      : 
+      (
     <DefaultAuthLayout>
       <Flex
         maxW={{ base: '100%', md: 'max-content' }}
@@ -127,7 +130,7 @@ export default function SignIn() {
         mx={{ base: 'auto', lg: '0px' }}
         me="auto"
         h="100%"
-        alignItems="start"
+        alignItems="center"
         justifyContent="center"
         mb={{ base: '20px', md: '60px' }}
         px={{ base: '15px', md: '0px' }}
@@ -177,6 +180,7 @@ export default function SignIn() {
                 mb="24px"
                 fontWeight="500"
                 size="lg"
+                
               />
               <FormLabel
                 ms="4px"
@@ -284,6 +288,8 @@ export default function SignIn() {
         </Flex>
       </Flex>
     </DefaultAuthLayout>
-  );
+      );
+    return content
+  // );
 }
 

@@ -15,7 +15,6 @@ import Upload from 'views/admin/profile/components/Upload';
 
 // Assets
 import banner from 'img/auth/banner.png';
-// import avatar from 'img/avatars/avatar4.png';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import {useEffect, useState} from "react";
@@ -23,15 +22,27 @@ import {useEffect, useState} from "react";
 
 export default function ProfileOverview() {
 
-  const userDetails = useSelector((state:RootState) => state.userInfo.user);
-    const [image,setImage] = useState("img/avatars/avatar4.png");
-    const [userName,setUserName] = useState("There")
-    const [userRole,setUserRole] = useState("User")
-    useEffect(() => {
-        setImage(userDetails.image.url);
-        setUserName(userDetails.fname);
-        setUserRole(userDetails.role);
-    }, [userDetails]);
+  const userDetails = useSelector((state:RootState) => state.auth.user);
+  const [user,setUser] = useState({
+    fname:"There",lname:"",role:"Admin",image:{URL:""}
+  })
+    
+
+  useEffect(() => {
+    if (userDetails && userDetails.image) {
+      setUser((prevUser) => ({
+        ...prevUser,
+        fname:userDetails.fname,
+        lname:userDetails.lname,
+        role:userDetails.role,
+        image: {
+          ...prevUser.image,
+          URL: userDetails.image.url,
+        },
+      }));
+    }
+  }, [userDetails]);
+
 
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
@@ -50,9 +61,9 @@ export default function ProfileOverview() {
         <Banner
           gridArea="1 / 1 / 2 / 2"
           banner={banner}
-          avatar={image}
-          name={userName}
-          job={userRole}
+          avatar={user.image.URL}
+          name={`${user.fname} ${user.lname}`}
+          job={user.role}
           posts="17"
           followers="9.7k"
           following="274"
@@ -88,9 +99,9 @@ export default function ProfileOverview() {
       >
         <Projects
           banner={banner}
-          avatar={image}
-          name={userName}
-          job={userRole}
+          avatar={user.image.URL}
+          name={`${user.fname} ${user.lname}`}
+          job={user.role}
           posts="17"
           followers="9.7k"
           following="274"

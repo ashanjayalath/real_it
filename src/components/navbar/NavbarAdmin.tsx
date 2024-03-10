@@ -38,7 +38,7 @@ export default function AdminNavbar (props: {
   const { secondary, message, brandText } = props
 
   // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
-  let mainText = useColorModeValue('navy.700', 'white')
+  let mainText = useColorModeValue( 'gray.600', 'white')
   let secondaryText = useColorModeValue('gray.700', 'white')
   let navbarPosition = 'fixed' as const
   let navbarFilter = 'none'
@@ -46,8 +46,9 @@ export default function AdminNavbar (props: {
   let navbarShadow = 'none'
   let navbarBg = useColorModeValue(
     'rgba(244, 247, 254, 0.2)',
-    'rgba(11,20,55,0.5)'
+    'rgba(26,32,44,0.5)'
   )
+  //26,32,44,0.5
   let navbarBorder = 'transparent'
   let secondaryMargin = '0px'
   let paddingX = '15px'
@@ -120,7 +121,7 @@ export default function AdminNavbar (props: {
               </BreadcrumbLink>
             </BreadcrumbItem>
 
-            <BreadcrumbItem color={secondaryText} fontSize='sm'>
+            <BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
               <BreadcrumbLink href='#' color={secondaryText}>
                 {brandText}
               </BreadcrumbLink>
