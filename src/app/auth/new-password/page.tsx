@@ -41,7 +41,7 @@ export default function ResetPasswordForm() {
 
   const formik = useFormik({
     initialValues: {
-      email:localStorage.getItem("email") || "",
+      email:dataFromLocalStorage,
       password:''
     },
     onSubmit: async (values) => {

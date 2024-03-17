@@ -21,7 +21,7 @@ import { FaChevronLeft } from "react-icons/fa";
 export default function VerifyEmailForm() {
 
   // Instead of using localStorage
-  const dataFromLocalStorage = localStorage.getItem('email');
+  const dataFromLocalStorage = localStorage.getItem('email') || "";
 
 
   const toast = useToast()
@@ -71,7 +71,7 @@ export default function VerifyEmailForm() {
       if(isOTPSuccess){
         toast(
           {
-            title:'User Verifyd',
+            title:'User Verify',
             description:OTPData.message || "User Verify Success",
             status:'success',
             isClosable:true,
@@ -95,7 +95,7 @@ export default function VerifyEmailForm() {
 
     const otpResend=async()=>{
       setCounter(59);
-      await otpSend({email:`${localStorage.getItem("email")}`});
+      await otpSend({email:`${dataFromLocalStorage}`});
       if(isOTPSendSuccess){
         toast(
           {
@@ -175,7 +175,7 @@ export default function VerifyEmailForm() {
           fontSize={{ base: 'sm', sm: 'md' }}
           fontWeight="bold"
           color={useColorModeValue('gray.800', 'gray.400')}>
-          {localStorage.getItem("email") || " "}
+          {dataFromLocalStorage}
         </Center>
         <form onSubmit={formik.handleSubmit}>
           <FormControl>
@@ -216,7 +216,7 @@ export default function VerifyEmailForm() {
           direction={"row"}
           >
             <Text fontSize='sm'>Dont have received code? </Text>
-            <Text fontSize='sm' color='teal.500' cursor={"pointer"} hidden={counter > 0 ? true:false}
+            <Text fontSize='sm' color='teal.500' cursor={"pointer"} hidden={counter > 0}
             onClick={otpResend}
             >resend</Text>
 
