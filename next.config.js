@@ -15,5 +15,17 @@ const nextConfig = {
   },
 };
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer({
+  webpack(config) {
+    config.resolve.modules.push(/src/app);
+    return config;
+  },
+});
+
+
 // module.exports = withTM(nextConfig);
 module.exports = nextConfig;
