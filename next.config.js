@@ -21,7 +21,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   webpack(config) {
-    config.resolve.modules.push("page.tsx");
+    config.resolve.modules.push("/src/app/page.tsx");
     return config;
   },
 });
