@@ -3,10 +3,12 @@ import { setCredentials, logOut } from '../auth/authSlice'
 import {MAIN_URL} from '../../ApiLinks/allLinks'
 
 
+
 const baseQuery = fetchBaseQuery({
     baseUrl: MAIN_URL ,
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
+        // @ts-ignore
         const token = getState().auth.token;
         if (token) {
             headers.set("authorization", `Bearer ${token}`)
@@ -24,6 +26,7 @@ const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, 
         const refreshResult = await baseQuery('/admin/refresh', api, extraOptions)
         console.log(refreshResult)
         if (refreshResult?.data) {
+            // @ts-ignore
             const user = api.getState().auth.user
             // store the new token 
             api.dispatch(setCredentials({user,accsessToken:refreshResult.data }))

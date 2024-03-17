@@ -58,7 +58,7 @@ export default function HeaderLinks(props: {
   );
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
 
-  const userDetails = useSelector((state:RootState) => state.userInfo);
+  const userDetails = useSelector((state:RootState) => state.auth);
 
   const [image,setImage] = useState<any>("img/avatars/avatar4.png");
   const [userName,setUserName] = useState<any>("There")
