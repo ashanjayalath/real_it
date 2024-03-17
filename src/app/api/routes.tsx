@@ -7,7 +7,7 @@ import {
   MdOutlineShoppingCart,
 } from 'react-icons/md';
 
-import { IRoute } from 'types/navigation';
+import { IRoute } from '../../types/navigation';
 
 const routes: IRoute[] = [
   {

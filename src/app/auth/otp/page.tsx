@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useFormik } from "formik";
 import { Center, Heading, Icon, Link, useToast } from '@chakra-ui/react'
 import {
@@ -21,6 +21,7 @@ import { FaChevronLeft } from "react-icons/fa";
 export default function VerifyEmailForm() {
 
   // Instead of using localStorage
+  // @ts-ignore
   const dataFromLocalStorage = localStorage.getItem('email') || "";
 
 

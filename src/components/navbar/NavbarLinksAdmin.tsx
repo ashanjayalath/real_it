@@ -25,7 +25,7 @@ import { SidebarResponsive } from 'components/sidebar/Sidebar';
 import { FaEthereum } from 'react-icons/fa';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import { MdInfoOutline, MdNotificationsNone } from 'react-icons/md';
-import routes from 'routes';
+import routes from '../../app/api/routes';
 
 import router from 'next/router';
 import { useSelector } from 'react-redux';

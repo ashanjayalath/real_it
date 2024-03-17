@@ -23,7 +23,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 
 
 export default function ResetPasswordForm() {
-
+  // @ts-ignore
   const dataFromLocalStorage = localStorage.getItem('email');
 
   const toast = useToast()
@@ -61,7 +61,8 @@ export default function ResetPasswordForm() {
           position:'top-right'
         }
       )
-      let dataDeleteFromLocalStorage = localStorage.removeItem('email');
+      // @ts-ignore
+      localStorage.removeItem('email');
       redirect('/auth/sign-in')
     }else if(isPassError){
       toast.closeAll();
