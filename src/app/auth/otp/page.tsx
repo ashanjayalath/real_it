@@ -20,6 +20,10 @@ import { FaChevronLeft } from "react-icons/fa";
 
 export default function VerifyEmailForm() {
 
+  // Instead of using localStorage
+  const dataFromLocalStorage = localStorage.getItem('email');
+
+
   const toast = useToast()
 
   const [otpSend,
@@ -55,7 +59,7 @@ export default function VerifyEmailForm() {
 
     const formik = useFormik({
       initialValues: {
-        email:`${localStorage.getItem("email")}`,
+        email:`${dataFromLocalStorage}`,
         otp:getPin
       },
       onSubmit: async (values) => {
