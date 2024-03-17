@@ -24,6 +24,8 @@ import { FaChevronLeft } from 'react-icons/fa';
 
 export default function ResetPasswordForm() {
 
+  const dataFromLocalStorage = localStorage.getItem('email');
+
   const toast = useToast()
 
   const [passwordChange,
@@ -59,7 +61,7 @@ export default function ResetPasswordForm() {
           position:'top-right'
         }
       )
-      localStorage.removeItem("email")
+      let dataDeleteFromLocalStorage = localStorage.removeItem('email');
       redirect('/auth/sign-in')
     }else if(isPassError){
       toast.closeAll();
@@ -131,7 +133,7 @@ export default function ResetPasswordForm() {
               type='email'
               onChange={formik.handleChange}
               placeholder="your-email@example.com"
-              defaultValue={localStorage.getItem("email")}
+              defaultValue={dataFromLocalStorage}
               _placeholder={{ color: 'gray.500' }}
             />
           </FormControl>
