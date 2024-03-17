@@ -5,22 +5,13 @@ import {
   Button,
   FormControl,
   Flex,
-  Input,
   Stack,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
   useColorModeValue,Text,
   HStack,
 } from '@chakra-ui/react'
 import { PinInput, PinInputField } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import router from 'next/router';
 import { useEffect, useState } from "react";
-import { sign } from "crypto";
 import { useUserOtpVerifyMutation , useUserOtpSendMutation } from "app/api/apiSlice";
-import { useAppDispatch } from "app/services/hooks";
 import { redirect } from 'next/navigation';
 import DefaultAuthLayout from 'layouts/auth/Default';
 import { FaChevronLeft } from "react-icons/fa";
@@ -30,8 +21,6 @@ import { FaChevronLeft } from "react-icons/fa";
 export default function VerifyEmailForm() {
 
   const toast = useToast()
-  const dispatch = useAppDispatch();
-
 
   const [otpSend,
     {
@@ -91,7 +80,7 @@ export default function VerifyEmailForm() {
         toast(
           {
             title:'Error',
-            description:(OTPError as any).data.error || "User OTP Send Unsuccess.",
+            description:(OTPError as any).data.error || "User OTP Send Unsuccessful.",
             isClosable:true,
             status:'error',
             position:'top-right'
@@ -118,7 +107,7 @@ export default function VerifyEmailForm() {
         toast(
           {
             title:'Error',
-            description:(OTPError as any).data.error || "User OTP Send Unsuccess.",
+            description:(OTPError as any).data.error || "User OTP Send Unsuccessful.",
             isClosable:true,
             status:'error',
             position:'top-right'

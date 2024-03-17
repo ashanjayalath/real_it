@@ -56,25 +56,25 @@ export default function HeaderLinks(props: {
     '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
   );
-  const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
-
-  const userDetails = useSelector((state:RootState) => state.auth);
+  // const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+  //
+  // const userDetails = useSelector((state:RootState) => state.auth);
 
   const [image,setImage] = useState<any>("img/avatars/avatar4.png");
   const [userName,setUserName] = useState<any>("There")
-  const [shortName,setShortName] = useState<string>();
-
-
-  useEffect(()=>{
-    if(userName.split(' ').length == 2){
-      let f = userName.split(' ')[0][0];
-      let l = userName.split(' ')[1][0];
-      setShortName(f+l);
-    }else{
-      let f = userName.split(' ')[0][0];
-      setShortName(f)
-    }
-  },[shortName])
+  // const [shortName,setShortName] = useState<string>();
+  //
+  //
+  // useEffect(()=>{
+  //   if(userName.split(' ').length == 2){
+  //     let f = userName.split(' ')[0][0];
+  //     let l = userName.split(' ')[1][0];
+  //     setShortName(f+l);
+  //   }else{
+  //     let f = userName.split(' ')[0][0];
+  //     setShortName(f)
+  //   }
+  // },[shortName])
   
   
 
@@ -246,7 +246,8 @@ export default function HeaderLinks(props: {
             />
             <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
               <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
-                {shortName}
+                {/*{shortName}*/}
+                t
               </Text>
             </Center> 
           </>

@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import {
   Button,
   Flex,
@@ -15,7 +14,6 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { useUserForgetPasswordMutation } from 'app/api/apiSlice';
-import { useAppDispatch } from 'app/services/hooks';
 import { useFormik } from 'formik';
 import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
@@ -27,7 +25,6 @@ import { FaChevronLeft } from 'react-icons/fa';
 export default function ResetPasswordForm() {
 
   const toast = useToast()
-  const dispatch = useAppDispatch();
 
   const [passwordChange,
     {
@@ -69,7 +66,7 @@ export default function ResetPasswordForm() {
       toast(
         {
           title:'Error',
-          description:(PassError as any).data.error || "User Password change Unsuccess.",
+          description:(PassError as any).data.error || "User Password change Unsuccessful.",
           isClosable:true,
           status:'error',
           position:'top-right'
