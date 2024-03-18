@@ -22,8 +22,11 @@ export default function VerifyEmailForm() {
 
   // Instead of using localStorage
   // @ts-ignore
-  const dataFromLocalStorage = localStorage.getItem('email') || "";
+  let dataFromLocalStorage="";
 
+  if (typeof window !== 'undefined') {
+    dataFromLocalStorage = localStorage.getItem('email') || "";
+  }
 
   const toast = useToast()
 

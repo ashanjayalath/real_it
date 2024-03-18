@@ -23,9 +23,9 @@ const routes: IRoute[] = [
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: 'Sales',
+    name: 'Invoices',
     layout: '/admin',
-    path: '/',
+    path: '/invoices',
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
     secondary:false
   },

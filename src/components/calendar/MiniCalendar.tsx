@@ -14,6 +14,7 @@ export default function MiniCalendar(props: {
 }) {
   const { selectRange, ...rest } = props;
   const [value, onChange] = useState(new Date());
+  console.log(value);
   return (
     <Card
       alignItems="center"

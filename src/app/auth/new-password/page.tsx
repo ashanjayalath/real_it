@@ -24,8 +24,13 @@ import { FaChevronLeft } from 'react-icons/fa';
 
 export default function ResetPasswordForm() {
   // @ts-ignore
-  const dataFromLocalStorage = localStorage.getItem('email');
+  let dataFromLocalStorage;
 
+  if (typeof window !== 'undefined') {
+    // Code that accesses localStorage
+    dataFromLocalStorage = localStorage.getItem('email');
+  }
+  
   const toast = useToast()
 
   const [passwordChange,
@@ -61,8 +66,10 @@ export default function ResetPasswordForm() {
           position:'top-right'
         }
       )
-      // @ts-ignore
-      localStorage.removeItem('email');
+
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('email');
+      }
       redirect('/auth/sign-in')
     }else if(isPassError){
       toast.closeAll();

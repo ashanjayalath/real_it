@@ -29,10 +29,8 @@ export default function Loading() {
       >
         <Center>
         <Spinner
-            thickness='4px'
+            color='red.500'
             speed='0.95s'
-            emptyColor='gray.200'
-            color={useColorModeValue('black.100', 'gray.800')}
             size='lg'
             />
         </Center>
