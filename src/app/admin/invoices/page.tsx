@@ -51,7 +51,14 @@ import {
     Icon,
     TableCaption,
     Badge,
-    InputRightElement
+    InputRightElement,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay
 } from "@chakra-ui/react"
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -59,7 +66,10 @@ import 'react-calendar/dist/Calendar.css';
 import MiniCalendar from "components/calendar/MiniCalendar";
 import Calendar from "react-calendar";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-
+import { useRouter } from 'next/router';
+import InvoicePDF from "./invoicePDF";
+import ReactToPrint from 'react-to-print';
+import { redirect } from 'next/navigation';
 type ValuePiece = Date | null;
 
 // type CalValue = ValuePiece | [ValuePiece, ValuePiece];
@@ -69,11 +79,15 @@ interface CalValue {
     ValuePiece: Date
 }
 
+
 export default function Invoice() {
+    const router = useRouter;
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [value, setValue] = React.useState('1')
     const [calValue, onChange] = useState<any>(new Date());
     const firstField = React.useRef();
+
+
     return (
         <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
             <Card >
@@ -319,19 +333,19 @@ export default function Invoice() {
                                                                         <Text>Total Rs.</Text>
                                                                     </Box>
                                                                     <Box w={'100%'} pr={'5'}>
-                                                                    <FormControl>
-                                                                        <InputGroup>
-                                                                            <Input placeholder="Discount" />
-                                                                            <InputRightElement>
-                                                                                <Text>%</Text>
-                                                                            </InputRightElement>
-                                                                        </InputGroup>
+                                                                        <FormControl>
+                                                                            <InputGroup>
+                                                                                <Input placeholder="Discount" />
+                                                                                <InputRightElement>
+                                                                                    <Text>%</Text>
+                                                                                </InputRightElement>
+                                                                            </InputGroup>
                                                                         </FormControl>
                                                                         <FormControl>
-                                                                        <Input placeholder="Shipping Charge" />
+                                                                            <Input placeholder="Shipping Charge" />
                                                                         </FormControl>
                                                                         <FormControl>
-                                                                        <Input placeholder="Adjustment" />
+                                                                            <Input placeholder="Adjustment" />
                                                                         </FormControl>
                                                                     </Box>
                                                                     <Box w={'100%'} pr={'5'}>
@@ -354,10 +368,61 @@ export default function Invoice() {
                             </DrawerBody>
                             <DrawerFooter>
 
-                            <Button variant='outline' mr={3} rounded={'5'} size={'sm'} onClick={onClose}>
+                                <Button variant='outline' mr={3} rounded={'5'} size={'sm'} onClick={onClose}>
                                     Save as Draft
                                 </Button>
-                                <Button type="submit" colorScheme='blue' mr={3} rounded={'5'} size={'sm'}>Save & Send</Button>
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <Button type="submit" colorScheme='blue' mr={3} rounded={'5'} size={'sm'}
+                                        >
+                                            Save & Send
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent>
+                                        <PopoverBody>
+                                            <Text
+                                                pl={2}
+                                                _hover={{
+                                                    cursor: 'pointer',
+                                                    backgroundColor: "red",
+                                                    rounded: "5px",
+                                                    color: "white"
+
+                                                }}
+                                            >PDF Send from Email</Text>
+                                            <Text
+                                                onClick={()=>redirect('/admin/invoices/invoiceView')}
+                                                pl={2}
+                                                _hover={{
+                                                    cursor: 'pointer',
+                                                    backgroundColor: "red",
+                                                    rounded: "5px",
+                                                    color: "white"
+
+                                                }}
+                                            >PDF View & Download</Text>
+                                            <Text
+                                                pl={2}
+                                                _hover={{
+                                                    cursor: 'pointer',
+                                                    backgroundColor: "red",
+                                                    rounded: "5px",
+                                                    color: "white"
+
+                                                }}>Download PDF</Text>
+                                            <Text
+                                                pl={2}
+                                                _hover={{
+                                                    cursor: 'pointer',
+                                                    backgroundColor: "red",
+                                                    rounded: "5px",
+                                                    color: "white"
+
+                                                }}>Download & Send PDF</Text>
+
+                                        </PopoverBody>
+                                    </PopoverContent>
+                                </Popover>
                                 <Button variant='outline' mr={3} rounded={'5'} onClick={onClose} size={'sm'}>
                                     Cancel
                                 </Button>
@@ -419,6 +484,7 @@ export default function Invoice() {
                             </Tbody>
                         </Table>
                     </TableContainer>
+                    <InvoicePDF />
                 </CardBody>
             </Card>
         </Box>
