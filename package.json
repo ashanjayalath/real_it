@@ -18,6 +18,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "antd": "^5.15.3",
     "apexcharts": "^3.35.2",
     "formik": "^2.4.5",
     "framer-motion": "^4.1.17",

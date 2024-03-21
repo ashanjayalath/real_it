@@ -3,7 +3,10 @@ import {
   MdBarChart,
   MdPerson,
   MdHome,
-  MdLock,
+  MdNoteAlt,
+  MdLibraryBooks,
+  MdPeopleAlt,
+  MdOutlineFingerprint,
   MdOutlineShoppingCart,
 } from 'react-icons/md';
 
@@ -20,34 +23,28 @@ const routes: IRoute[] = [
     name: 'Items',
     layout: '/admin',
     path: '/items',
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdOutlineShoppingCart} width="20px" height="20px" color="inherit" />,
   },
   {
     name: 'Invoices',
     layout: '/admin',
     path: '/invoices',
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdLibraryBooks} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: 'Purchases',
+    name: 'Estimate',
     layout: '/admin',
-    path: '/',
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
+    path: '/estimates',
+    icon: <Icon as={MdNoteAlt} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: 'NFT Marketplace',
+    name: 'Vendors',
     layout: '/admin',
-    path: '/nft-marketplace',
+    path: '/vendors',
     icon: (
-      <Icon as={MdOutlineShoppingCart} width="20px" height="20px" color="inherit"/>
+      <Icon as={MdPeopleAlt} width="20px" height="20px" color="inherit"/>
     ),
     secondary: true,
-  },
-  {
-    name: 'Data Tables',
-    layout: '/admin',
-    icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: '/data-tables',
   },
   {
     name: 'Profile',
@@ -59,7 +56,7 @@ const routes: IRoute[] = [
     name: 'Sign In',
     layout: '/auth',
     path: '/sign-in',
-    icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdOutlineFingerprint} width="20px" height="20px" color="inherit" />,
   },
 ];
 

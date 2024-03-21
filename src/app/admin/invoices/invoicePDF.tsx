@@ -11,15 +11,14 @@ export default function InvoicePDF() {
     return (
         <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
             <Flex >
-                <Card minW={'210mm'} minH={'297mm'} rounded={'0'} boxShadow={'2xl'}>
+                <Card maxW={'210mm'} maxH={'297mm'} rounded={'0'} boxShadow={'2xl'} >
                     <Flex
                         m={'0'}
                         p={'0'}
                         height={'205px'}
-                        align="center" justify="space-between" pl={'10'} pr={'10'}>
+                        align="center" justify="space-between" pl={'8'} pr={'10'}>
                         <Box mt={20}>
                             <Image
-                                // boxSize='150px'
                                 height={'auto'}
                                 width={'300px'}
                                 objectFit='fill'
@@ -30,8 +29,8 @@ export default function InvoicePDF() {
 
                         <Box
                             minW={'200px'}
-                            minH={' 200px'}
-                            mr={'5'}
+                            minH={' 205px'}
+                            m={'0'}
                             p={'0'}
                         >
                             <Box
@@ -67,7 +66,7 @@ export default function InvoicePDF() {
                         <Box>
                             <Text fontSize={'14px'} color={allTextColor}>{`Company ID : ${company.companyId}`}</Text>
                             <Text fontSize={'14px'} color={allTextColor}>{company.companyAddress}</Text>
-                            <Text fontSize={'14px'} color={allTextColor}>{company.companyEstablishedCountry}</Text>
+                            {/* <Text fontSize={'14px'} color={allTextColor}>{company.companyEstablishedCountry}</Text> */}
                             <Text fontSize={'14px'} color={allTextColor}>{company.companyPhoneNumber}</Text>
                             <Text fontSize={'14px'} color={allTextColor}>{company.companyEmail}</Text>
                             <Text fontSize={'14px'} color={allTextColor}>{company.companyWeb}</Text>
@@ -103,7 +102,7 @@ export default function InvoicePDF() {
                     <CardBody>
                         <TableContainer mr={5} ml={5}>
                             <Table size='sm'>
-                                <Thead>
+                                <Thead bgColor={'blackAlpha.800'} color={'whiteAlpha.800'}>
                                     <Tr>
                                         <Th color={allTextColor}>NO</Th>
                                         <Th color={allTextColor}>Item & Description</Th>
@@ -119,8 +118,15 @@ export default function InvoicePDF() {
                                         <Td isNumeric color={allTextColor}>10</Td>
                                         <Td isNumeric color={allTextColor}>17500.00</Td>
                                         <Td isNumeric color={allTextColor}>175000.00</Td>
-
                                     </Tr>
+                                    <Tr>
+                                        <Td color={allTextColor}>02</Td>
+                                        <Td color={allTextColor}>millimetres (mm)</Td>
+                                        <Td isNumeric color={allTextColor}>10</Td>
+                                        <Td isNumeric color={allTextColor}>17500.00</Td>
+                                        <Td isNumeric color={allTextColor}>175000.00</Td>
+                                    </Tr>
+                                    
                                 </Tbody>
                             </Table>
                         </TableContainer>
@@ -130,20 +136,17 @@ export default function InvoicePDF() {
                             align="end" justify="end" pr={5} mt={'50px'}
 
                         >
-                            <Card w={'40%'} boxShadow={'2xl'}>
-                                <CardHeader>
-                                    <Flex justify={'space-between'}>
-                                        <Text fontSize={'14px'} color={allTextColor}>Sub Total</Text>
-                                        <Text fontSize={'14.5px'} color={allTextColor}>Rs.850000.00</Text>
-                                    </Flex>
-                                </CardHeader>
+                            <Card w={'40%'}>
                                 <CardBody>
                                     <Flex align="start" justify="space-between">
                                         <Box>
+                                        <Text fontSize={'14px'} color={allTextColor}>Sub Total</Text>
                                             <Text fontSize={'14px'} fontWeight={'bold'} color={allTextColor}>Total</Text>
                                             <Text fontSize={'14px'} color={allTextColor}>Payment Made</Text>
                                         </Box>
                                         <Box>
+                                        <Text fontSize={'14.5px'} color={allTextColor}>Rs.850000.00</Text>
+
                                             <Text fontSize={'14px'} fontWeight={'bold'} color={allTextColor}>Rs.850000.00</Text>
                                             <Text fontSize={'14.5px'} color={'red'}>Rs.850000.00</Text>
                                         </Box>
@@ -159,9 +162,31 @@ export default function InvoicePDF() {
                                 </CardFooter>
                             </Card>
                         </Flex>
+                        <Flex
+                            mt={'10'}
+                            pl={'5'} pr={'5'}
+                            direction={'column'}
+                            align="start" justify="start">
 
+                            <Text color={'red'} mb={5} fontSize={'13px'}>{`Cheque shoude be drawn infavour of " ${company.companyNameCapital} " Accounts Payee Only`}</Text>
+                            <Text>
+                                Terms & Conditions
+                            </Text>
+                            <Text fontSize={'13px'} textAlign={'justify'}>
+                                Warranty covers only manufactures defects, damages of defects due to other cause such as negligence, misuse,improper operation,
+                                power fluctuation, lightening, natural disaster,disaster, physical damages, burn marks, oxidized & corroded are not included under this
+                                warranty.
+                            </Text>
+
+
+                        </Flex>
+                        <Flex justify={'end'} align={'end'}>
+                            <Text fontSize={'14px'} mr={5} mt={5}>
+                                Authorized Signature : ___________________
+                            </Text>
+                        </Flex>
                     </CardBody>
-                    <CardFooter justify='start' flexWrap='wrap'>
+                    <CardFooter justify='start' flexWrap='wrap' pl={'10'} pr={'10'}>
                         <Box>
                             <Text fontSize={'14px'} color={allTextColor}>Notes</Text>
                             <Text fontSize={'12px'} color={allTextColor}>Thanks for your business.</Text>
@@ -169,29 +194,7 @@ export default function InvoicePDF() {
                             <Text fontSize={'14px'} color={allTextColor}>{`${company.companyNameFullCapital} - ${company.companyBankDetails.bank2.bankName} - ${company.companyBankDetails.bank2.branch} - ${company.companyBankDetails.bank2.accountNumber}`}</Text>
                         </Box>
                     </CardFooter>
-                    <Flex
-                        m={'0'}
-                        pl={'5'} pr={'5'}
-                        direction={'column'}
-                        align="start" justify="start" mt={'50px'}>
 
-                        <Text color={'red'} mb={5} fontSize={'13px'}>{`Cheque shoude be drawn infavour of " ${company.companyNameCapital} " Accounts Payee Only`}</Text>
-                        <Text>
-                            Terms & Conditions
-                        </Text>
-                        <Text fontSize={'13px'} textAlign={'justify'}>
-                            Warranty covers only manufactures defects, damages of defects due to other cause such as negligence, misuse,improper operation,
-                            power fluctuation, lightening, natural disaster,disaster, physical damages, burn marks, oxidized & corroded are not included under this
-                            warranty.
-                        </Text>
-
-
-                    </Flex>
-                    <Flex justify={'end'} align={'end'}>
-                        <Text fontSize={'14px'} mb={'20px'} mr={5} mt={5}>
-                            Authorized Signature : ___________________
-                        </Text>
-                    </Flex>
                 </Card>
             </Flex>
         </Box>

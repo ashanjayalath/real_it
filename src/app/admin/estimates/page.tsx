@@ -67,7 +67,6 @@ import MiniCalendar from "components/calendar/MiniCalendar";
 import Calendar from "react-calendar";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useRouter } from 'next/router';
-import InvoicePDF from "./invoicePDF";
 import ReactToPrint from 'react-to-print';
 import { redirect } from 'next/navigation';
 type ValuePiece = Date | null;
@@ -94,9 +93,9 @@ export default function Invoice() {
                 <CardHeader>
                     <Flex>
                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                            <Heading size='md'>All Invoice</Heading>
+                            <Heading size='md'>All Estimate</Heading>
                         </Flex>
-                        <Tooltip label='All Invoice' placement='top'>
+                        <Tooltip label='All Estimate' placement='top'>
                             <IconButton
                                 variant='ghost'
                                 colorScheme='gray'
@@ -121,7 +120,7 @@ export default function Invoice() {
                         <DrawerContent>
                             <DrawerCloseButton />
                             <DrawerHeader boxShadow={'2xl'}>
-                                Create a new Invoice
+                                Create a new Estimate
                             </DrawerHeader>
 
                             <DrawerBody>
@@ -500,7 +499,6 @@ export default function Invoice() {
                             </Tbody>
                         </Table>
                     </TableContainer>
-                    <InvoicePDF />
                 </CardBody>
             </Card>
         </Box>
