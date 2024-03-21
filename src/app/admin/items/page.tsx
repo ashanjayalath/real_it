@@ -100,7 +100,7 @@ export default function Items() {
                                                     <RadioGroup onChange={setValue} value={value}>
                                                         <Stack direction='row'>
                                                             <Radio value='1'>Have</Radio>
-                                                            <Radio value='2'>Have't</Radio>
+                                                            <Radio value='2'>Have &apos t</Radio>
                                                         </Stack>
                                                     </RadioGroup>
                                                 </FormControl>
@@ -109,7 +109,7 @@ export default function Items() {
                                                     <RadioGroup onChange={setValue} value={value}>
                                                         <Stack direction='row'>
                                                             <Radio value='1'>Have</Radio>
-                                                            <Radio value='2'>Have't</Radio>
+                                                            <Radio value='2'>Have &apos t</Radio>
                                                         </Stack>
                                                     </RadioGroup>
                                                 </FormControl>
