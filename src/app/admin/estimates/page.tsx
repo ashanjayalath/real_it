@@ -1,6 +1,6 @@
 'use client';
 
-import { AddIcon, DeleteIcon, EditIcon, PhoneIcon, SmallAddIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import {
     Table,
     Box,
@@ -8,7 +8,6 @@ import {
     Tbody,
     Td,
     Text,
-    Tfoot,
     Th,
     Thead,
     Tr,
@@ -26,47 +25,20 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
-    FormLabel,
     Input,
-    InputGroup,
-    InputLeftAddon,
-    InputRightAddon,
-    Select,
-    Stack,
-    Textarea,
     useDisclosure,
     FormControl,
-    InputLeftElement,
-    Radio,
-    RadioGroup,
-    StackDivider,
     Tooltip,
     Popover,
-    PopoverArrow,
     PopoverBody,
-    PopoverCloseButton,
     PopoverContent,
-    PopoverHeader,
     PopoverTrigger,
-    Icon,
     TableCaption,
     Badge,
-    InputRightElement,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
     CardFooter
 } from "@chakra-ui/react"
 import React, { useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { useRouter } from 'next/router';
 import { useFormik } from "formik";
-import ReactToPrint from 'react-to-print';
 import { redirect } from 'next/navigation';
 import InputBox from "components/fields/InputField";
 import { InboxOutlined } from '@ant-design/icons';
@@ -84,11 +56,9 @@ import InputBoxIconRight from "components/fields/InputFieldThree";
 
 
 export default function Estimate() {
-    const router = useRouter;
+
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [value, setValue] = React.useState('1')
     const [AntDate, setAntDate] = React.useState<any>(new Date())
-    const [calValue, onChange] = useState<any>(new Date());
     const firstField = React.useRef();
 
 
@@ -123,7 +93,6 @@ export default function Estimate() {
         },
         onSubmit: (values) => {
             alert(values.email)
-            console.log("ssssssssssssssss" + values)
         }
     });
 
