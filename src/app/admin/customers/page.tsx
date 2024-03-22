@@ -137,11 +137,11 @@ export default function Vendors() {
                                                         label="Primary Contact"
                                                         placeholder="Select Salutation"
                                                         optionProp={[
-                                                            { id: "1", value: "op1", label: "Mr." },
-                                                            { id: "2", value: "op2", label: "Mrs." },
-                                                            { id: "3", value: "op3", label: "Ms." },
-                                                            { id: "4", value: "op4", label: "Miss." },
-                                                            { id: "5", value: "op5", label: "Dr." }
+                                                            { key: "1", value: "op1", label: "Mr." },
+                                                            { key: "2", value: "op2", label: "Mrs." },
+                                                            { key: "3", value: "op3", label: "Ms." },
+                                                            { key: "4", value: "op4", label: "Miss." },
+                                                            { key: "5", value: "op5", label: "Dr." }
                                                         ]} extra={undefined} mb={0}                                                    />
                                                 </FormControl>
                                             </Box>
@@ -261,14 +261,14 @@ export default function Vendors() {
                                                                     label="Terms"
                                                                     placeholder="Select Terms"
                                                                     optionProp={[
-                                                                        { id: "1", value: "op1", label: "Net 15" },
-                                                                        { id: "2", value: "op2", label: "Net 30" },
-                                                                        { id: "3", value: "op3", label: "Net 45" },
-                                                                        { id: "4", value: "op4", label: "Net 60" },
-                                                                        { id: "5", value: "op5", label: "Due end Of the month" },
-                                                                        { id: "6", value: "op6", label: "Due end Of the next month" },
-                                                                        { id: "7", value: "op7", label: "Due on Receipt" },
-                                                                        { id: "8", value: "op8", label: "Custom" }
+                                                                        { key: "1", value: "op1", label: "Net 15" },
+                                                                        { key: "2", value: "op2", label: "Net 30" },
+                                                                        { key: "3", value: "op3", label: "Net 45" },
+                                                                        { key: "4", value: "op4", label: "Net 60" },
+                                                                        { key: "5", value: "op5", label: "Due end Of the month" },
+                                                                        { key: "6", value: "op6", label: "Due end Of the next month" },
+                                                                        { key: "7", value: "op7", label: "Due on Receipt" },
+                                                                        { key: "8", value: "op8", label: "Custom" }
                                                                     ]} extra={undefined} mb={0}                                                                />
                                                             </FormControl>
                                                         </Box>

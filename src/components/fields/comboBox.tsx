@@ -53,7 +53,7 @@ export default function ComboBox(props: {
       >
         {optionProp.map(data => {
           return (
-            <option value={data.value}>{data.label}</option>
+            <option key={data.key} value={data.value}>{data.label}</option>
           )
         })}
       </Select>
