@@ -1,6 +1,6 @@
 import { Icon } from '@chakra-ui/react';
 import {
-  MdBarChart,
+  MdPersonAdd,
   MdPerson,
   MdHome,
   MdNoteAlt,
@@ -36,6 +36,15 @@ const routes: IRoute[] = [
     layout: '/admin',
     path: '/estimates',
     icon: <Icon as={MdNoteAlt} width="20px" height="20px" color="inherit" />,
+  },
+  {
+    name: 'Customers',
+    layout: '/admin',
+    path: '/customers',
+    icon: (
+      <Icon as={MdPersonAdd} width="20px" height="20px" color="inherit"/>
+    ),
+    secondary: true,
   },
   {
     name: 'Vendors',

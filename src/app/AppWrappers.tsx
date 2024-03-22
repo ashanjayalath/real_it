@@ -3,6 +3,7 @@ import React, { ReactNode, use, useEffect } from 'react';
 import 'styles/App.css';
 import 'styles/Contact.css';
 import 'styles/MiniCalendar.css';
+import 'styles/Loading.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { CacheProvider } from '@chakra-ui/next-js';
 import theme from '../theme/theme';

@@ -175,66 +175,66 @@ export default function Invoice() {
                                         </Flex>
                                         <Flex direction={'row'} justify={'space-between'} gap={4}>
 
-                                        <FormControl>
-                                            <FormLabel>Terms</FormLabel>
-                                            <Select placeholder='Select option'>
-                                                <option value='option1'>Net 15</option>
-                                                <option value='option2'>Net 30</option>
-                                                <option value='option3'>Net 45</option>
-                                                <option value='option4'>Net 60</option>
-                                                <option value='option5'>Due end Of the month</option>
-                                                <option value='option6'>Due end Of the next month</option>
-                                                <option value='option7'>Due on Receipt</option>
-                                                <option value='option8'>Custom</option>
-                                            </Select>
-                                        </FormControl>
-                                        <FormControl>
-                                        <FormLabel>Date</FormLabel>
+                                            <FormControl>
+                                                <FormLabel>Terms</FormLabel>
+                                                <Select placeholder='Select option'>
+                                                    <option value='option1'>Net 15</option>
+                                                    <option value='option2'>Net 30</option>
+                                                    <option value='option3'>Net 45</option>
+                                                    <option value='option4'>Net 60</option>
+                                                    <option value='option5'>Due end Of the month</option>
+                                                    <option value='option6'>Due end Of the next month</option>
+                                                    <option value='option7'>Due on Receipt</option>
+                                                    <option value='option8'>Custom</option>
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl>
+                                                <FormLabel>Date</FormLabel>
 
-                                            <Popover
-                                                placement='bottom-start'
-                                            >
-                                                <PopoverTrigger>
-                                                    <Input value={calValue} />
-                                                </PopoverTrigger>
-                                                <PopoverContent>
+                                                <Popover
+                                                    placement='bottom-start'
+                                                >
+                                                    <PopoverTrigger>
+                                                        <Input value={calValue} />
+                                                    </PopoverTrigger>
+                                                    <PopoverContent>
 
-                                                    <PopoverBody>
+                                                        <PopoverBody>
 
-                                                        <Calendar
-                                                            onChange={onChange}
-                                                            value={calValue}
-                                                            view={'month'}
-                                                            tileContent={<Text color="brand.500" />}
-                                                            prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
-                                                            nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
-                                                        />
+                                                            <Calendar
+                                                                onChange={onChange}
+                                                                value={calValue}
+                                                                view={'month'}
+                                                                tileContent={<Text color="brand.500" />}
+                                                                prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
+                                                                nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
+                                                            />
 
-                                                    </PopoverBody>
-                                                </PopoverContent>
-                                            </Popover>
+                                                        </PopoverBody>
+                                                    </PopoverContent>
+                                                </Popover>
 
-                                        </FormControl>
+                                            </FormControl>
                                         </Flex>
                                         <Flex direction={'row'} justify={'space-between'} gap={4}>
-                                         
-                                        <FormControl>
-                                            <FormLabel>Salesperson</FormLabel>
-                                            <Select placeholder='Select option'>
-                                                <option value='option1'>Net 15</option>
-                                                <option value='option2'>Net 30</option>
-                                                <option value='option3'>Net 45</option>
-                                                <option value='option4'>Net 60</option>
-                                                <option value='option5'>Due end Of the month</option>
-                                                <option value='option6'>Due end Of the next month</option>
-                                                <option value='option7'>Due on Receipt</option>
-                                                <option value='option8'>Custom</option>
-                                            </Select>
-                                        </FormControl>
-                                        <FormControl>
-                                            <FormLabel>Subject</FormLabel>
-                                            <Input placeholder='Ord Number' />
-                                        </FormControl>
+
+                                            <FormControl>
+                                                <FormLabel>Salesperson</FormLabel>
+                                                <Select placeholder='Select option'>
+                                                    <option value='option1'>Net 15</option>
+                                                    <option value='option2'>Net 30</option>
+                                                    <option value='option3'>Net 45</option>
+                                                    <option value='option4'>Net 60</option>
+                                                    <option value='option5'>Due end Of the month</option>
+                                                    <option value='option6'>Due end Of the next month</option>
+                                                    <option value='option7'>Due on Receipt</option>
+                                                    <option value='option8'>Custom</option>
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl>
+                                                <FormLabel>Subject</FormLabel>
+                                                <Input placeholder='Ord Number' />
+                                            </FormControl>
                                         </Flex>
                                         <Box rounded={'5'} mt={'5'} mb={'10'} boxShadow={"2xl"}>
                                             <TableContainer>
@@ -297,87 +297,62 @@ export default function Invoice() {
                                     </Box>
                                     <Box>
                                         <Flex
-                                            direction="column"
+                                            direction="row"
                                             // align="center"
                                             justify="space-between"
                                             pt="4"
                                         >
-                                            <Flex
-                                                direction={{
-                                                    base: "column",
-                                                    md: "row"
-                                                }}
-                                                // align="center"
-                                                justify="space-between"
-                                                w="100%"
-                                            >
-                                                <Box w={'70%'} pr={'5'}>
-                                                    <FormControl>
-                                                        <FormLabel>Customer Notes</FormLabel>
-                                                        <Textarea value={'Thanks for your business.'} />
-                                                    </FormControl>
-                                                    <FormControl>
-                                                        <FormLabel>Terms & Conditions</FormLabel>
-                                                        <Textarea placeholder='Term & Condition' />
+                                            <Box w={'70%'} pr={'5'}>
+                                                <FormControl>
+                                                    <FormLabel>Customer Notes</FormLabel>
+                                                    <Textarea value={'Thanks for your business.'} />
+                                                </FormControl>
+                                                <FormControl>
+                                                    <FormLabel>Terms & Conditions</FormLabel>
+                                                    <Textarea placeholder='Term & Condition' />
 
-                                                    </FormControl>
-                                                </Box>
-                                                <Box w={'100%'} pr={'5'} >
-                                                    <Card rounded={'5'} w={'100%'} backgroundColor={'red.100'} boxShadow={'xl'}>
-                                                        <CardBody>
-
-                                                            <Flex
-                                                                direction="column"
-                                                                align="center"
-                                                                justify="space-between"
-                                                                pt="4"
-                                                            >
-                                                                <Flex
-                                                                    direction={{
-                                                                        base: "column",
-                                                                        md: "row"
-                                                                    }}
-                                                                    align="center"
-                                                                    justify="space-between"
-                                                                    w="100%"
-                                                                >
-                                                                    <Box w={'100%'} pr={'5'}>
-                                                                        <Text>Sub Total</Text>
-                                                                        <Text>Discount</Text>
-                                                                        <Text>Shipping Charges</Text>
-                                                                        <Text>Adjustment</Text>
-                                                                        <Text>Total Rs.</Text>
-                                                                    </Box>
-                                                                    <Box w={'100%'} pr={'5'}>
-                                                                        <FormControl>
-                                                                            <InputGroup>
-                                                                                <Input placeholder="Discount" />
-                                                                                <InputRightElement>
-                                                                                    <Text>%</Text>
-                                                                                </InputRightElement>
-                                                                            </InputGroup>
-                                                                        </FormControl>
-                                                                        <FormControl>
-                                                                            <Input placeholder="Shipping Charge" />
-                                                                        </FormControl>
-                                                                        <FormControl>
-                                                                            <Input placeholder="Adjustment" />
-                                                                        </FormControl>
-                                                                    </Box>
-                                                                    <Box w={'100%'} pr={'5'}>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-
-                                                                    </Box>
-                                                                </Flex>
-                                                            </Flex>
-                                                        </CardBody>
-                                                    </Card>
-                                                </Box>
-                                            </Flex>
+                                                </FormControl>
+                                            </Box>
+                                            <Box w={'100%'} rounded={5} boxShadow={'2xl'}>
+                                                <Flex
+                                                    direction="row"
+                                                    align="center"
+                                                    justify="space-between"
+                                                    pt="4"
+                                                    pl={7}
+                                                >
+                                                    <Box w={'100%'} pr={'5'}>
+                                                        <Text>Sub Total</Text>
+                                                        <Text>Discount</Text>
+                                                        <Text>Shipping Charges</Text>
+                                                        <Text>Adjustment</Text>
+                                                        <Text>Total Rs.</Text>
+                                                    </Box>
+                                                    <Box w={'100%'} pr={'5'}>
+                                                        <FormControl>
+                                                            <InputGroup>
+                                                                <Input placeholder="Discount" />
+                                                                <InputRightElement>
+                                                                    <Text>%</Text>
+                                                                </InputRightElement>
+                                                            </InputGroup>
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <Input placeholder="Shipping Charge" />
+                                                        </FormControl>
+                                                        <FormControl>
+                                                            <Input placeholder="Adjustment" />
+                                                        </FormControl>
+                                                    </Box>
+                                                    <Box w={'100%'} pr={'5'}>
+                                                        <Text>0.00</Text>
+                                                        <Text>0.00</Text>
+                                                        <Text>0.00</Text>
+                                                        <Text>0.00</Text>
+                                                        <Text>0.00</Text>
+                                                    </Box>
+                                                </Flex>
+                                            </Box>
                                         </Flex>
                                     </Box>
                                 </Stack>

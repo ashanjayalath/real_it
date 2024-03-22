@@ -9,20 +9,22 @@ import {
 } from '@chakra-ui/react'
 // Custom components
 
-export default function Default (props: {
+export default function InputBox (props: {
   id: string
   label: string
+  name:string
   extra: JSX.Element
   placeholder: string
   type: string
+  onchange:React.ChangeEventHandler
   mb: SpaceProps['mb']
 }) {
-  const { id, label, extra, placeholder, type, mb, ...rest } = props
+  const { id, label, extra, placeholder,name,onchange, type, mb, ...rest } = props
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue('secondaryGray.900', 'white')
 
   return (
-    <Flex direction='column' mb={mb ? mb : '30px'}>
+    <Flex direction='column' mb={mb ? mb : '10px'}>
       <FormLabel
         display='flex'
         ms='10px'
@@ -39,14 +41,17 @@ export default function Default (props: {
       </FormLabel>
       <Input
         {...rest}
+        name={name}
         type={type}
         id={id}
+        onChange={onchange}
         fontWeight='500'
         variant='main'
+        rounded={5}
         placeholder={placeholder}
         _placeholder={{ fontWeight: '400', color: 'secondaryGray.600' }}
-        h='44px'
-        maxH='44px'
+        h='40px'
+        maxH='40px'
       />
     </Flex>
   )
