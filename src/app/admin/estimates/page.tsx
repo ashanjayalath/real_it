@@ -58,34 +58,74 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay,
+    CardFooter
 } from "@chakra-ui/react"
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import 'react-calendar/dist/Calendar.css';
-import MiniCalendar from "components/calendar/MiniCalendar";
-import Calendar from "react-calendar";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useRouter } from 'next/router';
+import { useFormik } from "formik";
 import ReactToPrint from 'react-to-print';
 import { redirect } from 'next/navigation';
-type ValuePiece = Date | null;
+import InputBox from "components/fields/InputField";
+import { InboxOutlined } from '@ant-design/icons';
+import type { UploadProps } from 'antd';
+import { message, Upload } from 'antd';
 
-// type CalValue = ValuePiece | [ValuePiece, ValuePiece];
+const { Dragger } = Upload;
+import type { Dayjs } from 'dayjs';
+import { Calendar } from 'antd';
+import type { CalendarProps } from 'antd';
+import ComboBox from "components/fields/comboBox";
+import InputBoxTextArea from "components/fields/InputTextArea";
+import InputBoxIconRight from "components/fields/InputFieldThree";
 
-interface CalValue {
-    calValue: any,
-    ValuePiece: Date
-}
 
 
-export default function Invoice() {
+export default function Estimate() {
     const router = useRouter;
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [value, setValue] = React.useState('1')
+    const [AntDate, setAntDate] = React.useState<any>(new Date())
     const [calValue, onChange] = useState<any>(new Date());
     const firstField = React.useRef();
 
+
+    const props: UploadProps = {
+        name: 'file',
+        multiple: true,
+        action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+        onChange(info) {
+            const { status } = info.file;
+            if (status !== 'uploading') {
+                console.log(info.file, info.fileList);
+            }
+            if (status === 'done') {
+                message.success(`${info.file.name} file uploaded successfully.`);
+            } else if (status === 'error') {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+        onDrop(e) {
+            console.log('Dropped files', e.dataTransfer.files);
+        },
+    };
+
+    const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>['mode']) => {
+        setAntDate(value.format('YYYY-MM-DD'));
+    };
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        onSubmit: (values) => {
+            alert(values.email)
+            console.log("ssssssssssssssss" + values)
+        }
+    });
 
     return (
         <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
@@ -120,269 +160,295 @@ export default function Invoice() {
                         <DrawerContent>
                             <DrawerCloseButton />
                             <DrawerHeader boxShadow={'2xl'}>
-                                Create a new Estimate
+                                Create a new Invoice
                             </DrawerHeader>
 
                             <DrawerBody>
-
-                                <Stack divider={<StackDivider />} spacing='4'>
-                                    <Box>
-                                        <Flex direction={'row'} justify={'space-between'} gap={4}>
-
-                                            <FormControl>
-                                                <FormLabel>Customer Name</FormLabel>
-                                                <Input placeholder='Customer name' />
-                                            </FormControl>
-                                            <FormControl>
-                                                <FormLabel>Invoice Number</FormLabel>
-                                                <Input placeholder='Invo Number' />
-                                            </FormControl>
-                                        </Flex>
-                                        <Flex direction={'row'} justify={'space-between'} gap={4}>
-
-                                            <FormControl>
-                                                <FormLabel>Order Number</FormLabel>
-                                                <Input placeholder='Ord Number' />
-                                            </FormControl>
-                                            <FormControl>
-                                                <FormLabel>Date</FormLabel>
-
-                                                <Popover
-                                                    placement='bottom-start'
-                                                >
-                                                    <PopoverTrigger>
-                                                        <Input value={calValue} />
-                                                    </PopoverTrigger>
-                                                    <PopoverContent>
-
-                                                        <PopoverBody>
-
-                                                            <Calendar
-                                                                onChange={onChange}
-                                                                value={calValue}
-                                                                view={'month'}
-                                                                tileContent={<Text color="brand.500" />}
-                                                                prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
-                                                                nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
-                                                            />
-
-                                                        </PopoverBody>
-                                                    </PopoverContent>
-                                                </Popover>
-
-                                            </FormControl>
-                                        </Flex>
-                                        <Flex direction={'row'} justify={'space-between'} gap={4}>
-
+                                <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
                                         <FormControl>
-                                            <FormLabel>Terms</FormLabel>
-                                            <Select placeholder='Select option'>
-                                                <option value='option1'>Net 15</option>
-                                                <option value='option2'>Net 30</option>
-                                                <option value='option3'>Net 45</option>
-                                                <option value='option4'>Net 60</option>
-                                                <option value='option5'>Due end Of the month</option>
-                                                <option value='option6'>Due end Of the next month</option>
-                                                <option value='option7'>Due on Receipt</option>
-                                                <option value='option8'>Custom</option>
-                                            </Select>
+                                            <InputBox
+                                                onchange={formik.handleChange}
+                                                id="customerName"
+                                                label="Customer Name"
+                                                name="customerName"
+                                                placeholder="Customer Name"
+                                                type="text" extra={undefined} mb={0} value={undefined} />
                                         </FormControl>
+                                    </Box>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
                                         <FormControl>
-                                        <FormLabel>Date</FormLabel>
-
+                                            <InputBox
+                                                onchange={formik.handleChange}
+                                                id="invoiceNumber"
+                                                label="Invoice Number"
+                                                name="invoiceNumber"
+                                                placeholder="Invoice Number"
+                                                type="text" extra={undefined} mb={0} value={undefined} />
+                                        </FormControl>
+                                    </Box>
+                                </Flex>
+                                <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <FormControl>
+                                            <InputBox
+                                                onchange={formik.handleChange}
+                                                id="orderNumber"
+                                                label="Order Number"
+                                                name="orderNumber"
+                                                placeholder="Order Number"
+                                                type="text" extra={undefined} mb={0} value={undefined} />
+                                        </FormControl>
+                                    </Box>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <FormControl>
                                             <Popover
                                                 placement='bottom-start'
                                             >
                                                 <PopoverTrigger>
-                                                    <Input value={calValue} />
+                                                    <InputBox
+                                                        onchange={formik.handleChange}
+                                                        id="invoiceNumber"
+                                                        label="Invoice Number"
+                                                        name="invoiceNumber"
+                                                        placeholder="Invoice Number"
+                                                        value={AntDate}
+                                                        type="text" extra={undefined} mb={0} />
                                                 </PopoverTrigger>
                                                 <PopoverContent>
-
                                                     <PopoverBody>
-
-                                                        <Calendar
-                                                            onChange={onChange}
-                                                            value={calValue}
-                                                            view={'month'}
-                                                            tileContent={<Text color="brand.500" />}
-                                                            prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
-                                                            nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
-                                                        />
-
+                                                        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
                                                     </PopoverBody>
                                                 </PopoverContent>
                                             </Popover>
-
                                         </FormControl>
-                                        </Flex>
-                                        <Flex direction={'row'} justify={'space-between'} gap={4}>
-                                         
-                                        <FormControl>
-                                            <FormLabel>Salesperson</FormLabel>
-                                            <Select placeholder='Select option'>
-                                                <option value='option1'>Net 15</option>
-                                                <option value='option2'>Net 30</option>
-                                                <option value='option3'>Net 45</option>
-                                                <option value='option4'>Net 60</option>
-                                                <option value='option5'>Due end Of the month</option>
-                                                <option value='option6'>Due end Of the next month</option>
-                                                <option value='option7'>Due on Receipt</option>
-                                                <option value='option8'>Custom</option>
-                                            </Select>
-                                        </FormControl>
-                                        <FormControl>
-                                            <FormLabel>Subject</FormLabel>
-                                            <Input placeholder='Ord Number' />
-                                        </FormControl>
-                                        </Flex>
-                                        <Box rounded={'5'} mt={'5'} mb={'10'} boxShadow={"2xl"}>
-                                            <TableContainer>
-                                                <Table size='sm'>
-                                                    <TableCaption placement="top" fontSize={'lg'}>
-                                                        <Flex>
-                                                            <Flex flex='1' justify={'space-between'} alignItems='center' flexWrap='wrap'>
-                                                                <Text>ITEM TABLE</Text>
-                                                                <Button leftIcon={<AddIcon />} variant='outline' size={'xs'} rounded={'4'}>Add Row</Button>
-                                                            </Flex>
-                                                        </Flex>
-
-                                                    </TableCaption>
-
-                                                    <Thead>
-                                                        <Tr>
-                                                            <Th>Item Detals</Th>
-                                                            <Th isNumeric>QUANTITY</Th>
-                                                            <Th isNumeric>RATE</Th>
-                                                            <Th isNumeric>AMOUNT</Th>
-                                                            <Th>Actions</Th>
-                                                        </Tr>
-                                                    </Thead>
-                                                    <Tbody>
-                                                        <Tr>
-                                                            <Td>
-
-                                                                <FormControl>
-                                                                    <Input placeholder='Search Item' />
-                                                                </FormControl>
-                                                            </Td>
-                                                            <Td isNumeric>1</Td>
-                                                            <Td isNumeric>1</Td>
-                                                            <Td isNumeric>0.00</Td>
-                                                            <Td>
-                                                                <Tooltip label='Edit & Update Item' placement='top'>
-
-                                                                    <IconButton
-                                                                        variant='ghost'
-                                                                        colorScheme='gray'
-                                                                        aria-label='See menu'
-                                                                        icon={<EditIcon />}
-                                                                    />
-                                                                </Tooltip>
-                                                                <Tooltip label='Delete Item' placement='top'>
-
-                                                                    <IconButton
-                                                                        variant='ghost'
-                                                                        colorScheme='gray'
-                                                                        aria-label='See menu'
-                                                                        icon={<DeleteIcon />}
-                                                                    />
-                                                                </Tooltip>
-                                                            </Td>
-                                                        </Tr>
-                                                    </Tbody>
-                                                </Table>
-                                            </TableContainer>
-                                        </Box>
                                     </Box>
-                                    <Box>
-                                        <Flex
-                                            direction="column"
-                                            // align="center"
-                                            justify="space-between"
-                                            pt="4"
-                                        >
-                                            <Flex
-                                                direction={{
-                                                    base: "column",
-                                                    md: "row"
-                                                }}
-                                                // align="center"
-                                                justify="space-between"
-                                                w="100%"
+                                </Flex>
+                                <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <ComboBox
+                                            id="terms"
+                                            name="terms"
+                                            label="Terms"
+                                            placeholder="Select Terms"
+                                            optionProp={[
+                                                { key: "1", value: "op1", label: "Net 15" },
+                                                { key: "2", value: "op2", label: "Net 30" },
+                                                { key: "3", value: "op3", label: "Net 45" },
+                                                { key: "4", value: "op4", label: "Net 60" },
+                                                { key: "5", value: "op5", label: "Due end Of the month" },
+                                                { key: "6", value: "op6", label: "Due end Of the next month" },
+                                                { key: "7", value: "op7", label: "Due on Receipt" },
+                                                { key: "8", value: "op8", label: "Custom" },
+
+                                            ]} extra={undefined} mb={0} />
+                                    </Box>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <FormControl>
+                                            <Popover
+                                                placement='bottom-start'
                                             >
-                                                <Box w={'70%'} pr={'5'}>
-                                                    <FormControl>
-                                                        <FormLabel>Customer Notes</FormLabel>
-                                                        <Textarea value={'Thanks for your business.'} />
-                                                    </FormControl>
-                                                    <FormControl>
-                                                        <FormLabel>Terms & Conditions</FormLabel>
-                                                        <Textarea placeholder='Term & Condition' />
-
-                                                    </FormControl>
-                                                </Box>
-                                                <Box w={'100%'} pr={'5'} >
-                                                    <Card rounded={'5'} w={'100%'} backgroundColor={'red.100'} boxShadow={'xl'}>
-                                                        <CardBody>
-
-                                                            <Flex
-                                                                direction="column"
-                                                                align="center"
-                                                                justify="space-between"
-                                                                pt="4"
-                                                            >
-                                                                <Flex
-                                                                    direction={{
-                                                                        base: "column",
-                                                                        md: "row"
-                                                                    }}
-                                                                    align="center"
-                                                                    justify="space-between"
-                                                                    w="100%"
-                                                                >
-                                                                    <Box w={'100%'} pr={'5'}>
-                                                                        <Text>Sub Total</Text>
-                                                                        <Text>Discount</Text>
-                                                                        <Text>Shipping Charges</Text>
-                                                                        <Text>Adjustment</Text>
-                                                                        <Text>Total Rs.</Text>
-                                                                    </Box>
-                                                                    <Box w={'100%'} pr={'5'}>
-                                                                        <FormControl>
-                                                                            <InputGroup>
-                                                                                <Input placeholder="Discount" />
-                                                                                <InputRightElement>
-                                                                                    <Text>%</Text>
-                                                                                </InputRightElement>
-                                                                            </InputGroup>
-                                                                        </FormControl>
-                                                                        <FormControl>
-                                                                            <Input placeholder="Shipping Charge" />
-                                                                        </FormControl>
-                                                                        <FormControl>
-                                                                            <Input placeholder="Adjustment" />
-                                                                        </FormControl>
-                                                                    </Box>
-                                                                    <Box w={'100%'} pr={'5'}>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-                                                                        <Text>0.00</Text>
-
-                                                                    </Box>
-                                                                </Flex>
-                                                            </Flex>
-                                                        </CardBody>
-                                                    </Card>
-                                                </Box>
-                                            </Flex>
-                                        </Flex>
+                                                <PopoverTrigger>
+                                                    <InputBox
+                                                        onchange={formik.handleChange}
+                                                        id="invoiceNumber"
+                                                        label="Invoice Number"
+                                                        name="invoiceNumber"
+                                                        placeholder="Invoice Number"
+                                                        value={AntDate}
+                                                        type="text" extra={undefined} mb={0} />
+                                                </PopoverTrigger>
+                                                <PopoverContent>
+                                                    <PopoverBody>
+                                                        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+                                                    </PopoverBody>
+                                                </PopoverContent>
+                                            </Popover>
+                                        </FormControl>
                                     </Box>
-                                </Stack>
+                                </Flex>
+                                <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <ComboBox
+                                            id="terms"
+                                            name="terms"
+                                            label="Salesperson"
+                                            placeholder="Select Terms"
+                                            optionProp={[
+                                                { key: "1", value: "op1", label: "Net 15" },
+                                                { key: "2", value: "op2", label: "Net 30" },
+                                                { key: "3", value: "op3", label: "Net 45" },
+                                                { key: "4", value: "op4", label: "Net 60" },
+                                                { key: "5", value: "op5", label: "Due end Of the month" },
+                                                { key: "6", value: "op6", label: "Due end Of the next month" },
+                                                { key: "7", value: "op7", label: "Due on Receipt" },
+                                                { key: "8", value: "op8", label: "Custom" },
+
+                                            ]} extra={undefined} mb={0} />
+                                    </Box>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <FormControl>
+                                            <InputBox
+                                                onchange={formik.handleChange}
+                                                id="subject"
+                                                label="Subject"
+                                                name="subject"
+                                                placeholder="Subject"
+                                                type="text" extra={undefined} mb={0} value={undefined} />
+                                        </FormControl>
+                                    </Box>
+                                </Flex>
+
+                                <Box rounded={'5'} mt={'5'} mb={'10'} boxShadow={"2xl"}>
+                                    <TableContainer>
+                                        <Table size='sm'>
+                                            <TableCaption placement="top" fontSize={'lg'}>
+                                                <Flex>
+                                                    <Flex flex='1' justify={'space-between'} alignItems='center' flexWrap='wrap'>
+                                                        <Text>ITEM TABLE</Text>
+                                                        <Button leftIcon={<AddIcon />} variant='outline' size={'xs'} rounded={'4'}>Add Row</Button>
+                                                    </Flex>
+                                                </Flex>
+
+                                            </TableCaption>
+
+                                            <Thead>
+                                                <Tr>
+                                                    <Th>Item Detals</Th>
+                                                    <Th isNumeric>QUANTITY</Th>
+                                                    <Th isNumeric>RATE</Th>
+                                                    <Th isNumeric>AMOUNT</Th>
+                                                    <Th>Actions</Th>
+                                                </Tr>
+                                            </Thead>
+                                            <Tbody>
+                                                <Tr>
+                                                    <Td>
+
+                                                        <FormControl>
+                                                            <Input placeholder='Search Item' />
+                                                        </FormControl>
+                                                    </Td>
+                                                    <Td isNumeric>1</Td>
+                                                    <Td isNumeric>1</Td>
+                                                    <Td isNumeric>0.00</Td>
+                                                    <Td>
+                                                        <Tooltip label='Edit & Update Item' placement='top'>
+
+                                                            <IconButton
+                                                                variant='ghost'
+                                                                colorScheme='gray'
+                                                                aria-label='See menu'
+                                                                icon={<EditIcon />}
+                                                            />
+                                                        </Tooltip>
+                                                        <Tooltip label='Delete Item' placement='top'>
+
+                                                            <IconButton
+                                                                variant='ghost'
+                                                                colorScheme='gray'
+                                                                aria-label='See menu'
+                                                                icon={<DeleteIcon />}
+                                                            />
+                                                        </Tooltip>
+                                                    </Td>
+                                                </Tr>
+                                            </Tbody>
+                                        </Table>
+                                    </TableContainer>
+                                </Box>
+
+                                <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                    <Box width={{ base: "100%", md: "55%", xl: "55%" }}>
+                                        <Card mb={10}>
+                                            <CardHeader>
+                                                <Flex justify={'space-between'} direction={'row'} flexWrap={'wrap'} gap={2}>
+                                                    <Text>Sub Total</Text>
+                                                    <Text>0.00</Text>
+                                                </Flex>
+                                            </CardHeader>
+                                            <CardBody>
+                                                <Flex justify={'space-between'} direction={'row'} flexWrap={'wrap'} gap={2}>
+                                                    <Box w={'100%'} >
+                                                        <InputBoxIconRight
+                                                            rightElement={`Rs.${'2500'}`}
+                                                            onchange={formik.handleChange}
+                                                            id="discount"
+                                                            label="Discount"
+                                                            name="discount"
+                                                            placeholder="Discount"
+                                                            type="text" extra={undefined} mb={0} />
+                                                    </Box>
+                                                    <Box w={'100%'} >
+                                                        <InputBoxIconRight
+                                                            rightElement={`Rs.${'2500'}`}
+                                                            onchange={formik.handleChange}
+                                                            id="shippingCharges"
+                                                            label="Shipping Charges"
+                                                            name="shippingCharges"
+                                                            placeholder="Shipping Charges"
+                                                            type="text" extra={undefined} mb={0} />
+                                                    </Box>
+                                                    <Box w={'100%'} >
+                                                        <InputBoxIconRight
+                                                            rightElement={`Rs.${'2500'}`}
+                                                            onchange={formik.handleChange}
+                                                            id="adjustment"
+                                                            label="Adjustment"
+                                                            name="adjustment"
+                                                            placeholder="Adjustment"
+                                                            type="text" extra={undefined} mb={0} />
+                                                    </Box>
+                                                </Flex>
+
+                                            </CardBody>
+                                            <CardFooter>
+                                                <Flex justify={'space-between'} direction={'row'} gap={2}>
+                                                    <Text fontSize={'20px'} fontWeight={'bold'}>Total Rs.</Text>
+                                                    <Text fontSize={'20px'} fontWeight={'bold'}>0.00</Text>
+                                                </Flex>
+                                            </CardFooter>
+                                        </Card>
+                                    </Box>
+                                    <Box width={{ base: "100%", md: "42%", xl: "42%"}} pb={10}>
+                                        <Dragger {...props}>
+                                            <p className="ant-upload-drag-icon">
+                                                <InboxOutlined />
+                                            </p>
+                                            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                            <p className="ant-upload-hint">
+                                                Support for a single or bulk upload.
+                                            </p>
+                                        </Dragger>
+                                    </Box>
+                                </Flex>
+
+                                <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <FormControl>
+                                            <InputBoxTextArea
+                                                onchange={formik.handleChange}
+                                                id="customerNotes"
+                                                label="Customer Notes"
+                                                name="customerNotes"
+                                                placeholder="Customer Notes"
+                                                extra={undefined} mb={0} />
+                                        </FormControl>
+                                    </Box>
+                                    <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                        <FormControl>
+                                            <InputBoxTextArea
+                                                onchange={formik.handleChange}
+                                                id="Terms & Conditions"
+                                                label="Terms & Conditions"
+                                                name="Terms & Conditions"
+                                                placeholder="Warranty covers only manufactures defects, damages of defects due to other cause such as negligence, misuse,improper operation, power fluctuation, lightening, natural disaster,disaster, physical damages, burn marks, oxidized & corroded are not included under this warranty."
+                                                extra={undefined} mb={0} />
+                                        </FormControl>
+                                    </Box>
+                                </Flex>
                             </DrawerBody>
                             <DrawerFooter>
-
                                 <Button variant='outline' mr={3} rounded={'5'} size={'sm'} onClick={onClose}>
                                     Save as Draft
                                 </Button>

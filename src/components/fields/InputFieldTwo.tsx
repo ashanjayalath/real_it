@@ -46,7 +46,7 @@ export default function InputBoxIcon(props: {
             </FormLabel>
             <InputGroup>
                 <InputLeftElement pointerEvents='none'>
-                    <Icon as={leftElement} color='gray.300'/>
+                    {leftElement == "Rs." ? <Text>{leftElement}</Text> : <Icon as={leftElement} color='gray.300'/>}
                 </InputLeftElement>
                 <Input
                     {...rest}

@@ -7,6 +7,7 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
+
 // Custom components
 
 export default function InputBox (props: {
@@ -16,10 +17,11 @@ export default function InputBox (props: {
   extra: JSX.Element
   placeholder: string
   type: string
+  value:any
   onchange:React.ChangeEventHandler
   mb: SpaceProps['mb']
 }) {
-  const { id, label, extra, placeholder,name,onchange, type, mb, ...rest } = props
+  const { id, label, extra, placeholder,name,onchange,value, type, mb, ...rest } = props
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue('secondaryGray.900', 'white')
 
@@ -44,6 +46,7 @@ export default function InputBox (props: {
         name={name}
         type={type}
         id={id}
+        value={value}
         onChange={onchange}
         fontWeight='500'
         variant='main'

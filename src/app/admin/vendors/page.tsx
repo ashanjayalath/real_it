@@ -52,6 +52,11 @@ import { MdOutlinePhoneAndroid, MdCopyAll } from "react-icons/md";
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
+import InputBox from "components/fields/InputField";
+import ComboBox from "components/fields/comboBox";
+import { useFormik } from "formik";
+import InputBoxIcon from "components/fields/InputFieldTwo";
+import InputBoxTextArea from "components/fields/InputTextArea";
 
 const { Dragger } = Upload;
 
@@ -76,16 +81,29 @@ const props: UploadProps = {
 };
 
 export default function Vendors() {
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        onSubmit: (values) => {
+            alert(values.email)
+            console.log("ssssssssssssssss" + values)
+        }
+    });
+    // width={{ base: "100%", md: "48%" ,xl:"48%"}}
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [value, setValue] = React.useState('1')
     const firstField = React.useRef()
     return (
         <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
+
             <Card >
                 <CardHeader>
                     <Flex>
                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                            <Heading size='md'>Vendors List</Heading>
+                            <Heading size='md'>Vendor List</Heading>
                         </Flex>
                         <Tooltip label='Add New Item' placement='top'>
                             <IconButton
@@ -96,6 +114,7 @@ export default function Vendors() {
                                 onClick={onOpen}
                             />
                         </Tooltip>
+
                         <Drawer
                             size={'xl'}
                             isOpen={isOpen}
@@ -106,352 +125,445 @@ export default function Vendors() {
                             <DrawerOverlay />
                             <DrawerContent>
                                 <DrawerCloseButton />
-                                <DrawerHeader boxShadow={'2xl'}>
-                                    Create a vendor
-                                </DrawerHeader>
-
+                                <DrawerHeader boxShadow={'2xl'}>Create a Vendor</DrawerHeader>
                                 <DrawerBody>
-
-                                    <Stack divider={<StackDivider />} spacing='4'>
-                                        <Box>
-
-                                            <FormControl>
-                                                <FormLabel>Primary Contact</FormLabel>
-                                                <Flex direction={'row'} justify={'space-between'} gap={4}>
-                                                    <Select placeholder='Select option'>
-                                                        <option value='option1'>Mr.</option>
-                                                        <option value='option2'>Mrs.</option>
-                                                        <option value='option3'>Ms.</option>
-                                                        <option value='option4'>Miss.</option>
-                                                        <option value='option5'>Dr.</option>
-                                                    </Select>
-                                                    <Input placeholder='First name' />
-                                                    <Input placeholder='Last name' />
-
-                                                </Flex>
-                                            </FormControl>
-                                            <Flex direction={'row'} justify={'space-between'} gap={4}>
+                                    <form onSubmit={formik.handleSubmit}>
+                                        <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                            <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
                                                 <FormControl>
-                                                    <FormLabel>Company Name</FormLabel>
-                                                    <Input placeholder='Company Name' />
+                                                    <ComboBox
+                                                        id="salutation"
+                                                        name="salutation"
+                                                        label="Primary Contact"
+                                                        placeholder="Select Salutation"
+                                                        optionProp={[
+                                                            { key: "1", value: "op1", label: "Mr." },
+                                                            { key: "2", value: "op2", label: "Mrs." },
+                                                            { key: "3", value: "op3", label: "Ms." },
+                                                            { key: "4", value: "op4", label: "Miss." },
+                                                            { key: "5", value: "op5", label: "Dr." }
+                                                        ]} extra={undefined} mb={0}/>
                                                 </FormControl>
+                                            </Box>
+                                            <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
                                                 <FormControl>
-                                                    <FormLabel>Vendor Display Name</FormLabel>
-                                                    <Select placeholder='Select option'>
-                                                        <option value='option1'>box</option>
-                                                    </Select>
+                                                    <InputBox
+                                                        onchange={formik.handleChange}
+                                                        id="fname"
+                                                        label="First Name"
+                                                        name="fname"
+                                                        placeholder="First Name"
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                 </FormControl>
-                                            </Flex>
-                                            <Flex direction={'row'} justify={'space-between'} gap={4}>
+                                            </Box>
+                                            <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
                                                 <FormControl>
-                                                    <FormLabel>Vendor Email</FormLabel>
-                                                    <InputGroup>
-                                                        <InputLeftElement pointerEvents='none'>
-                                                            <EmailIcon color='gray.300' />
-                                                        </InputLeftElement>
-                                                        <Input type='tel' placeholder='Email Address' />
-                                                    </InputGroup>
+                                                    <InputBox
+                                                        onchange={formik.handleChange}
+                                                        id="lname"
+                                                        label="Last Name"
+                                                        name="lname"
+                                                        placeholder="Last Name"
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                 </FormControl>
+                                            </Box>
+                                        </Flex>
+                                        <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                            <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                                <FormControl>
+                                                    <InputBox
+                                                        onchange={formik.handleChange}
+                                                        id="companyName"
+                                                        label="Company Name"
+                                                        name="companyName"
+                                                        placeholder="Company Name"
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                </FormControl>
+                                            </Box>
+                                            <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                                <FormControl>
+                                                    <InputBox
+                                                        onchange={formik.handleChange}
+                                                        id="customerDisplayName"
+                                                        label="Customer Display Name"
+                                                        name="customerDisplayName"
+                                                        placeholder="Customer Display Name"
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                </FormControl>
+                                            </Box>
+                                        </Flex>
+                                        <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                            <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
+                                                <FormControl>
+                                                    <InputBoxIcon
+                                                        leftElement={EmailIcon}
+                                                        onchange={formik.handleChange}
+                                                        id="customerEmailAddress"
+                                                        label="Vendor Email"
+                                                        name="customerEmailAddress"
+                                                        placeholder="Email Address"
+                                                        type="text" extra={undefined} mb={0} />
+                                                </FormControl>
+                                            </Box>
+                                            <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
+                                                <FormControl>
+                                                    <InputBoxIcon
+                                                        leftElement={PhoneIcon}
+                                                        onchange={formik.handleChange}
+                                                        id="customerPhoneNumber"
+                                                        label="Phone Number"
+                                                        name="customerPhoneNumber"
+                                                        placeholder="Phone Number"
+                                                        type="text" extra={undefined} mb={0} />
+                                                </FormControl>
+                                            </Box>
+                                            <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
+                                                <FormControl>
+                                                    <InputBoxIcon
+                                                        leftElement={MdOutlinePhoneAndroid}
+                                                        onchange={formik.handleChange}
+                                                        id="customerMobileNumber"
+                                                        label="Mobile Number"
+                                                        name="customerMobileNumber"
+                                                        placeholder="Mobile Number"
+                                                        type="text" extra={undefined} mb={0} />
+                                                </FormControl>
+                                            </Box>
+                                        </Flex>
 
-                                                <FormControl>
-                                                    <FormLabel>Phone number</FormLabel>
-                                                    <InputGroup>
-                                                        <InputLeftElement pointerEvents='none'>
-                                                            <PhoneIcon color='gray.300' />
-                                                        </InputLeftElement>
-                                                        <Input type='tel' placeholder='Phone number' />
-                                                    </InputGroup>
-                                                </FormControl>
+                                        <Tabs mt={'5'}>
+                                            <TabList>
+                                                <Tab>Other Details</Tab>
+                                                <Tab>Address</Tab>
+                                                <Tab>Contact Persons</Tab>
+                                            </TabList>
 
-                                                <FormControl>
-                                                    <FormLabel>Mobile number</FormLabel>
-                                                    <InputGroup>
-                                                        <InputLeftElement pointerEvents='none'>
-                                                            <MdOutlinePhoneAndroid color='gray.100' />
-                                                        </InputLeftElement>
-                                                        <Input type='tel' placeholder='Mobile number' />
-                                                    </InputGroup>
-                                                </FormControl>
-                                            </Flex>
-                                            <Tabs mt={'5'}>
-                                                <TabList>
-                                                    <Tab>Other Details</Tab>
-                                                    <Tab>Address</Tab>
-                                                    <Tab>Contact Persons</Tab>
-                                                </TabList>
-
-                                                <TabPanels>
-                                                    <TabPanel>
-                                                        <Flex direction={'row'} justify={'space-between'} gap={4}>
+                                            <TabPanels>
+                                                <TabPanel>
+                                                    <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                                        <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
                                                             <FormControl>
-                                                                <FormLabel>Opening Balance</FormLabel>
-                                                                <InputGroup>
-                                                                    <InputLeftElement pointerEvents='none'>
-                                                                        <Text color={'gray.500'}>Rs.</Text>
-                                                                    </InputLeftElement>
-                                                                    <Input type='tel' placeholder='Opening Balance' />
-                                                                </InputGroup>
+                                                                <InputBoxIcon
+                                                                    leftElement={EmailIcon}
+                                                                    onchange={formik.handleChange}
+                                                                    id="customerOpeningBalance"
+                                                                    label="Opening Balance"
+                                                                    name="customerOpeningBalance"
+                                                                    placeholder="Opening Balance"
+                                                                    type="text" extra={undefined} mb={0} />
                                                             </FormControl>
+                                                        </Box>
+                                                        <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
                                                             <FormControl>
-                                                                <FormLabel>Terms</FormLabel>
-                                                                <Select placeholder='Select option'>
-                                                                    <option value='option1'>Net 15</option>
-                                                                    <option value='option2'>Net 30</option>
-                                                                    <option value='option3'>Net 45</option>
-                                                                    <option value='option4'>Net 60</option>
-                                                                    <option value='option5'>Due end Of the month</option>
-                                                                    <option value='option6'>Due end Of the next month</option>
-                                                                    <option value='option7'>Due on Receipt</option>
-                                                                    <option value='option8'>Custom</option>
-                                                                </Select>
+                                                                <ComboBox
+                                                                    id="terms"
+                                                                    name="terms"
+                                                                    label="Terms"
+                                                                    placeholder="Select Terms"
+                                                                    optionProp={[
+                                                                        { key: "1", value: "op1", label: "Net 15" },
+                                                                        { key: "2", value: "op2", label: "Net 30" },
+                                                                        { key: "3", value: "op3", label: "Net 45" },
+                                                                        { key: "4", value: "op4", label: "Net 60" },
+                                                                        { key: "5", value: "op5", label: "Due end Of the month" },
+                                                                        { key: "6", value: "op6", label: "Due end Of the next month" },
+                                                                        { key: "7", value: "op7", label: "Due on Receipt" },
+                                                                        { key: "8", value: "op8", label: "Custom" }
+                                                                    ]} extra={undefined} mb={0}                                                                />
                                                             </FormControl>
-                                                        </Flex>
-                                                        <Dragger {...props} style={{ marginTop: "5px" }}>
-                                                            <p className="ant-upload-drag-icon">
-                                                                <InboxOutlined />
-                                                            </p>
-                                                            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                                                            <p className="ant-upload-hint">
-                                                                Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                                                                banned files.
-                                                            </p>
-                                                        </Dragger>
-                                                    </TabPanel>
-                                                    <TabPanel>
-                                                        <Flex direction={'row'} justify={'space-between'} gap={4}>
-                                                            <Card w={'100%'} boxShadow={'2xl'}>
-                                                                <CardHeader>Billing Address</CardHeader>
-                                                                <CardBody>
-                                                                    <FormControl>
-                                                                        <FormLabel>Attention</FormLabel>
-                                                                        <Input placeholder='Attention' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Country / Region</FormLabel>
-                                                                        <Input placeholder='Country / Region' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Address</FormLabel>
-                                                                        <Textarea placeholder="Address" />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>City</FormLabel>
-                                                                        <Input placeholder='City' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>State</FormLabel>
-                                                                        <Input placeholder='State' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Zip Code</FormLabel>
-                                                                        <Input placeholder='Zip Code' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Phone Number</FormLabel>
-                                                                        <InputGroup>
-                                                                            <InputLeftElement pointerEvents='none'>
-                                                                                <PhoneIcon color='gray.300' />
-                                                                            </InputLeftElement>
-                                                                            <Input type='tel' placeholder='Phone number' />
-                                                                        </InputGroup>
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Fax Number</FormLabel>
-                                                                        <InputGroup>
-                                                                            <InputLeftElement pointerEvents='none'>
-                                                                                <PhoneIcon color='gray.300' />
-                                                                            </InputLeftElement>
-                                                                            <Input type='tel' placeholder='Phone number' />
-                                                                        </InputGroup>
-                                                                    </FormControl>
-                                                                </CardBody>
-                                                            </Card>
-                                                            <Card w={'100%'} boxShadow={'2xl'}>
-                                                                <CardHeader>
-                                                                    <Flex>
-                                                                        <Text>Shipping Address</Text>
-                                                                        <Flex flex='1' gap='4' alignItems='end' justify={'end'} flexWrap='wrap'>
+                                                        </Box>
+                                                    </Flex>
+                                                    <Dragger {...props} style={{ marginTop: "5px" }}>
+                                                        <p className="ant-upload-drag-icon">
+                                                            <InboxOutlined />
+                                                        </p>
+                                                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                                        <p className="ant-upload-hint">
+                                                            Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+                                                            banned files.
+                                                        </p>
+                                                    </Dragger>
+                                                </TabPanel>
+                                                <TabPanel>
+                                                    <Flex direction={'row'} flexWrap={'wrap'} justify={'space-between'} gap={2}>
+                                                        <Card width={{ base: "100%", md: "48%", xl: "48%" }} boxShadow={'2xl'}>
+                                                            <CardHeader>Billing Address</CardHeader>
+                                                            <CardBody>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="attention"
+                                                                        label="Attention"
+                                                                        name="attention"
+                                                                        placeholder="Attention"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="CountryOrRegion"
+                                                                        label="Country / Region"
+                                                                        name="CountryOrRegion"
+                                                                        placeholder="Country or Region"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxTextArea
+                                                                        onchange={formik.handleChange}
+                                                                        id="address"
+                                                                        label="Address"
+                                                                        name="address"
+                                                                        placeholder="Address"
+                                                                        extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="city"
+                                                                        label="City"
+                                                                        name="city"
+                                                                        placeholder="City"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="province"
+                                                                        label="Province"
+                                                                        name="province"
+                                                                        placeholder="Province"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="zipCode"
+                                                                        label="Zip Code"
+                                                                        name="zipCode"
+                                                                        placeholder="Zip Code"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxIcon
+                                                                        leftElement={PhoneIcon}
+                                                                        onchange={formik.handleChange}
+                                                                        id="phoneNumber"
+                                                                        label="Phone Number"
+                                                                        name="phoneNumber"
+                                                                        placeholder="Phone Number"
+                                                                        type="text" extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxIcon
+                                                                        leftElement={PhoneIcon}
+                                                                        onchange={formik.handleChange}
+                                                                        id="faxNumber"
+                                                                        label="Fax Number"
+                                                                        name="faxNumber"
+                                                                        placeholder="Fax Number"
+                                                                        type="text" extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                            </CardBody>
+                                                        </Card>
+                                                        <Card width={{ base: "100%", md: "48%", xl: "48%" }} boxShadow={'2xl'}>
+                                                            <CardHeader>Shipping Address</CardHeader>
+                                                            <CardBody>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="attention"
+                                                                        label="Attention"
+                                                                        name="attention"
+                                                                        placeholder="Attention"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="CountryOrRegion"
+                                                                        label="Country / Region"
+                                                                        name="CountryOrRegion"
+                                                                        placeholder="Country or Region"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxTextArea
+                                                                        onchange={formik.handleChange}
+                                                                        id="address"
+                                                                        label="Address"
+                                                                        name="address"
+                                                                        placeholder="Address"
+                                                                        extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="city"
+                                                                        label="City"
+                                                                        name="city"
+                                                                        placeholder="City"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="province"
+                                                                        label="Province"
+                                                                        name="province"
+                                                                        placeholder="Province"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBox
+                                                                        onchange={formik.handleChange}
+                                                                        id="zipCode"
+                                                                        label="Zip Code"
+                                                                        name="zipCode"
+                                                                        placeholder="Zip Code"
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxIcon
+                                                                        leftElement={PhoneIcon}
+                                                                        onchange={formik.handleChange}
+                                                                        id="phoneNumber"
+                                                                        label="Phone Number"
+                                                                        name="phoneNumber"
+                                                                        placeholder="Phone Number"
+                                                                        type="text" extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxIcon
+                                                                        leftElement={PhoneIcon}
+                                                                        onchange={formik.handleChange}
+                                                                        id="faxNumber"
+                                                                        label="Fax Number"
+                                                                        name="faxNumber"
+                                                                        placeholder="Fax Number"
+                                                                        type="text" extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                            </CardBody>
+                                                        </Card>
+                                                    </Flex>
+                                                </TabPanel>
+                                                <TabPanel>
+                                                    <Flex>
+                                                        <Tooltip label='Add Row' placement='top'>
+                                                            <IconButton
+                                                                variant='ghost'
+                                                                colorScheme='gray'
+                                                                aria-label='See menu'
+                                                                icon={<MdCopyAll />}
+                                                                onClick={onOpen}
+                                                            />
+                                                        </Tooltip>
+                                                    </Flex>
+                                                    <Flex>
 
-                                                                            <Tooltip label='Copy billing address' placement='top'>
+                                                        <TableContainer>
+                                                            <Table size='sm'>
+                                                                <Thead>
+                                                                    <Tr>
+                                                                        <Th>Salutation</Th>
+                                                                        <Th>First Name</Th>
+                                                                        <Th>Last Name</Th>
+                                                                        <Th>Email Address</Th>
+                                                                        <Th>Work Phone</Th>
+                                                                        <Th>Mobile</Th>
+                                                                        <Th>Action</Th>
+                                                                    </Tr>
+                                                                </Thead>
+                                                                <Tbody>
+                                                                    <Tr>
+                                                                        <Td>
+                                                                            <Select>
+                                                                                <option value='option1'>Mr.</option>
+                                                                                <option value='option2'>Mrs.</option>
+                                                                                <option value='option3'>Ms.</option>
+                                                                                <option value='option4'>Miss.</option>
+                                                                                <option value='option5'>Dr.</option>
+                                                                            </Select>
+                                                                        </Td>
+                                                                        <Td>test</Td>
+                                                                        <Td>asaa</Td>
+                                                                        <Td>Active</Td>
+                                                                        <Td>Active</Td>
+                                                                        <Td>Active</Td>
+                                                                        <Td>
+                                                                            <Tooltip label='Edit & Update Item' placement='top'>
+
                                                                                 <IconButton
                                                                                     variant='ghost'
                                                                                     colorScheme='gray'
                                                                                     aria-label='See menu'
-                                                                                    icon={<MdCopyAll />}
-                                                                                    onClick={onOpen}
+                                                                                    icon={<EditIcon />}
                                                                                 />
                                                                             </Tooltip>
-                                                                        </Flex>
-                                                                    </Flex>
-                                                                </CardHeader>
-                                                                <CardBody>
-                                                                    <FormControl>
-                                                                        <FormLabel>Attention</FormLabel>
-                                                                        <Input placeholder='Attention' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Country / Region</FormLabel>
-                                                                        <Input placeholder='Country / Region' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Address</FormLabel>
-                                                                        <Textarea placeholder="Address" />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>City</FormLabel>
-                                                                        <Input placeholder='City' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>State</FormLabel>
-                                                                        <Input placeholder='State' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Zip Code</FormLabel>
-                                                                        <Input placeholder='Zip Code' />
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Phone Number</FormLabel>
-                                                                        <InputGroup>
-                                                                            <InputLeftElement pointerEvents='none'>
-                                                                                <PhoneIcon color='gray.300' />
-                                                                            </InputLeftElement>
-                                                                            <Input type='tel' placeholder='Phone number' />
-                                                                        </InputGroup>
-                                                                    </FormControl>
-                                                                    <FormControl>
-                                                                        <FormLabel>Fax Number</FormLabel>
-                                                                        <InputGroup>
-                                                                            <InputLeftElement pointerEvents='none'>
-                                                                                <PhoneIcon color='gray.300' />
-                                                                            </InputLeftElement>
-                                                                            <Input type='tel' placeholder='Phone number' />
-                                                                        </InputGroup>
-                                                                    </FormControl>
-                                                                </CardBody>
-                                                            </Card>
-                                                        </Flex>
-                                                    </TabPanel>
-                                                    <TabPanel>
-                                                        <Flex>
-                                                            <Tooltip label='Add Row' placement='top'>
-                                                                <IconButton
-                                                                    variant='ghost'
-                                                                    colorScheme='gray'
-                                                                    aria-label='See menu'
-                                                                    icon={<MdCopyAll />}
-                                                                    onClick={onOpen}
-                                                                />
-                                                            </Tooltip>
-                                                        </Flex>
-                                                        <Flex>
+                                                                            <Tooltip label='Delete Item' placement='top'>
 
+                                                                                <IconButton
+                                                                                    variant='ghost'
+                                                                                    colorScheme='gray'
+                                                                                    aria-label='See menu'
+                                                                                    icon={<DeleteIcon />}
+                                                                                />
+                                                                            </Tooltip>
+                                                                        </Td>
+                                                                    </Tr>
+                                                                    <Tr>
+                                                                        <Td>
+                                                                            <Select>
+                                                                                <option value='option1'>Mr.</option>
+                                                                                <option value='option2'>Mrs.</option>
+                                                                                <option value='option3'>Ms.</option>
+                                                                                <option value='option4'>Miss.</option>
+                                                                                <option value='option5'>Dr.</option>
+                                                                            </Select>
+                                                                        </Td>
+                                                                        <Td>test</Td>
+                                                                        <Td>asaa</Td>
+                                                                        <Td>Active</Td>
+                                                                        <Td>Active</Td>
+                                                                        <Td>Active</Td>
+                                                                        <Td>
+                                                                            <Tooltip label='Edit & Update Item' placement='top'>
 
-                                                            <TableContainer>
-                                                                <Table size='sm'>
-                                                                    <Thead>
-                                                                        <Tr>
-                                                                            <Th>Salutation</Th>
-                                                                            <Th>First Name</Th>
-                                                                            <Th>Last Name</Th>
-                                                                            <Th>Email Address</Th>
-                                                                            <Th>Work Phone</Th>
-                                                                            <Th>Mobile</Th>
-                                                                            <Th>Action</Th>
-                                                                        </Tr>
-                                                                    </Thead>
-                                                                    <Tbody>
-                                                                        <Tr>
-                                                                            <Td>
-                                                                                <Select>
-                                                                                    <option value='option1'>Mr.</option>
-                                                                                    <option value='option2'>Mrs.</option>
-                                                                                    <option value='option3'>Ms.</option>
-                                                                                    <option value='option4'>Miss.</option>
-                                                                                    <option value='option5'>Dr.</option>
-                                                                                </Select>
-                                                                            </Td>
-                                                                            <Td>test</Td>
-                                                                            <Td>asaa</Td>
-                                                                            <Td>Active</Td>
-                                                                            <Td>Active</Td>
-                                                                            <Td>Active</Td>
-                                                                            <Td>
-                                                                                <Tooltip label='Edit & Update Item' placement='top'>
+                                                                                <IconButton
+                                                                                    variant='ghost'
+                                                                                    colorScheme='gray'
+                                                                                    aria-label='See menu'
+                                                                                    icon={<EditIcon />}
+                                                                                />
+                                                                            </Tooltip>
+                                                                            <Tooltip label='Delete Item' placement='top'>
 
-                                                                                    <IconButton
-                                                                                        variant='ghost'
-                                                                                        colorScheme='gray'
-                                                                                        aria-label='See menu'
-                                                                                        icon={<EditIcon />}
-                                                                                    />
-                                                                                </Tooltip>
-                                                                                <Tooltip label='Delete Item' placement='top'>
+                                                                                <IconButton
+                                                                                    variant='ghost'
+                                                                                    colorScheme='gray'
+                                                                                    aria-label='See menu'
+                                                                                    icon={<DeleteIcon />}
+                                                                                />
+                                                                            </Tooltip>
+                                                                        </Td>
+                                                                    </Tr>
 
-                                                                                    <IconButton
-                                                                                        variant='ghost'
-                                                                                        colorScheme='gray'
-                                                                                        aria-label='See menu'
-                                                                                        icon={<DeleteIcon />}
-                                                                                    />
-                                                                                </Tooltip>
-                                                                            </Td>
-                                                                        </Tr>
-                                                                        <Tr>
-                                                                            <Td>
-                                                                                <Select>
-                                                                                    <option value='option1'>Mr.</option>
-                                                                                    <option value='option2'>Mrs.</option>
-                                                                                    <option value='option3'>Ms.</option>
-                                                                                    <option value='option4'>Miss.</option>
-                                                                                    <option value='option5'>Dr.</option>
-                                                                                </Select>
-                                                                            </Td>
-                                                                            <Td>test</Td>
-                                                                            <Td>asaa</Td>
-                                                                            <Td>Active</Td>
-                                                                            <Td>Active</Td>
-                                                                            <Td>Active</Td>
-                                                                            <Td>
-                                                                                <Tooltip label='Edit & Update Item' placement='top'>
+                                                                </Tbody>
+                                                            </Table>
+                                                        </TableContainer>
+                                                    </Flex>
 
-                                                                                    <IconButton
-                                                                                        variant='ghost'
-                                                                                        colorScheme='gray'
-                                                                                        aria-label='See menu'
-                                                                                        icon={<EditIcon />}
-                                                                                    />
-                                                                                </Tooltip>
-                                                                                <Tooltip label='Delete Item' placement='top'>
-
-                                                                                    <IconButton
-                                                                                        variant='ghost'
-                                                                                        colorScheme='gray'
-                                                                                        aria-label='See menu'
-                                                                                        icon={<DeleteIcon />}
-                                                                                    />
-                                                                                </Tooltip>
-                                                                            </Td>
-                                                                        </Tr>
-
-                                                                    </Tbody>
-                                                                </Table>
-                                                            </TableContainer>
-                                                        </Flex>
-
-                                                    </TabPanel>
-                                                </TabPanels>
-                                            </Tabs>
-                                        </Box>
-                                    </Stack>
+                                                </TabPanel>
+                                            </TabPanels>
+                                        </Tabs>
+                                    </form>
                                 </DrawerBody>
-                                <DrawerFooter >
-                                    <Button variant='outline' mr={3} rounded={'5'} onClick={onClose}>
-                                        Cancel
-                                    </Button>
+                                <DrawerFooter>
+                                    <Button variant='outline' mr={3} rounded={'5'} onClick={onClose}>Cancel</Button>
                                     <Button type="submit" colorScheme='blue' rounded={'5'}>Save</Button>
                                 </DrawerFooter>
                             </DrawerContent>
                         </Drawer>
+
                     </Flex>
                 </CardHeader>
 
@@ -509,6 +621,6 @@ export default function Vendors() {
                     </TableContainer>
                 </CardBody>
             </Card>
-        </Box>
+        </Box >
     )
 }

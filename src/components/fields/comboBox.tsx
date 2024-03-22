@@ -46,6 +46,7 @@ export default function ComboBox(props: {
         name={name}
         fontWeight='500'
         variant='main'
+        rounded={5}
         placeholder={placeholder}
         _placeholder={{ fontWeight: '400', color: 'secondaryGray.600' }}
         h='40px'

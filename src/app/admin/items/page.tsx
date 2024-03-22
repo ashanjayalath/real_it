@@ -42,6 +42,11 @@ import {
     StackDivider,
     Tooltip
 } from "@chakra-ui/react"
+import InputBox from "components/fields/InputField";
+import InputBoxIcon from "components/fields/InputFieldTwo";
+import InputBoxTextArea from "components/fields/InputTextArea";
+import ComboBox from "components/fields/comboBox";
+import { useFormik } from "formik";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
@@ -49,6 +54,21 @@ export default function Items() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [value, setValue] = React.useState('1')
     const firstField = React.useRef()
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        onSubmit: (values) => {
+            alert(values.email)
+            console.log("ssssssssssssssss" + values)
+        }
+    });
+
+
+
+
     return (
         <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
             <Card >
@@ -84,135 +104,166 @@ export default function Items() {
 
                                     <Stack divider={<StackDivider />} spacing='4'>
                                         <Box>
-                                            <Flex direction={'row'} justify={'space-between'}>
 
-                                                <FormControl>
-                                                    <FormLabel>Type</FormLabel>
-                                                    <RadioGroup onChange={setValue} value={value}>
-                                                        <Stack direction='row'>
-                                                            <Radio value='1'>Goods</Radio>
-                                                            <Radio value='2'>Service</Radio>
-                                                        </Stack>
-                                                    </RadioGroup>
-                                                </FormControl>
-                                                <FormControl>
-                                                    <FormLabel>Warranty</FormLabel>
-                                                    <RadioGroup onChange={setValue} value={value}>
-                                                        <Stack direction='row'>
-                                                            <Radio value='1'>Have</Radio>
-                                                            <Radio value='2'>Have &apos t</Radio>
-                                                        </Stack>
-                                                    </RadioGroup>
-                                                </FormControl>
-                                                <FormControl>
-                                                    <FormLabel>Serial</FormLabel>
-                                                    <RadioGroup onChange={setValue} value={value}>
-                                                        <Stack direction='row'>
-                                                            <Radio value='1'>Have</Radio>
-                                                            <Radio value='2'>Have &apos t</Radio>
-                                                        </Stack>
-                                                    </RadioGroup>
-                                                </FormControl>
+                                            <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
+                                                <Box width={{ base: "100%",sm:"40%", md: "32%", xl: "32%" }} >
+                                                    <FormControl>
+                                                        <FormLabel>Type</FormLabel>
+                                                        <RadioGroup onChange={setValue} value={value}>
+                                                            <Stack direction='row'>
+                                                                <Radio value='1'>Goods</Radio>
+                                                                <Radio value='2'>Service</Radio>
+                                                            </Stack>
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                </Box>
+                                                <Box width={{ base: "100%",sm:"40%", md: "32%", xl: "32%" }} >
+                                                    <FormControl>
+                                                        <FormLabel>Warranty</FormLabel>
+                                                        <RadioGroup onChange={setValue} value={value}>
+                                                            <Stack direction='row'>
+                                                                <Radio value='1'>Have</Radio>
+                                                                <Radio value='2'>Haven&apos;t</Radio>
+                                                            </Stack>
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                </Box>
+                                                <Box width={{ base: "100%",sm:"40%", md: "32%", xl: "32%" }} >
+                                                    <FormControl>
+                                                        <FormLabel>Serial</FormLabel>
+                                                        <RadioGroup onChange={setValue} value={value}>
+                                                            <Stack direction='row'>
+                                                                <Radio value='1'>Have</Radio>
+                                                                <Radio value='2'>Haven&apos;t</Radio>
+                                                            </Stack>
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                </Box>
                                             </Flex>
-                                            <Flex direction={'row'} justify={'space-between'} gap={4}>
-
-                                                <FormControl>
-                                                    <FormLabel>Name</FormLabel>
-                                                    <Input placeholder='First name' />
-                                                </FormControl>
-                                                <FormControl>
-                                                    <FormLabel>Unit</FormLabel>
-                                                    <Select placeholder='Select option'>
-                                                        <option value='option1'>box</option>
-                                                        <option value='option2'>cm</option>
-                                                        <option value='option3'>dz</option>
-                                                        <option value='option4'>ft</option>
-                                                        <option value='option5'>g</option>
-                                                        <option value='option6'>in</option>
-                                                        <option value='option7'>kg</option>
-                                                        <option value='option8'>km</option>
-                                                        <option value='option9'>lb</option>
-                                                        <option value='option10'>mg</option>
-                                                        <option value='option11'>ml</option>
-                                                        <option value='option11'>m</option>
-                                                        <option value='option11'>pcs</option>
-                                                    </Select>
-                                                </FormControl>
+                                            <Flex justify={'space-between'} flexWrap={'wrap'} gap={2} mt={5}>
+                                                <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                                    <FormControl>
+                                                        <InputBox
+                                                            onchange={formik.handleChange}
+                                                            id="orderNumber"
+                                                            label="Order Number"
+                                                            name="orderNumber"
+                                                            placeholder="Order Number"
+                                                            type="text" extra={undefined} mb={0} value={undefined} />
+                                                    </FormControl>
+                                                </Box>
+                                                <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                                    <ComboBox
+                                                        id="unit"
+                                                        name="unit"
+                                                        label="Unit"
+                                                        placeholder="Select Unit"
+                                                        optionProp={[
+                                                            { key: "1", value: "op1", label: "box" },
+                                                            { key: "2", value: "op2", label: "cm" },
+                                                            { key: "3", value: "op3", label: "dz" },
+                                                            { key: "4", value: "op4", label: "ft" },
+                                                            { key: "5", value: "op5", label: "g" },
+                                                            { key: "6", value: "op6", label: "in" },
+                                                            { key: "7", value: "op7", label: "kg" },
+                                                            { key: "8", value: "op8", label: "km" },
+                                                            { key: "9", value: "op9", label: "lb" },
+                                                            { key: "10", value: "op10", label: "mg" },
+                                                            { key: "11", value: "op11", label: "ml" },
+                                                            { key: "12", value: "op12", label: "m" },
+                                                            { key: "13", value: "op13", label: "pcs" }
+                                                        ]} extra={undefined} mb={0} />
+                                                </Box>
                                             </Flex>
-                                            <Flex
-                                                direction="row"
-                                                align="center"
-                                                justify="space-between"
-                                                pt="4"
-                                                gap={4}
-                                            >
 
-                                                <Card w={'100%'} boxShadow={'2xl'}>
-                                                    <CardHeader>
-                                                        Sales Information
-                                                    </CardHeader>
-                                                    <CardBody>
-                                                        <Box w={'100%'}>
-                                                            <FormControl>
-                                                                <InputGroup>
-                                                                    <InputLeftElement pointerEvents='none'>
-                                                                        <Text>Rs.</Text>
-                                                                    </InputLeftElement>
-                                                                    <Input type='tel' placeholder='Selling Price' />
-                                                                </InputGroup>
-                                                            </FormControl>
 
-                                                            <FormControl>
-                                                                <FormLabel>Account</FormLabel>
-                                                                <Select placeholder='Select option'>
-                                                                    <option value='option1'>Discount</option>
-                                                                    <option value='option2'>Sales</option>
-                                                                    <option value='option3'>dz</option>
-                                                                    <option value='option4'>Other Charge</option>
-                                                                </Select>
-                                                            </FormControl>
-
-                                                            <FormControl>
-                                                                <FormLabel>Description</FormLabel>
-                                                                <Textarea placeholder='Description' />
-                                                            </FormControl>
-                                                        </Box>
-                                                    </CardBody>
-                                                </Card>
-                                                <Card w={'100%'} boxShadow={'2xl'}>
-                                                    <CardHeader>
-                                                        Purchase Information
-                                                    </CardHeader>
-                                                    <CardBody>
-                                                        <Box w={'100%'}>
-                                                            <FormControl>
-                                                                <InputGroup>
-                                                                    <InputLeftElement pointerEvents='none'>
-                                                                        <Text>Rs.</Text>
-                                                                    </InputLeftElement>
-                                                                    <Input type='tel' placeholder='Cost Price' />
-                                                                </InputGroup>
-                                                            </FormControl>
-
-                                                            <FormControl>
-                                                                <FormLabel>Account</FormLabel>
-                                                                <Select placeholder='Select option'>
-                                                                    <option value='option1'>Discount</option>
-                                                                    <option value='option2'>Sales</option>
-                                                                    <option value='option3'>dz</option>
-                                                                    <option value='option4'>Other Charge</option>
-                                                                </Select>
-                                                            </FormControl>
-
-                                                            <FormControl>
-                                                                <FormLabel>Description</FormLabel>
-                                                                <Textarea placeholder='Description' />
-                                                            </FormControl>
-
-                                                        </Box>
-                                                    </CardBody>
-                                                </Card>
-
+                                            <Flex direction="row" align="center" justify="space-between" flexWrap={'wrap'} pt="4" gap={2} >
+                                                <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                                    <Card w={'100%'} boxShadow={'2xl'}>
+                                                        <CardHeader fontSize={'20px'}>
+                                                            Sales Information
+                                                        </CardHeader>
+                                                        <CardBody>
+                                                            <Flex direction="column" justify="space-between" pt="4" gap={2} >
+                                                                <FormControl>
+                                                                    <InputBoxIcon
+                                                                        leftElement={'Rs.'}
+                                                                        onchange={formik.handleChange}
+                                                                        id="sellingPrice"
+                                                                        label="Selling Price"
+                                                                        name="sellingPrice"
+                                                                        placeholder="Selling Price"
+                                                                        type="text" extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <ComboBox
+                                                                        id="account"
+                                                                        name="account"
+                                                                        label="Account"
+                                                                        placeholder="Select Account"
+                                                                        optionProp={[
+                                                                            { key: "1", value: "op1", label: "Discount" },
+                                                                            { key: "2", value: "op2", label: "Sales" },
+                                                                            { key: "3", value: "op3", label: "dz" },
+                                                                            { key: "4", value: "op4", label: "Other Charge" }
+                                                                        ]} extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxTextArea
+                                                                        onchange={formik.handleChange}
+                                                                        id="description"
+                                                                        label="Description"
+                                                                        name="description"
+                                                                        placeholder="Description"
+                                                                        extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                            </Flex>
+                                                        </CardBody>
+                                                    </Card>
+                                                </Box>
+                                                <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
+                                                    <Card w={'100%'} boxShadow={'2xl'}>
+                                                        <CardHeader fontSize={'20px'}>
+                                                            Purchase Information
+                                                        </CardHeader>
+                                                        <CardBody>
+                                                            <Flex direction="column" justify="space-between" pt="4" gap={2} >
+                                                                <FormControl>
+                                                                    <InputBoxIcon
+                                                                        leftElement={'Rs.'}
+                                                                        onchange={formik.handleChange}
+                                                                        id="costPrice"
+                                                                        label="Cost Price"
+                                                                        name="costPrice"
+                                                                        placeholder="Cost Price"
+                                                                        type="text" extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <ComboBox
+                                                                        id="account"
+                                                                        name="account"
+                                                                        label="Account"
+                                                                        placeholder="Select Account"
+                                                                        optionProp={[
+                                                                            { key: "1", value: "op1", label: "Discount" },
+                                                                            { key: "2", value: "op2", label: "Sales" },
+                                                                            { key: "3", value: "op3", label: "dz" },
+                                                                            { key: "4", value: "op4", label: "Other Charge" }
+                                                                        ]} extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                                <FormControl>
+                                                                    <InputBoxTextArea
+                                                                        onchange={formik.handleChange}
+                                                                        id="description"
+                                                                        label="Description"
+                                                                        name="description"
+                                                                        placeholder="Description"
+                                                                        extra={undefined} mb={0} />
+                                                                </FormControl>
+                                                            </Flex>
+                                                        </CardBody>
+                                                    </Card>
+                                                </Box>
                                             </Flex>
 
 

@@ -80,7 +80,7 @@ const props: UploadProps = {
     },
 };
 
-export default function Vendors() {
+export default function Customer() {
 
     const formik = useFormik({
         initialValues: {
@@ -142,7 +142,7 @@ export default function Vendors() {
                                                             { key: "3", value: "op3", label: "Ms." },
                                                             { key: "4", value: "op4", label: "Miss." },
                                                             { key: "5", value: "op5", label: "Dr." }
-                                                        ]} extra={undefined} mb={0}                                                    />
+                                                        ]} extra={undefined} mb={0}/>
                                                 </FormControl>
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
@@ -153,7 +153,7 @@ export default function Vendors() {
                                                         label="First Name"
                                                         name="fname"
                                                         placeholder="First Name"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                 </FormControl>
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
@@ -164,7 +164,7 @@ export default function Vendors() {
                                                         label="Last Name"
                                                         name="lname"
                                                         placeholder="Last Name"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                 </FormControl>
                                             </Box>
                                         </Flex>
@@ -177,7 +177,7 @@ export default function Vendors() {
                                                         label="Company Name"
                                                         name="companyName"
                                                         placeholder="Company Name"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                 </FormControl>
                                             </Box>
                                             <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
@@ -188,7 +188,7 @@ export default function Vendors() {
                                                         label="Customer Display Name"
                                                         name="customerDisplayName"
                                                         placeholder="Customer Display Name"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                 </FormControl>
                                             </Box>
                                         </Flex>
@@ -296,7 +296,7 @@ export default function Vendors() {
                                                                         label="Attention"
                                                                         name="attention"
                                                                         placeholder="Attention"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -305,7 +305,7 @@ export default function Vendors() {
                                                                         label="Country / Region"
                                                                         name="CountryOrRegion"
                                                                         placeholder="Country or Region"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBoxTextArea
@@ -323,7 +323,7 @@ export default function Vendors() {
                                                                         label="City"
                                                                         name="city"
                                                                         placeholder="City"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -332,7 +332,7 @@ export default function Vendors() {
                                                                         label="Province"
                                                                         name="province"
                                                                         placeholder="Province"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -341,7 +341,7 @@ export default function Vendors() {
                                                                         label="Zip Code"
                                                                         name="zipCode"
                                                                         placeholder="Zip Code"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBoxIcon
@@ -375,7 +375,7 @@ export default function Vendors() {
                                                                         label="Attention"
                                                                         name="attention"
                                                                         placeholder="Attention"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -384,7 +384,7 @@ export default function Vendors() {
                                                                         label="Country / Region"
                                                                         name="CountryOrRegion"
                                                                         placeholder="Country or Region"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBoxTextArea
@@ -402,7 +402,7 @@ export default function Vendors() {
                                                                         label="City"
                                                                         name="city"
                                                                         placeholder="City"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -411,7 +411,7 @@ export default function Vendors() {
                                                                         label="Province"
                                                                         name="province"
                                                                         placeholder="Province"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -420,7 +420,7 @@ export default function Vendors() {
                                                                         label="Zip Code"
                                                                         name="zipCode"
                                                                         placeholder="Zip Code"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={undefined} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBoxIcon
