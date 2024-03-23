@@ -38,6 +38,7 @@ import {RootState} from "../../../redux/store"
 import { setCredentials } from '../../../redux/auth/authSlice';
 import Loading from '../../../app/loading'
 import { CheckIcon, SmallAddIcon, SmallCloseIcon } from '@chakra-ui/icons';
+import { message } from 'antd';
 
 export default function SignIn() {
 
@@ -47,6 +48,7 @@ export default function SignIn() {
 
   // const userDetails = useSelector((state:RootState) => state.userInfo);
   const dispatch = useAppDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const [loginUser,
     {
@@ -64,6 +66,11 @@ export default function SignIn() {
     },
     onSubmit: async (values) => {
       await loginUser(values)
+      messageApi.open({
+        type: 'success',
+        content: 'This is a prompt message for success, and it will disappear in 10 seconds',
+        duration: 10,
+      });
     }
   });
 
