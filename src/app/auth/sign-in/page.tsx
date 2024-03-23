@@ -66,27 +66,24 @@ export default function SignIn() {
     },
     onSubmit: async (values) => {
       await loginUser(values)
-      messageApi.open({
-        type: 'success',
-        content: 'This is a prompt message for success, and it will disappear in 10 seconds',
-        duration: 10,
-      });
+
     }
   });
 
     
   useEffect(()=>{
     if(isLoginSuccess){
-      toast.closeAll();
-      toast(
-        {
-          title:'Sign In',
-          description:"User Login Success",
-          status:'success',
-          isClosable:true,
-          position:'top-right'
-        }
-      )
+      message.success("gfjhfhgh")
+      // toast.closeAll();
+      // toast(
+      //   {
+      //     title:'Sign In',
+      //     description:"User Login Success",
+      //     status:'success',
+      //     isClosable:true,
+      //     position:'top-right'
+      //   }
+      // )
       dispatch(setCredentials(loginData))
       redirect('/admin')
     }else if(LoginError){
