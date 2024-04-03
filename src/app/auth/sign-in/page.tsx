@@ -30,12 +30,12 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { company } from 'utils/env';
 import { useFormik } from 'formik';
-import { useUserLoginMutation } from "../../api/apiSlice";
+import { useUserLoginMutation } from "../../../redux/apiMutationSlice";
 import { redirect } from 'next/navigation';
 import { useAppDispatch } from 'app/services/hooks';
 import { useSelector } from 'react-redux';
 import {RootState} from "../../../redux/store"
-import { setCredentials } from '../../../redux/auth/authSlice';
+import { setCredentials } from '../../../redux/features/auth/authSlice';
 import Loading from '../../../app/loading'
 import { CheckIcon, SmallAddIcon, SmallCloseIcon } from '@chakra-ui/icons';
 import { message } from 'antd';
@@ -48,7 +48,6 @@ export default function SignIn() {
 
   // const userDetails = useSelector((state:RootState) => state.userInfo);
   const dispatch = useAppDispatch();
-  const [messageApi, contextHolder] = message.useMessage();
 
   const [loginUser,
     {
@@ -73,17 +72,17 @@ export default function SignIn() {
     
   useEffect(()=>{
     if(isLoginSuccess){
-      message.success("gfjhfhgh")
-      // toast.closeAll();
-      // toast(
-      //   {
-      //     title:'Sign In',
-      //     description:"User Login Success",
-      //     status:'success',
-      //     isClosable:true,
-      //     position:'top-right'
-      //   }
-      // )
+      // message.success("gfjhfhgh")
+      toast.closeAll();
+      toast(
+        {
+          title:'Sign In',
+          description:"User Login Success",
+          status:'success',
+          isClosable:true,
+          position:'top-right'
+        }
+      )
       dispatch(setCredentials(loginData))
       redirect('/admin')
     }else if(LoginError){

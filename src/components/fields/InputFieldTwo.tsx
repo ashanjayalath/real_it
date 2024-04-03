@@ -20,11 +20,12 @@ export default function InputBoxIcon(props: {
     extra: JSX.Element
     placeholder: string
     type: string
+    value:string
     leftElement:any
     onchange: React.ChangeEventHandler
     mb: SpaceProps['mb']
 }) {
-    const { id, label, extra, placeholder, name,leftElement, onchange, type, mb, ...rest } = props
+    const { id, label, extra, placeholder, name,leftElement,value, onchange, type, mb, ...rest } = props
     // Chakra Color Mode
     const textColorPrimary = useColorModeValue('secondaryGray.900', 'white')
 
@@ -49,6 +50,7 @@ export default function InputBoxIcon(props: {
                     {leftElement == "Rs." ? <Text>{leftElement}</Text> : <Icon as={leftElement} color='gray.300'/>}
                 </InputLeftElement>
                 <Input
+                value={value}
                     {...rest}
                     name={name}
                     type={type}

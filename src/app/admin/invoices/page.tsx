@@ -2,13 +2,11 @@
 
 import { AddIcon, DeleteIcon, EditIcon, PhoneIcon, SmallAddIcon } from "@chakra-ui/icons";
 import {
-    Table,
     Box,
     TableContainer,
     Tbody,
-    Td,
+    Td,useColorModeValue,
     Text,
-    Tfoot,
     Th,
     Thead,
     Tr,
@@ -19,49 +17,28 @@ import {
     IconButton,
     Button,
     Flex,
-    Drawer,
+    Drawer, Toast,
     DrawerBody,
     DrawerCloseButton,
     DrawerContent,
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
-    FormLabel,
     Input,
-    InputGroup,
-    InputLeftAddon,
-    InputRightAddon,
-    Select,
-    Stack,
-    Textarea,
     useDisclosure,
     FormControl,
-    InputLeftElement,
-    Radio,
-    RadioGroup,
-    StackDivider,
     Tooltip,
     Popover,
-    PopoverArrow,
     PopoverBody,
-    PopoverCloseButton,
     PopoverContent,
-    PopoverHeader,
     PopoverTrigger,
-    Icon,
     TableCaption,
     Badge,
-    InputRightElement,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
-    CardFooter
+    CardFooter,
+    useToast,
+    color
 } from "@chakra-ui/react"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useRouter } from 'next/router';
@@ -81,16 +58,101 @@ import type { CalendarProps } from 'antd';
 import ComboBox from "components/fields/comboBox";
 import InputBoxTextArea from "components/fields/InputTextArea";
 import InputBoxIconRight from "components/fields/InputFieldThree";
+import { useAppDispatch } from "app/services/hooks";
+
+// import { useInvoiceCreateMutation } from "redux/apiMutationSlice";
+import { setInvoiceCredentials } from "redux/features/invoice/invoiceSlice";
+
+import { Table } from 'antd';
+import type { TableColumnsType } from 'antd';
+
+// interface DataType {
+//     InvoCustomerName: string,
+//     InvoID: string,
+//     InvoOrderNumber: string,
+//     InvoDate: string,
+//     InvoTerms: string,
+//     InvoDueDate: string,
+//     InvoSalesperson: string,
+//     InvoSubject: string,
+//     InvoItemsTable: string,
+//     InvoCustmoerNotes: string,
+//     InvoTermCondition: string,
+//     InvoDocument: string
+
+// }
+
+interface DataType {
+    key: React.Key;
+    name: string;
+    age: number;
+    address: string;
+  }
 
 
+ 
 
 export default function Invoice() {
+
+
+      // Chakra color mode
+  const textColor = useColorModeValue('navy.700', 'white');
+  const textColorSecondary = 'gray.400';
+  const textColorDetails = useColorModeValue('navy.700', 'secondaryGray.600');
+  const textColorBrand = useColorModeValue('brand.500', 'white');
+  const brandStars = useColorModeValue('brand.500', 'brand.400');
+  const googleBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.200');
+  const googleText = useColorModeValue('navy.700', 'white');
+  const googleHover = useColorModeValue(
+    { bg: 'gray.200' },
+    { bg: 'whiteAlpha.300' },
+  );
+  const googleActive = useColorModeValue(
+    { bg: 'secondaryGray.300' },
+    { bg: 'whiteAlpha.200' },
+  );
+
+  const columns: TableColumnsType<DataType> = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      width: 150,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      width: 150,
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+    },
+  ];
+
+
+    const dataSource: DataType[] = [];
+    for (let i = 0; i < 100; i++) {
+        dataSource.push({
+        key: i,
+        name: `Edward King ${i}`,
+        age: 32,
+        address: `London, Park Lane no. ${i}`,
+      });
+    }
+
+
+
     const router = useRouter;
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [value, setValue] = React.useState('1')
     const [AntDate, setAntDate] = React.useState<any>(new Date())
     const [calValue, onChange] = useState<any>(new Date());
     const firstField = React.useRef();
+    const toast = useToast();
+
+    const dispatch = useAppDispatch();
+    const [data, setData] = useState<DataType[]>();
+    const [loading, setLoading] = useState(false);
 
 
     const props: UploadProps = {
@@ -117,16 +179,64 @@ export default function Invoice() {
         setAntDate(value.format('YYYY-MM-DD'));
     };
 
+
+    // const [invoiceSave,
+    //     {
+    //         data: invoiceData,
+    //         isLoading: isInvoiceLoading,
+    //         isSuccess: isInvoiceSuccess,
+    //         isError: isInvoiceError,
+    //         error: InvoiceError
+    //     }] = useInvoiceCreateMutation();
+
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: ''
+            InvoCustomerName: "",
+            InvoID: "",
+            InvoOrderNumber: "",
+            InvoDate: "",
+            InvoTerms: "",
+            InvoDueDate: "",
+            InvoSalesperson: "",
+            InvoSubject: "",
+            InvoItemsTable: {},
+            InvoCustmoerNotes: "",
+            InvoTermCondition: "",
+            InvoDocument: {}
         },
-        onSubmit: (values) => {
-            alert(values.email)
-            console.log("ssssssssssssssss" + values)
+        onSubmit: async (values) => {
+            // await invoiceSave(values)
+            alert(values.InvoID)
         }
     });
+    // useEffect(() => {
+    //     if (isInvoiceSuccess) {
+    //         // message.success("gfjhfhgh")
+    //         toast.closeAll();
+    //         toast(
+    //             {
+    //                 title: 'Invoice',
+    //                 description: "Invoice Save Success",
+    //                 status: 'success',
+    //                 isClosable: true,
+    //                 position: 'top-right'
+    //             }
+    //         )
+    //         dispatch(setInvoiceCredentials(invoiceData))
+    //     } else if (InvoiceError) {
+    //         toast.closeAll();
+    //         toast(
+    //             {
+    //                 title: 'Invoice',
+    //                 description: (InvoiceError as any).message || "Invoice Save Unsuccess.",
+    //                 isClosable: true,
+    //                 status: 'error',
+    //                 position: 'top-right'
+    //             }
+    //         )
+    //     }
+    // }, [isInvoiceSuccess]);
+
 
     return (
         <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
@@ -301,7 +411,7 @@ export default function Invoice() {
                                 </Flex>
 
                                 <Box rounded={'5'} mt={'5'} mb={'10'} boxShadow={"2xl"}>
-                                    <TableContainer>
+                                    {/* <TableContainer>
                                         <Table size='sm'>
                                             <TableCaption placement="top" fontSize={'lg'}>
                                                 <Flex>
@@ -356,7 +466,7 @@ export default function Invoice() {
                                                 </Tr>
                                             </Tbody>
                                         </Table>
-                                    </TableContainer>
+                                    </TableContainer> */}
                                 </Box>
 
                                 <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
@@ -411,7 +521,7 @@ export default function Invoice() {
                                             </CardFooter>
                                         </Card>
                                     </Box>
-                                    <Box width={{ base: "100%", md: "42%", xl: "42%"}} pb={10}>
+                                    <Box width={{ base: "100%", md: "42%", xl: "42%" }} pb={10}>
                                         <Dragger {...props}>
                                             <p className="ant-upload-drag-icon">
                                                 <InboxOutlined />
@@ -511,7 +621,17 @@ export default function Invoice() {
                             </DrawerFooter>
                         </DrawerContent>
                     </Drawer>
-                    <TableContainer>
+
+                    <Table 
+                    style={{color:'transparent'}}
+                    columns={columns} 
+                    
+                    dataSource={dataSource} 
+                    pagination={{ pageSize: 50 }} 
+                    scroll={{ y: 240 }} 
+                    />
+
+                    {/* <TableContainer>
                         <Table size='sm'>
                             <Thead>
                                 <Tr>
@@ -565,12 +685,14 @@ export default function Invoice() {
                                 </Tr>
                             </Tbody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer> */}
+
+
+
                     <InvoicePDF />
                 </CardBody>
             </Card>
         </Box>
     )
 }
-
 

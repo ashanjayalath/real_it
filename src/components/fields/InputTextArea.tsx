@@ -13,12 +13,13 @@ import {
     id: string
     label: string
     name:string
+    value:string
     extra: JSX.Element
     placeholder: string
     onchange:React.ChangeEventHandler
     mb: SpaceProps['mb']
   }) {
-    const { id, label, extra, placeholder,name,onchange, mb, ...rest } = props
+    const { id, label, extra, placeholder,name,onchange,value, mb, ...rest } = props
     // Chakra Color Mode
     const textColorPrimary = useColorModeValue('secondaryGray.900', 'white')
   
@@ -45,6 +46,7 @@ import {
           onChange={onchange}
           fontWeight='500'
           rounded={5}
+          value={value}
           placeholder={placeholder}
           _placeholder={{ fontWeight: '400', color: 'secondaryGray.600' }}
           h='40px'

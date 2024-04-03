@@ -13,7 +13,7 @@ import {
   useColorModeValue,
   useToast,
 } from '@chakra-ui/react'
-import { useUserForgetPasswordMutation } from 'app/api/apiSlice';
+import { useUserForgetPasswordMutation } from 'redux/apiSlice';
 import { useFormik } from 'formik';
 import { redirect } from 'next/navigation';
 import { useEffect } from 'react';

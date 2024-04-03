@@ -1,12 +1,9 @@
 'use client'
-import { Center, Spinner } from '@chakra-ui/react'
+import { Center } from '@chakra-ui/react'
 import {
   Flex,
-  Stack,
   useColorModeValue
 } from '@chakra-ui/react'
-
-import AppStyle from '../styles/loader.module.css'
 
 let navbarFilter = 'none'
 let navbarBackdrop = 'blur(20px)'
@@ -30,12 +27,6 @@ export default function Loading() {
       alignItems={{ xl: 'center' }}
     >
       <Center>
-        {/* <Spinner
-            color='red.500'
-            speed='0.95s'
-            size='lg'
-            /> */}
-
 
         <svg className={"pl"} width="240" height="240" viewBox="0 0 240 240">
           <circle className="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
@@ -43,8 +34,6 @@ export default function Loading() {
           <circle className="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
           <circle className="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
         </svg>
-
-
 
       </Center>
     </Flex>

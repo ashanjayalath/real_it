@@ -15,7 +15,7 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import { useFormik } from "formik";
-import { useUserOtpSendMutation } from 'app/api/apiSlice';
+import { useUserOtpSendMutation } from 'redux/apiSlice';
 import { useAppDispatch } from 'app/services/hooks';
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';

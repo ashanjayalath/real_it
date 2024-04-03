@@ -8,13 +8,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body id={'root'}>
-      <NextNProgress
+      {/* <NextNProgress
             color="#FF0022"
             startPosition={0.3}
             stopDelayMs={200}
             height={3}
             showOnShallow={true}
-        />
+        /> */}
         <AppWrappers>
        
           {children}

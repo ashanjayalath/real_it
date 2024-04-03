@@ -9,19 +9,22 @@ import { CacheProvider } from '@chakra-ui/next-js';
 import theme from '../theme/theme';
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
-
-export default function AppWrappers({ children }: { children: ReactNode }) {
-
+import { getServerSession } from 'next-auth';
+import { ConfigProvider } from 'antd';
+export default async function AppWrappers({ children }: { children: ReactNode }) {
+  const session = await getServerSession;
   return (
-
-       <CacheProvider>
-          <ChakraProvider theme={theme}>
+    // <SessionProvider session={session}>
+    <CacheProvider>
+      <ChakraProvider theme={theme}>
           <Provider store={store}>
-              {children}
+            {children}
           </Provider>
-          </ChakraProvider>{' '}
-       </CacheProvider>
+      </ChakraProvider>{' '}
+    </CacheProvider>
+    // </SessionProvider>
 
-   
+
+
   );
 }
