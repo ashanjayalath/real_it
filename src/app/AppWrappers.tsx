@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, use, useEffect } from 'react';
+import React, { ReactNode} from 'react';
 import 'styles/App.css';
 import 'styles/Contact.css';
 import 'styles/MiniCalendar.css';
@@ -9,12 +9,10 @@ import { CacheProvider } from '@chakra-ui/next-js';
 import theme from '../theme/theme';
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
-import { getServerSession } from 'next-auth';
-import { ConfigProvider } from 'antd';
-export default async function AppWrappers({ children }: { children: ReactNode }) {
-  const session = await getServerSession;
+
+export default function AppWrappers({ children }: { children: ReactNode }) {
+
   return (
-    // <SessionProvider session={session}>
     <CacheProvider>
       <ChakraProvider theme={theme}>
           <Provider store={store}>
@@ -22,9 +20,5 @@ export default async function AppWrappers({ children }: { children: ReactNode })
           </Provider>
       </ChakraProvider>{' '}
     </CacheProvider>
-    // </SessionProvider>
-
-
-
   );
 }
