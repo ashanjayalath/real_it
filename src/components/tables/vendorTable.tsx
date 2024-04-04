@@ -293,6 +293,7 @@ export default function VendorTable(props: { data: any, extra: JSX.Element }) {
                 components={components}
                 rowClassName={() => 'editable-row'}
                 dataSource={dataSource}
+                size='middle'
                 columns={columns as ColumnTypes}
                 pagination={{ pageSize: 4 }}
                 scroll={{ y: 180, x: 1000 }}

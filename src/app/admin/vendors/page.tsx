@@ -76,34 +76,38 @@ export default function Vendors() {
         {
             title: 'Name',
             dataIndex: 'name',
-            key:'name',
+            key: 'name',
             align: 'center'
         },
         {
             title: 'Description',
             className: 'Description',
             dataIndex: 'description',
-            key:'description',
+            key: 'description',
             align: 'center'
         },
         {
             title: 'Purchase Description',
             dataIndex: 'purchaseDescription',
-            key:'purchaseDescription',
+            key: 'purchaseDescription',
             align: 'center',
-            width:"25%"
+            width: "25%"
 
         },
         {
             title: 'Status',
             dataIndex: 'status',
-            key:'status',
+            key: 'status',
             align: 'center'
+
         },
         {
             title: 'Actions',
+            key: 'actions',
             dataIndex: 'actions',
             align: 'center',
+            width: "10%",
+            fixed: 'right'
         },
     ];
     const data2: DataType2[] = [
@@ -112,7 +116,7 @@ export default function Vendors() {
             name: 'zo Brown',
             description: '￥300,000.00',
             purchaseDescription: "sss",
-            status: "d",
+            status: "Active",
             actions: 'New',
         },
         {
@@ -120,7 +124,7 @@ export default function Vendors() {
             name: 'bohn',
             description: '￥300,000.00',
             purchaseDescription: "sss",
-            status: "d",
+            status: "Inactive",
             actions: 'New',
         },
         {
@@ -128,7 +132,7 @@ export default function Vendors() {
             name: 'coh Brown',
             description: '￥300,000.00',
             purchaseDescription: "sss",
-            status: "d",
+            status: "Active",
             actions: 'New',
         },
         {
@@ -136,7 +140,7 @@ export default function Vendors() {
             name: 'aohn Brown',
             description: '￥300,000.00',
             purchaseDescription: "sss",
-            status: "d",
+            status: "Inactive",
             actions: 'New',
         },
         {
@@ -144,7 +148,7 @@ export default function Vendors() {
             name: 'hohn Brown',
             description: '￥300,000.00',
             purchaseDescription: "sss",
-            status: "d",
+            status: "Inactive",
             actions: 'New',
         },
         {
@@ -152,7 +156,7 @@ export default function Vendors() {
             name: 'qohn Brown',
             description: '￥300,000.00',
             purchaseDescription: "sss",
-            status: "d",
+            status: "Active",
             actions: 'New',
         }
     ];
@@ -197,10 +201,10 @@ export default function Vendors() {
         }));
     }
     const shipAddressFormHandle = (e: any) => {
-        if(addreesCopy){
-            setShippingAddress(billingAddress) 
+        if (addreesCopy) {
+            setShippingAddress(billingAddress)
             setAddressCopy(false);
-        }else{
+        } else {
             setShippingAddress((prevData) => ({
                 ...prevData,
                 [e.target.name]: e.target.value,
@@ -582,11 +586,11 @@ export default function Vendors() {
                 </CardHeader>
 
                 <CardBody>
-                   <DefaultTable 
-                        data={data2} 
-                        extra={undefined} 
+                    <DefaultTable
+                        data={data2}
+                        extra={undefined}
                         columnData={columns2}
-                   />
+                    />
                 </CardBody>
             </Card>
         </Box >
