@@ -202,7 +202,7 @@ export default function Customer() {
                                                         label="Vendor Email"
                                                         name="customerEmailAddress"
                                                         placeholder="Email Address"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={""} />
                                                 </FormControl>
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
@@ -214,7 +214,7 @@ export default function Customer() {
                                                         label="Phone Number"
                                                         name="customerPhoneNumber"
                                                         placeholder="Phone Number"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={""} />
                                                 </FormControl>
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
@@ -226,7 +226,7 @@ export default function Customer() {
                                                         label="Mobile Number"
                                                         name="customerMobileNumber"
                                                         placeholder="Mobile Number"
-                                                        type="text" extra={undefined} mb={0} />
+                                                        type="text" extra={undefined} mb={0} value={""} />
                                                 </FormControl>
                                             </Box>
                                         </Flex>
@@ -250,7 +250,7 @@ export default function Customer() {
                                                                     label="Opening Balance"
                                                                     name="customerOpeningBalance"
                                                                     placeholder="Opening Balance"
-                                                                    type="text" extra={undefined} mb={0} />
+                                                                    type="text" extra={undefined} mb={0} value={""} />
                                                             </FormControl>
                                                         </Box>
                                                         <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
@@ -314,7 +314,7 @@ export default function Customer() {
                                                                         label="Address"
                                                                         name="address"
                                                                         placeholder="Address"
-                                                                        extra={undefined} mb={0} />
+                                                                        extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -351,7 +351,7 @@ export default function Customer() {
                                                                         label="Phone Number"
                                                                         name="phoneNumber"
                                                                         placeholder="Phone Number"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBoxIcon
@@ -361,7 +361,7 @@ export default function Customer() {
                                                                         label="Fax Number"
                                                                         name="faxNumber"
                                                                         placeholder="Fax Number"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                             </CardBody>
                                                         </Card>
@@ -393,7 +393,7 @@ export default function Customer() {
                                                                         label="Address"
                                                                         name="address"
                                                                         placeholder="Address"
-                                                                        extra={undefined} mb={0} />
+                                                                        extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBox
@@ -430,7 +430,7 @@ export default function Customer() {
                                                                         label="Phone Number"
                                                                         name="phoneNumber"
                                                                         placeholder="Phone Number"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <InputBoxIcon
@@ -440,7 +440,7 @@ export default function Customer() {
                                                                         label="Fax Number"
                                                                         name="faxNumber"
                                                                         placeholder="Fax Number"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                             </CardBody>
                                                         </Card>

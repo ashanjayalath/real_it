@@ -401,7 +401,7 @@ export default function Estimate() {
                                                 label="Customer Notes"
                                                 name="customerNotes"
                                                 placeholder="Customer Notes"
-                                                extra={undefined} mb={0} />
+                                                extra={undefined} mb={0} value={""} />
                                         </FormControl>
                                     </Box>
                                     <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
@@ -412,7 +412,7 @@ export default function Estimate() {
                                                 label="Terms & Conditions"
                                                 name="Terms & Conditions"
                                                 placeholder="Warranty covers only manufactures defects, damages of defects due to other cause such as negligence, misuse,improper operation, power fluctuation, lightening, natural disaster,disaster, physical damages, burn marks, oxidized & corroded are not included under this warranty."
-                                                extra={undefined} mb={0} />
+                                                extra={undefined} mb={0} value={""} />
                                         </FormControl>
                                     </Box>
                                 </Flex>

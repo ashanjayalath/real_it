@@ -630,65 +630,6 @@ export default function Invoice() {
                     pagination={{ pageSize: 50 }} 
                     scroll={{ y: 240 }} 
                     />
-
-                    {/* <TableContainer>
-                        <Table size='sm'>
-                            <Thead>
-                                <Tr>
-                                    <Th>Name</Th>
-                                    <Th>Description</Th>
-                                    <Th isNumeric>PURCHASE DESCRIPTION</Th>
-                                    <Th>Status</Th>
-                                    <Th>Actions</Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                <Tr>
-                                    <Td>inches</Td>
-                                    <Td>millimetres (mm)</Td>
-                                    <Td isNumeric>25.4</Td>
-                                    <Td>
-                                        <Badge variant='outline' rounded={'4'} colorScheme='green'>
-                                            Active
-                                        </Badge>
-                                    </Td>
-                                    <Td>
-                                        <Tooltip label='Edit & Update Item' placement='top'>
-
-                                            <IconButton
-                                                variant='ghost'
-                                                colorScheme='gray'
-                                                aria-label='See menu'
-                                                icon={<EditIcon />}
-                                            />
-                                        </Tooltip>
-                                        <Tooltip label='Delete Item' placement='top'>
-
-                                            <IconButton
-                                                variant='ghost'
-                                                colorScheme='gray'
-                                                aria-label='See menu'
-                                                icon={<DeleteIcon />}
-                                            />
-                                        </Tooltip>
-                                    </Td>
-                                </Tr>
-                                <Tr>
-                                    <Td>feet</Td>
-                                    <Td>centimetres (cm)</Td>
-                                    <Td isNumeric>30.48</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td>yards</Td>
-                                    <Td>metres (m)</Td>
-                                    <Td isNumeric>0.91444</Td>
-                                </Tr>
-                            </Tbody>
-                        </Table>
-                    </TableContainer> */}
-
-
-
                     <InvoicePDF />
                 </CardBody>
             </Card>
