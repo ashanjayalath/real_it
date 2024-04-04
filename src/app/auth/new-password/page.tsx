@@ -18,7 +18,7 @@ import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
 import DefaultAuthLayout from 'layouts/auth/Default';
 import { FaChevronLeft } from 'react-icons/fa';
-import { useUserForgetPasswordMutation } from 'redux/apiMutationSlice';
+import { useUserForgetPasswordMutation } from '../../../redux/apiMutationSlice';
 
 
 

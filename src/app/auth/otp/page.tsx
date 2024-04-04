@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { redirect } from 'next/navigation';
 import DefaultAuthLayout from 'layouts/auth/Default';
 import { FaChevronLeft } from "react-icons/fa";
-import {useUserOtpSendMutation, useUserOtpVerifyMutation} from "redux/apiMutationSlice";
+import {useUserOtpSendMutation, useUserOtpVerifyMutation} from "../../../redux/apiMutationSlice";
 
 
 
