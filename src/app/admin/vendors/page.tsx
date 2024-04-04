@@ -48,7 +48,16 @@ import DefaultTable from "components/tables/defaultTable";
 
 type FormInstance<T> = GetRef<typeof Form<T>>;
 const { Dragger } = Upload;
-
+interface DataType{
+    attention:string;
+    CountryOrRegion:string;
+    address:string;
+    city:string;
+    province:string;
+    zipCode:string;
+    phoneNumber:string;
+    faxNumber:string;
+}
 
 export default function Vendors() {
 
@@ -59,8 +68,8 @@ export default function Vendors() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [value, setValue] = React.useState('1')
     const firstField = React.useRef()
-    const [billingAddress, setBillingAddress] = useState({})
-    const [shippingAddress, setShippingAddress] = useState({})
+    const [billingAddress, setBillingAddress] = useState<DataType>(null)
+    const [shippingAddress, setShippingAddress] = useState<DataType>(null)
 
     const [addreesCopy, setAddressCopy] = useState<boolean>(false);
 
@@ -508,7 +517,7 @@ export default function Vendors() {
                                                                     label="Attention"
                                                                     name="attention"
                                                                     placeholder="Attention"
-                                                                    type="text" extra={undefined} mb={0} value={addreesCopy ? billingAddress?.attention : undefined} />
+                                                                    type="text" extra={undefined} mb={0} value={addreesCopy ? billingAddress.attention : undefined} />
                                                                 <InputBox
                                                                     onchange={shipAddressFormHandle}
                                                                     id="CountryOrRegion"
