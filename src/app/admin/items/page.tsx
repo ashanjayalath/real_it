@@ -193,7 +193,7 @@ export default function Items() {
                                                                         label="Selling Price"
                                                                         name="sellingPrice"
                                                                         placeholder="Selling Price"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <ComboBox
@@ -215,7 +215,7 @@ export default function Items() {
                                                                         label="Description"
                                                                         name="description"
                                                                         placeholder="Description"
-                                                                        extra={undefined} mb={0} />
+                                                                        extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                             </Flex>
                                                         </CardBody>
@@ -236,7 +236,7 @@ export default function Items() {
                                                                         label="Cost Price"
                                                                         name="costPrice"
                                                                         placeholder="Cost Price"
-                                                                        type="text" extra={undefined} mb={0} />
+                                                                        type="text" extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                                 <FormControl>
                                                                     <ComboBox
@@ -258,7 +258,7 @@ export default function Items() {
                                                                         label="Description"
                                                                         name="description"
                                                                         placeholder="Description"
-                                                                        extra={undefined} mb={0} />
+                                                                        extra={undefined} mb={0} value={""} />
                                                                 </FormControl>
                                                             </Flex>
                                                         </CardBody>
