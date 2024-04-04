@@ -11,10 +11,10 @@ import {
 } from '@chakra-ui/react'
 import { PinInput, PinInputField } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
-import { useUserOtpVerifyMutation , useUserOtpSendMutation } from "redux/apiSlice";
 import { redirect } from 'next/navigation';
 import DefaultAuthLayout from 'layouts/auth/Default';
 import { FaChevronLeft } from "react-icons/fa";
+import {useUserOtpSendMutation, useUserOtpVerifyMutation} from "redux/apiMutationSlice";
 
 
 

@@ -15,12 +15,12 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import { useFormik } from "formik";
-import { useUserOtpSendMutation } from 'redux/apiSlice';
 import { useAppDispatch } from 'app/services/hooks';
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import DefaultAuthLayout from 'layouts/auth/Default';
 import { FaChevronLeft } from 'react-icons/fa';
+import {useUserOtpSendMutation} from "../../../redux/apiMutationSlice";
 
 export default function ForgotPassword() {
   // Chakra color mode
