@@ -1,14 +1,12 @@
 'use client';
 
-import { AddIcon, DeleteIcon, EditIcon, PhoneIcon, EmailIcon } from "@chakra-ui/icons";
+import { DeleteIcon, EditIcon, PhoneIcon, EmailIcon } from "@chakra-ui/icons";
 import {
     Table,
     Box,
     TableContainer,
     Tbody,
     Td,
-    Text,
-    Tfoot,
     Th,
     Thead,
     Tr,
@@ -26,20 +24,9 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
-    FormLabel,
-    Input,
-    InputGroup,
-    InputLeftAddon,
-    InputRightAddon,
     Select,
-    Stack,
-    Textarea,
     useDisclosure,
     FormControl,
-    InputLeftElement,
-    Radio,
-    RadioGroup,
-    StackDivider,
     Tooltip,
     Tab,
     TabList,
