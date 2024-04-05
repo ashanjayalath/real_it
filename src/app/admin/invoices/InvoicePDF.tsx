@@ -1,3 +1,4 @@
+'use client';
 import { Box, Card, CardBody, useColorModeValue, CardFooter, CardHeader, 
     Flex, Image, Table, TableContainer, Tbody, 
     Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
