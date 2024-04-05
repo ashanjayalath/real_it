@@ -15,7 +15,7 @@ import type { GetRef, TableColumnsType } from 'antd';
 import type { FilterDropdownProps } from 'antd/es/table/interface';
 import InputBox from 'components/fields/InputField';
 import { DeleteIcon, EditIcon, RepeatIcon, ViewIcon } from '@chakra-ui/icons';
-// import Highlighter from 'react-highlight-words';
+import Highlighter from 'react-highlight-words';
 
 
 
@@ -193,13 +193,12 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
     },
     render: (text) =>
       searchedColumn === dataIndex ? (
-        // <Highlighter
-        //   highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-        //   searchWords={[searchText]}
-        //   autoEscape
-        //   textToHighlight={text ? text.toString() : ''}
-        // />
-        text.toString()
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
       ) : (
         text
       ),
