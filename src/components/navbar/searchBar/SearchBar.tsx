@@ -33,6 +33,7 @@ export function SearchBar (props: {
         <IconButton
           aria-label='search'
           bg='inherit'
+          variant={'link'}
           borderRadius='inherit'
           _active={{
             bg: 'inherit',

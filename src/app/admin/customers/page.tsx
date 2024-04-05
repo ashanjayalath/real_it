@@ -114,10 +114,10 @@ export default function Customer() {
                                 <DrawerCloseButton />
                                 <DrawerHeader boxShadow={'2xl'}>Create a customer</DrawerHeader>
                                 <DrawerBody>
-                                    <form onSubmit={formik.handleSubmit}>
+
                                         <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
-                                                <FormControl>
+
                                                     <ComboBox
                                                         id="salutation"
                                                         name="salutation"
@@ -130,10 +130,10 @@ export default function Customer() {
                                                             { key: "4", value: "op4", label: "Miss." },
                                                             { key: "5", value: "op5", label: "Dr." }
                                                         ]} extra={undefined} mb={0}/>
-                                                </FormControl>
+    
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
-                                                <FormControl>
+          
                                                     <InputBox
                                                         onchange={formik.handleChange}
                                                         id="fname"
@@ -141,10 +141,10 @@ export default function Customer() {
                                                         name="fname"
                                                         placeholder="First Name"
                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                </FormControl>
+   
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }} >
-                                                <FormControl>
+
                                                     <InputBox
                                                         onchange={formik.handleChange}
                                                         id="lname"
@@ -152,12 +152,12 @@ export default function Customer() {
                                                         name="lname"
                                                         placeholder="Last Name"
                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                </FormControl>
+         
                                             </Box>
                                         </Flex>
                                         <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
                                             <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
-                                                <FormControl>
+
                                                     <InputBox
                                                         onchange={formik.handleChange}
                                                         id="companyName"
@@ -165,10 +165,10 @@ export default function Customer() {
                                                         name="companyName"
                                                         placeholder="Company Name"
                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                </FormControl>
+ 
                                             </Box>
                                             <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
-                                                <FormControl>
+                       
                                                     <InputBox
                                                         onchange={formik.handleChange}
                                                         id="customerDisplayName"
@@ -176,12 +176,12 @@ export default function Customer() {
                                                         name="customerDisplayName"
                                                         placeholder="Customer Display Name"
                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                </FormControl>
+                  
                                             </Box>
                                         </Flex>
                                         <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
-                                                <FormControl>
+  
                                                     <InputBoxIcon
                                                         leftElement={EmailIcon}
                                                         onchange={formik.handleChange}
@@ -190,10 +190,10 @@ export default function Customer() {
                                                         name="customerEmailAddress"
                                                         placeholder="Email Address"
                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                </FormControl>
+                      
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
-                                                <FormControl>
+                                                
                                                     <InputBoxIcon
                                                         leftElement={PhoneIcon}
                                                         onchange={formik.handleChange}
@@ -202,10 +202,10 @@ export default function Customer() {
                                                         name="customerPhoneNumber"
                                                         placeholder="Phone Number"
                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                </FormControl>
+                                                
                                             </Box>
                                             <Box width={{ base: "100%", md: "32%", xl: "32%" }}>
-                                                <FormControl>
+                                                
                                                     <InputBoxIcon
                                                         leftElement={MdOutlinePhoneAndroid}
                                                         onchange={formik.handleChange}
@@ -214,7 +214,7 @@ export default function Customer() {
                                                         name="customerMobileNumber"
                                                         placeholder="Mobile Number"
                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                </FormControl>
+                                                
                                             </Box>
                                         </Flex>
 
@@ -229,7 +229,7 @@ export default function Customer() {
                                                 <TabPanel>
                                                     <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
                                                         <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
-                                                            <FormControl>
+                                                            
                                                                 <InputBoxIcon
                                                                     leftElement={EmailIcon}
                                                                     onchange={formik.handleChange}
@@ -238,10 +238,10 @@ export default function Customer() {
                                                                     name="customerOpeningBalance"
                                                                     placeholder="Opening Balance"
                                                                     type="text" extra={undefined} mb={0} value={""} />
-                                                            </FormControl>
+                                                            
                                                         </Box>
                                                         <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
-                                                            <FormControl>
+                                                            
                                                                 <ComboBox
                                                                     id="terms"
                                                                     name="terms"
@@ -257,7 +257,7 @@ export default function Customer() {
                                                                         { key: "7", value: "op7", label: "Due on Receipt" },
                                                                         { key: "8", value: "op8", label: "Custom" }
                                                                     ]} extra={undefined} mb={0}                                                                />
-                                                            </FormControl>
+                                                            
                                                         </Box>
                                                     </Flex>
                                                     <Dragger {...props} style={{ marginTop: "5px" }}>
@@ -276,7 +276,7 @@ export default function Customer() {
                                                         <Card width={{ base: "100%", md: "48%", xl: "48%" }} boxShadow={'2xl'}>
                                                             <CardHeader>Billing Address</CardHeader>
                                                             <CardBody>
-                                                                <FormControl>
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="attention"
@@ -284,8 +284,8 @@ export default function Customer() {
                                                                         name="attention"
                                                                         placeholder="Attention"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="CountryOrRegion"
@@ -293,8 +293,8 @@ export default function Customer() {
                                                                         name="CountryOrRegion"
                                                                         placeholder="Country or Region"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBoxTextArea
                                                                         onchange={formik.handleChange}
                                                                         id="address"
@@ -302,8 +302,8 @@ export default function Customer() {
                                                                         name="address"
                                                                         placeholder="Address"
                                                                         extra={undefined} mb={0} value={""} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="city"
@@ -311,8 +311,8 @@ export default function Customer() {
                                                                         name="city"
                                                                         placeholder="City"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="province"
@@ -320,8 +320,8 @@ export default function Customer() {
                                                                         name="province"
                                                                         placeholder="Province"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="zipCode"
@@ -329,8 +329,8 @@ export default function Customer() {
                                                                         name="zipCode"
                                                                         placeholder="Zip Code"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBoxIcon
                                                                         leftElement={PhoneIcon}
                                                                         onchange={formik.handleChange}
@@ -339,8 +339,8 @@ export default function Customer() {
                                                                         name="phoneNumber"
                                                                         placeholder="Phone Number"
                                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBoxIcon
                                                                         leftElement={PhoneIcon}
                                                                         onchange={formik.handleChange}
@@ -349,13 +349,13 @@ export default function Customer() {
                                                                         name="faxNumber"
                                                                         placeholder="Fax Number"
                                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                                </FormControl>
+                                                                
                                                             </CardBody>
                                                         </Card>
                                                         <Card width={{ base: "100%", md: "48%", xl: "48%" }} boxShadow={'2xl'}>
                                                             <CardHeader>Shipping Address</CardHeader>
                                                             <CardBody>
-                                                                <FormControl>
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="attention"
@@ -363,8 +363,8 @@ export default function Customer() {
                                                                         name="attention"
                                                                         placeholder="Attention"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="CountryOrRegion"
@@ -372,8 +372,8 @@ export default function Customer() {
                                                                         name="CountryOrRegion"
                                                                         placeholder="Country or Region"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBoxTextArea
                                                                         onchange={formik.handleChange}
                                                                         id="address"
@@ -381,8 +381,8 @@ export default function Customer() {
                                                                         name="address"
                                                                         placeholder="Address"
                                                                         extra={undefined} mb={0} value={""} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="city"
@@ -390,8 +390,8 @@ export default function Customer() {
                                                                         name="city"
                                                                         placeholder="City"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="province"
@@ -399,8 +399,8 @@ export default function Customer() {
                                                                         name="province"
                                                                         placeholder="Province"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBox
                                                                         onchange={formik.handleChange}
                                                                         id="zipCode"
@@ -408,8 +408,8 @@ export default function Customer() {
                                                                         name="zipCode"
                                                                         placeholder="Zip Code"
                                                                         type="text" extra={undefined} mb={0} value={undefined} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBoxIcon
                                                                         leftElement={PhoneIcon}
                                                                         onchange={formik.handleChange}
@@ -418,8 +418,8 @@ export default function Customer() {
                                                                         name="phoneNumber"
                                                                         placeholder="Phone Number"
                                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                                </FormControl>
-                                                                <FormControl>
+                                                                
+                                                                
                                                                     <InputBoxIcon
                                                                         leftElement={PhoneIcon}
                                                                         onchange={formik.handleChange}
@@ -428,7 +428,7 @@ export default function Customer() {
                                                                         name="faxNumber"
                                                                         placeholder="Fax Number"
                                                                         type="text" extra={undefined} mb={0} value={""} />
-                                                                </FormControl>
+                                                                
                                                             </CardBody>
                                                         </Card>
                                                     </Flex>
@@ -542,7 +542,6 @@ export default function Customer() {
                                                 </TabPanel>
                                             </TabPanels>
                                         </Tabs>
-                                    </form>
                                 </DrawerBody>
                                 <DrawerFooter>
                                     <Button variant='outline' mr={3} rounded={'5'} onClick={onClose}>Cancel</Button>

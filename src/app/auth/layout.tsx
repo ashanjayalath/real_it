@@ -28,9 +28,9 @@ export default function AuthLayout({ children }: AuthProps) {
           bg={authBg}
           float="right"
           minHeight="100vh"
-          height="100%"
+          height="100vh"
           position="relative"
-          w="100%"
+          w="100vw"
           transition="all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)"
           transitionDuration=".2s, .2s, .35s"
           transitionProperty="top, bottom, width"

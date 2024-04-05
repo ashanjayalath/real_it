@@ -41,18 +41,13 @@ const routes: IRoute[] = [
     name: 'Customers',
     layout: '/admin',
     path: '/customers',
-    icon: (
-      <Icon as={MdPersonAdd} width="20px" height="20px" color="inherit"/>
-    ),
-    secondary: true,
+    icon: <Icon as={MdPersonAdd} width="20px" height="20px" color="inherit"/>
   },
   {
     name: 'Vendors',
     layout: '/admin',
     path: '/vendors',
-    icon: (
-      <Icon as={MdPeopleAlt} width="20px" height="20px" color="inherit"/>
-    ),
+    icon: <Icon as={MdPeopleAlt} width="20px" height="20px" color="inherit"/>,
     secondary: true,
   },
   {
@@ -66,7 +61,7 @@ const routes: IRoute[] = [
     layout: '/auth',
     path: '/sign-in',
     icon: <Icon as={MdOutlineFingerprint} width="20px" height="20px" color="inherit" />,
-  },
+  }
 ];
 
 export default routes;

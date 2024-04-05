@@ -1,4 +1,4 @@
-/* eslint-disable */
+'use client';
 // Chakra Imports
 import {
   Box,
@@ -122,7 +122,7 @@ export default function AdminNavbar (props: {
             </BreadcrumbItem>
 
             <BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
-              <BreadcrumbLink href='#' color={secondaryText}>
+              <BreadcrumbLink href={`/${brandText}`} color={secondaryText}>
                 {brandText}
               </BreadcrumbLink>
             </BreadcrumbItem>

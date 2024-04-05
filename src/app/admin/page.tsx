@@ -7,7 +7,6 @@ import {
     FormLabel,
     Image,
     Icon,
-    Select,
     SimpleGrid,
     useColorModeValue,
 } from '@chakra-ui/react';
@@ -19,15 +18,10 @@ import {
     MdBarChart,
     MdFileCopy,
 } from 'react-icons/md';
-import CheckTable from 'views/admin/default/components/CheckTable';
-import ComplexTable from 'views/admin/default/components/ComplexTable';
 import DailyTraffic from 'views/admin/default/components/DailyTraffic';
 import PieCard from 'views/admin/default/components/PieCard';
-import Tasks from 'views/admin/default/components/Tasks';
 import TotalSpent from 'views/admin/default/components/TotalSpent';
 import WeeklyRevenue from 'views/admin/default/components/WeeklyRevenue';
-import tableDataCheck from 'views/admin/default/variables/tableDataCheck';
-import tableDataComplex from 'views/admin/default/variables/tableDataComplex';
 // Assets
 import Usa from 'img/dashboards/usa.png';
 
@@ -56,7 +50,7 @@ export default function Default() {
                         />
                     }
                     name="Earnings"
-                    value="$350.4"
+                    value="Rs.350000.4"
                 />
                 <MiniStatistics
                     startContent={
@@ -70,9 +64,9 @@ export default function Default() {
                         />
                     }
                     name="Spend this month"
-                    value="$642.39"
+                    value="Rs.642000.39"
                 />
-                <MiniStatistics growth="+23%" name="Sales" value="$574.34" />
+                <MiniStatistics growth="+23%" name="Sales" value="Rs.57400.34" />
                 <MiniStatistics
                     endContent={
                         <Flex me="-16px" mt="10px">
@@ -81,21 +75,10 @@ export default function Default() {
                                     <Image alt="" src={Usa.src} w={'100%'} h={'100%'} />
                                 </Box>
                             </FormLabel>
-                            <Select
-                                id="balance"
-                                variant="mini"
-                                mt="5px"
-                                me="0px"
-                                defaultValue="usd"
-                            >
-                                <option value="usd">USD</option>
-                                <option value="eur">EUR</option>
-                                <option value="gba">GBA</option>
-                            </Select>
                         </Flex>
                     }
                     name="Your balance"
-                    value="$1,000"
+                    value="Rs1,000,000"
                 />
                 <MiniStatistics
                     startContent={
@@ -130,18 +113,8 @@ export default function Default() {
                 <WeeklyRevenue />
             </SimpleGrid>
             <SimpleGrid columns={{ base: 1, md: 1, xl: 2 }} gap="20px" mb="20px">
-                <CheckTable tableData={tableDataCheck} />
-                <SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap="20px">
-                    <DailyTraffic />
-                    <PieCard />
-                </SimpleGrid>
-            </SimpleGrid>
-            <SimpleGrid columns={{ base: 1, md: 1, xl: 2 }} gap="20px" mb="20px">
-                <ComplexTable tableData={tableDataComplex} />
-                <SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap="20px">
-                    <Tasks />
-                    {/* <MiniCalendar h="100%" minW="100%" selectRange={false} /> */}
-                </SimpleGrid>
+                <DailyTraffic />
+                <PieCard />
             </SimpleGrid>
         </Box>
     );

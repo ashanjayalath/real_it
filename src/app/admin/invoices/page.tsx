@@ -5,7 +5,7 @@ import {
     Box,
     TableContainer,
     Tbody,
-    Td,useColorModeValue,
+    Td, useColorModeValue,
     Text,
     Th,
     Thead,
@@ -43,14 +43,14 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useRouter } from 'next/router';
 import { useFormik } from "formik";
-import InvoicePDF from "./invoicePDF";
+import InvoicePDF from "./InvoicePDF";
 import ReactToPrint from 'react-to-print';
-import { redirect } from 'next/navigation';
+import { RedirectType, redirect } from 'next/navigation';
 import InputBox from "components/fields/InputField";
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { message, Upload } from 'antd';
-
+import { jsPDF } from "jspdf";
 const { Dragger } = Upload;
 import type { Dayjs } from 'dayjs';
 import { Calendar } from 'antd';
@@ -87,59 +87,65 @@ interface DataType {
     name: string;
     age: number;
     address: string;
-  }
+}
 
 
- 
+
 
 export default function Invoice() {
 
 
-      // Chakra color mode
-  const textColor = useColorModeValue('navy.700', 'white');
-  const textColorSecondary = 'gray.400';
-  const textColorDetails = useColorModeValue('navy.700', 'secondaryGray.600');
-  const textColorBrand = useColorModeValue('brand.500', 'white');
-  const brandStars = useColorModeValue('brand.500', 'brand.400');
-  const googleBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.200');
-  const googleText = useColorModeValue('navy.700', 'white');
-  const googleHover = useColorModeValue(
-    { bg: 'gray.200' },
-    { bg: 'whiteAlpha.300' },
-  );
-  const googleActive = useColorModeValue(
-    { bg: 'secondaryGray.300' },
-    { bg: 'whiteAlpha.200' },
-  );
+    // Chakra color mode
+    const textColor = useColorModeValue('navy.700', 'white');
+    const textColorSecondary = 'gray.400';
+    const textColorDetails = useColorModeValue('navy.700', 'secondaryGray.600');
+    const textColorBrand = useColorModeValue('brand.500', 'white');
+    const brandStars = useColorModeValue('brand.500', 'brand.400');
+    const googleBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.200');
+    const googleText = useColorModeValue('navy.700', 'white');
+    const googleHover = useColorModeValue(
+        { bg: 'gray.200' },
+        { bg: 'whiteAlpha.300' },
+    );
+    const googleActive = useColorModeValue(
+        { bg: 'secondaryGray.300' },
+        { bg: 'whiteAlpha.200' },
+    );
 
-  const columns: TableColumnsType<DataType> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      width: 150,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      width: 150,
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-    },
-  ];
+    const columns: TableColumnsType<DataType> = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            width: 150,
+        },
+        {
+            title: 'Age',
+            dataIndex: 'age',
+            width: 150,
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+        },
+    ];
 
 
     const dataSource: DataType[] = [];
     for (let i = 0; i < 100; i++) {
         dataSource.push({
-        key: i,
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London, Park Lane no. ${i}`,
-      });
+            key: i,
+            name: `Edward King ${i}`,
+            age: 32,
+            address: `London, Park Lane no. ${i}`,
+        });
     }
 
+    const PDFCreatorHandle = () => {
+        const doc = new jsPDF();
+        doc.text("Hello world!", 10, 10);
+        doc.save("a4.pdf");
+
+    }
 
 
     const router = useRouter;
@@ -621,16 +627,17 @@ export default function Invoice() {
                             </DrawerFooter>
                         </DrawerContent>
                     </Drawer>
+                    <Button onClick={PDFCreatorHandle}>Download</Button>
 
-                    <Table 
-                    style={{color:'transparent'}}
-                    columns={columns} 
-                    
-                    dataSource={dataSource} 
-                    pagination={{ pageSize: 50 }} 
-                    scroll={{ y: 240 }} 
+                    <Table
+                        style={{ color: 'transparent' }}
+                        columns={columns}
+
+                        dataSource={dataSource}
+                        pagination={{ pageSize: 50 }}
+                        scroll={{ y: 240 }}
                     />
-                    <InvoicePDF />
+                    <InvoicePDF /> 
                 </CardBody>
             </Card>
         </Box>

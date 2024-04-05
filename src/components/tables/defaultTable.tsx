@@ -1,8 +1,7 @@
 'use client';
 
 import {
-  IconButton, Tooltip, useColorModeValue, Text, Flex, Box,
-  useDisclosure, Drawer, DrawerBody, DrawerCloseButton, DrawerContent,
+  IconButton, Tooltip, useColorModeValue, Text, Flex, Box,Drawer, DrawerBody, DrawerCloseButton, DrawerContent,
   DrawerHeader, DrawerOverlay, DrawerFooter
 } from '@chakra-ui/react'
 import {
@@ -117,19 +116,6 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
   const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<any> => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
-
-        {/* <InputBox
-          id={''}
-          label={''}
-          name={''}
-          extra={undefined}
-          placeholder={`Search ${dataIndex}`}
-          type={''}
-          value={selectedKeys[0]}
-          ref={searchInput}
-          onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-          onchange={(e: any) => setSelectedKeys(e.target.value ? [e.target.value] : [])} mb={0}
-        /> */}
         <Input
               ref={searchInput}
               placeholder={`Search ${dataIndex}`}
@@ -179,7 +165,7 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
       </div>
     ),
     filterIcon: (filtered: boolean) => (
-      <SearchOutlined style={{ color: filtered ? '#FF1677' : undefined }} />
+      <SearchOutlined />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -188,7 +174,7 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
         .includes((value as string).toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
-        // setTimeout(() => searchInput.current?.select(), 100);
+        setTimeout(() => searchInput.current?.select(), 100);
       }
     },
     render: (text) =>
