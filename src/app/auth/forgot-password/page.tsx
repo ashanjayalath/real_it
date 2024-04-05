@@ -88,7 +88,7 @@ export default function ForgotPassword() {
         }
         )
     }
-  },[isOTPSuccess]);
+  },[isOTPSuccess,OTPData, OTPError, isOTPError, toast]);
       
 
   return (

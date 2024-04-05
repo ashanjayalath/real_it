@@ -97,7 +97,7 @@ export default function SignIn() {
         }
       )
     }
-  },[isLoginSuccess]);
+  },[isLoginSuccess,LoginError, dispatch, loginData,toast]);
 
   // Chakra color mode
   const textColor = useColorModeValue('navy.700', 'white');

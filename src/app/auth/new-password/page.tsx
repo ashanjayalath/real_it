@@ -83,7 +83,7 @@ export default function ResetPasswordForm() {
         }
         )
     }
-  },[isPassSuccess]);
+  },[isPassSuccess,PassData, PassError, isPassError,toast]);
       
 
   return (

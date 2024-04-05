@@ -95,7 +95,7 @@ export default function VerifyEmailForm() {
           }
           )
       }
-    },[OTPData.message, OTPError, isOTPError, toast]);
+    },[OTPData, OTPError, isOTPError,toast, isOTPSuccess]);
 
     const otpResend=async()=>{
       setCounter(59);
