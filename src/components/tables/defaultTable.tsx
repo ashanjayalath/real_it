@@ -118,7 +118,7 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
 
-        <InputBox
+        {/* <InputBox
           id={''}
           label={''}
           name={''}
@@ -129,15 +129,15 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
           ref={searchInput}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           onchange={(e: any) => setSelectedKeys(e.target.value ? [e.target.value] : [])} mb={0}
-        />
-        {/* <Input
+        /> */}
+        <Input
               ref={searchInput}
               placeholder={`Search ${dataIndex}`}
               value={selectedKeys[0]}
               onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
               onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
               style={{ marginBottom: 8, display: 'block' ,backgroundColor:tableBgColor,color:textColorPrimary}}
-            /> */}
+            />
         <Space>
           <Button
             type="primary"
