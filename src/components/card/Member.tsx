@@ -1,3 +1,4 @@
+'use client';
 // Chakra imports
 import { Avatar, Flex, useColorModeValue, Icon, Text } from '@chakra-ui/react';
 // Custom components

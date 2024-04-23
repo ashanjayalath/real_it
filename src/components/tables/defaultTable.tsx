@@ -1,37 +1,37 @@
 'use client';
 
 import {
-  IconButton, Tooltip, useColorModeValue, Text, Flex, Box,Drawer, DrawerBody, DrawerCloseButton, DrawerContent,
-  DrawerHeader, DrawerOverlay, DrawerFooter
+  useColorModeValue, Text, Flex, Box
 } from '@chakra-ui/react'
 import {
-  Button, ConfigProvider, Input, InputRef,
-  Popconfirm, Space, Table, TableColumnType, TableProps
+  Button, ConfigProvider, Input,
+  Popconfirm, Space, Table, TableColumnType,
+  Tag
 } from 'antd';
 import React, { useRef, useState } from "react";
 import { SearchOutlined } from '@ant-design/icons';
-import type { GetRef, TableColumnsType } from 'antd';
+import type { GetRef } from 'antd';
 import type { FilterDropdownProps } from 'antd/es/table/interface';
-import InputBox from 'components/fields/InputField';
-import { DeleteIcon, EditIcon, RepeatIcon, ViewIcon } from '@chakra-ui/icons';
+import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons';
 import Highlighter from 'react-highlight-words';
+import {
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+} from '@ant-design/icons';
 
-
-
-export default function DefaultTable(props: { data: any, columnData: any, extra: JSX.Element }) {
-  const { extra, data, columnData, ...rest } = props
+export default function DefaultTable(props: { data: any, loadingState: boolean, columnData: any, extra: JSX.Element }) {
+  const { extra, data, columnData, loadingState = true, ...rest } = props
   type InputRef = GetRef<typeof Input>;
   type DataIndex = keyof React.Key;
 
+ 
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>();
-  const [dataSource, setDataSource] = useState<DataType[]>([...data]);
-  const [open, setOpen] = useState(false);
-
+  const [dataSource, setDataSource] = useState<any>([...data]);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+
   // Chakra Color Mode
   //Gray 600 #4A5568
   //Gray 800 #1A202C
@@ -45,51 +45,19 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
   const tableScrollBarBg = useColorModeValue('#A0AEC0', '#171923');
   const tableRowSelectedHoverBg = useColorModeValue('#6A6D79', '#7E7E7E');
   const tableRowSelect = useColorModeValue('#CECCCC', '#1A202C');
+ 
+ 
 
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
 
-  const onClose = () => {
-    setOpen(false);
-  };
-
-  interface DataType {
-    key: React.Key;
-    name: string,
-    description: string;
-    purchaseDescription: string;
-    status: string;
-    actions: string
-  }
-
-
-  const start = () => {
-    setLoading(true);
-    // ajax request after empty completing
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
-  const handleSave = (row: DataType) => {
-    const newData = [...dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, {
-      ...item,
-      ...row,
-    });
-    setDataSource(newData);
-  };
+
 
   const handleDelete = (key: React.Key) => {
-    const newData = dataSource.filter((item) => item.key !== key);
+    const newData = dataSource.filter((item: any) => item.key !== key);
     setDataSource(newData);
   };
   const rowSelection = {
@@ -117,13 +85,13 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
-              ref={searchInput}
-              placeholder={`Search ${dataIndex}`}
-              value={selectedKeys[0]}
-              onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-              onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-              style={{ marginBottom: 8, display: 'block' ,backgroundColor:tableBgColor,color:textColorPrimary}}
-            />
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
+          style={{ marginBottom: 8, display: 'block', backgroundColor: tableBgColor, color: textColorPrimary }}
+        />
         <Space>
           <Button
             type="primary"
@@ -191,61 +159,53 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
   });
 
 
-
   const Column = columnData.map((data: any) => {
     if (data.key === 'actions') {
-      return [
-        {
-          ...data,
-          render: (_: any, record: any) =>
-            dataSource.length >= 1 ? (
-              <Flex justify={'space-around'}>
-                <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-                  <DeleteIcon color={textColorPrimary} cursor={'pointer'} />
-                </Popconfirm>
-                <EditIcon color={textColorPrimary} cursor={'pointer'} onClick={() => alert("edit")} />
-                <ViewIcon color={textColorPrimary} cursor={'pointer'} onClick={showDrawer} />
-              </Flex>
-
-            ) : null,
-        }
-      ]
-    } else {
-      return [{
+      return {
+        ...data,
+        render: (_: any, record: any) =>
+          dataSource.length >= 0 ? (
+            <Flex justify={'space-around'}>
+              <Popconfirm overlay title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
+                <DeleteIcon color={textColorPrimary} cursor={'pointer'} />
+              </Popconfirm>
+              <EditIcon color={textColorPrimary} cursor={'pointer'}/>
+              <ViewIcon color={textColorPrimary} cursor={'pointer'} />
+            </Flex>
+          ) : null,
+      }
+    }
+    else if(data.key === 'status'){
+      return{
+        ...data,
+        render: (_:any, r:any ) => 
+          r.status == 'Active' ? (
+              <Tag icon={<CheckCircleOutlined />}  color="success">
+                Active
+              </Tag>
+            ) : (
+                <Tag icon={<ExclamationCircleOutlined />} color="warning">
+                  Inactive
+                </Tag>
+            ),
+      }
+    } 
+    else {
+      return {
         ...data,
         ...getColumnSearchProps(data.key),
         sorter: (a: any, b: any) => a.key - b.key,
         sortDirections: ['descend', 'ascend']
-      }]
+      }
     }
   })
-  const Columns = Column.map((data: any) => data[0])
+
+
+
 
 
   return (
     <>
-      <Drawer
-        isOpen={open}
-        placement='right'
-        onClose={onClose}
-        size={'lg'}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
-          <DrawerBody>
-            <Flex justify={'space-between'} flexWrap={'wrap'} gap={2}>
-              <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
-                ddsdsd
-              </Box>
-              <Box width={{ base: "100%", md: "48%", xl: "48%" }} >
-                sdsd
-              </Box>
-            </Flex>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
       <ConfigProvider
         theme={{
           components: {
@@ -271,16 +231,6 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
         {/* <Button onClick={()=>Coloumns}>save</Button> */}
         <Flex mb={2} justify={'space-between'}>
           <Box display={'flex'}>
-            <Tooltip label='Reload' placement='top'>
-              <IconButton
-                variant='link'
-                colorScheme='gray'
-                aria-label='See menu'
-                icon={<RepeatIcon />}
-                onClick={start}
-                disabled={!hasSelected}
-              />
-            </Tooltip>
             <Text>
               {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
             </Text>
@@ -288,16 +238,16 @@ export default function DefaultTable(props: { data: any, columnData: any, extra:
           <Box>
             <Button type='primary' style={{ backgroundColor: textColorPrimary, color: tableBgColor }}>Remove Selected</Button>
           </Box>
-
         </Flex>
 
         <Table
           rowSelection={rowSelection}
-          columns={Columns}
+          columns={Column}
           dataSource={data}
           size="middle"
+          loading={loadingState}
           pagination={{ pageSize: 10 }}
-          scroll={{ y: 200, x: 850 }}
+          scroll={{ y: 200, x: 1350 }}
         />
       </ConfigProvider>
 

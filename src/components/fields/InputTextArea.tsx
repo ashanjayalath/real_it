@@ -1,3 +1,4 @@
+'use client';
 // Chakra imports
 import {
     Flex,
@@ -13,7 +14,7 @@ import {
     id: string
     label: string
     name:string
-    value:string
+    value:any
     extra: JSX.Element
     placeholder: string
     onchange:React.ChangeEventHandler
@@ -27,7 +28,6 @@ import {
       <Flex direction='column' mb={mb ? mb : '10px'}>
         <FormLabel
           display='flex'
-          ms='10px'
           htmlFor={id}
           fontSize='sm'
           color={textColorPrimary}

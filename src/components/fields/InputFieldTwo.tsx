@@ -1,3 +1,4 @@
+'use client';
 // Chakra imports
 import { EmailIcon } from '@chakra-ui/icons'
 import {
@@ -20,7 +21,7 @@ export default function InputBoxIcon(props: {
     extra: JSX.Element
     placeholder: string
     type: string
-    value:string
+    value:any
     leftElement:any
     onchange: React.ChangeEventHandler
     mb: SpaceProps['mb']
@@ -33,7 +34,7 @@ export default function InputBoxIcon(props: {
         <Flex direction='column' mb={mb ? mb : '10px'}>
             <FormLabel
                 display='flex'
-                ms='10px'
+
                 htmlFor={id}
                 fontSize='sm'
                 color={textColorPrimary}
@@ -50,7 +51,7 @@ export default function InputBoxIcon(props: {
                     {leftElement == "Rs." ? <Text>{leftElement}</Text> : <Icon as={leftElement} color='gray.300'/>}
                 </InputLeftElement>
                 <Input
-                value={value}
+                    value={value}
                     {...rest}
                     name={name}
                     type={type}

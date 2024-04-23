@@ -20,17 +20,17 @@ export default function Banner(props: {
   const [user,setUser] = useState({image:{URL:""}})
     
 
-  useEffect(() => {
-    if (userDetails && userDetails.image) {
-      setUser((prevUser) => ({
-        ...prevUser,
-        image: {
-          ...prevUser.image,
-          URL: userDetails.image.url,
-        },
-      }));
-    }
-  }, [userDetails]);
+  // useEffect(() => {
+  //   if (userDetails && userDetails.image) {
+  //     setUser((prevUser) => ({
+  //       ...prevUser,
+  //       image: {
+  //         ...prevUser.image,
+  //         URL: userDetails.image.url,
+  //       },
+  //     }));
+  //   }
+  // }, [userDetails]);
   const { banner, avatar, name, job, posts, followers, following, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue('secondaryGray.900', 'white');

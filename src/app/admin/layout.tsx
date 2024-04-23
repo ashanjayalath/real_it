@@ -5,6 +5,7 @@ import {
   Box,
   useDisclosure,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import Footer from 'components/footer/FooterAdmin';
 // Layout components
@@ -18,6 +19,10 @@ import {
   getActiveNavbarText,
   getActiveRoute,
 } from 'utils/navigation';
+import { useAppDispatch } from 'app/services/hooks';
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers'
+import { setCredentials } from 'redux/features/auth/authSlice';
 
 interface DashboardLayoutProps extends PropsWithChildren {
   [x: string]: any;
@@ -32,11 +37,25 @@ export default function AdminLayout(props: DashboardLayoutProps) {
   // functions for changing the states from components
   const { onOpen } = useDisclosure();
 
+  // const cookieStore = cookies()
+  // const refreshToken = cookieStore.get('refresh');
+
+  // useEffect(()=>{
+  //   if(!refreshToken){
+  //     redirect('/auth/sign-in')
+  //   }
+  // },[refreshToken])
+
+
   // useEffect(() => {
   //   window.document.documentElement.dir = 'ltr';
   // });
 
   const bg = useColorModeValue('secondaryGray.300', 'gray.800');
+
+
+
+
 
   return (
     <Box h="100vh" w="100vw" bg={bg}>

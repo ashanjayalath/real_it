@@ -1,3 +1,4 @@
+'use client';
 // Chakra imports
 import {
   Flex,
@@ -29,7 +30,6 @@ export default function InputBox (props: {
     <Flex direction='column' mb={mb ? mb : '10px'}>
       <FormLabel
         display='flex'
-        ms='10px'
         htmlFor={id}
         fontSize='sm'
         color={textColorPrimary}

@@ -27,9 +27,6 @@ import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import { MdInfoOutline, MdNotificationsNone } from 'react-icons/md';
 import routes from '../../app/api/routes';
 
-import router from 'next/router';
-import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
 import {useEffect, useState} from "react";
 import { redirect } from 'next/navigation';
 
@@ -75,8 +72,8 @@ export default function HeaderLinks(props: {
   //     setShortName(f)
   //   }
   // },[shortName])
-  
-  
+
+
 
   return (
     <Flex

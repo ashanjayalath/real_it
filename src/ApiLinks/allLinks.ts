@@ -44,7 +44,14 @@ const EstimateRoutes = {
     ESTIMATE_GET_ALL: '/api/invoice/get_all',
     ESTIMATE_GET_ONE: '/api/invoice/get' //you must pass the id in user
 }
-
+const ItemsRoutes = {
+    ITEM_CREATE: '/api/item/add',
+    ITEM_UPDATE: '/api/item/update', //you must pass the id in user
+    ITEM_DELETE_ONE: '/api/item/delete', //you must pass the id in user
+    ITEM_DELETE_ALL: '/api/item/delete_bulk',
+    ITEM_GET_ALL: '/api/item/get_all',
+    ITEM_GET_ONE: '/api/item/get' //you must pass the id in user
+}
 
 const GOOGLE_CLIENT_ID = "";
 const GOOGLE_CLIENT_SECRET = "";
@@ -57,5 +64,6 @@ export {
     InvoiceRoutes,
     EstimateRoutes,
     MONGODB_URL,
+    ItemsRoutes,
     CloudinaryPath
 };

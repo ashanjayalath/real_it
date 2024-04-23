@@ -1,3 +1,4 @@
+'use client';
 // Chakra imports
 import { Box, Flex, FormLabel, Switch, Text, useColorModeValue } from '@chakra-ui/react';
 // Custom components
@@ -30,7 +31,7 @@ export default function Default(props: {
 						<Switch id={id} variant='main' colorScheme='brandScheme' size='md' />
 					)}
 					<FormLabel
-						ms='15px'
+						
 						htmlFor={id}
 						_hover={{ cursor: 'pointer' }}
 						flexDirection='column'

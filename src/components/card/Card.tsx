@@ -1,3 +1,4 @@
+'use client';
 // import { Box, useStyleConfig} from '@chakra-ui/react';
 
 import { useStyleConfig, chakra, forwardRef } from '@chakra-ui/react';

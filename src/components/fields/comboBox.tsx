@@ -1,3 +1,4 @@
+'use client';
 // Chakra imports
 import {
   Flex,
@@ -15,12 +16,14 @@ export default function ComboBox(props: {
   id: string
   name: string
   label: string
+  value:any
+  onchange:any
   extra: JSX.Element
   placeholder: string
   mb: SpaceProps['mb']
   optionProp: [...data]
 }) {
-  const { id, label, name, extra, placeholder, mb, optionProp, ...rest } = props
+  const { id, label, name, extra, placeholder, mb,onchange,value, optionProp, ...rest } = props
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue('secondaryGray.900', 'white')
 
@@ -28,7 +31,6 @@ export default function ComboBox(props: {
     <Flex direction='column' mb={mb ? mb : '10px'}>
       <FormLabel
         display='flex'
-        ms='10px'
         htmlFor={id}
         fontSize='sm'
         color={textColorPrimary}
@@ -47,6 +49,8 @@ export default function ComboBox(props: {
         fontWeight='500'
         variant='main'
         rounded={5}
+        value={value}
+        onChange={onchange}
         placeholder={placeholder}
         _placeholder={{ fontWeight: '400', color: 'secondaryGray.600' }}
         h='40px'
