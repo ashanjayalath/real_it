@@ -1,5 +1,5 @@
 
-//const MAIN_URL = 'http://localhost:3008';
+// const MAIN_URL = 'http://localhost:3008';
 const MAIN_URL = 'https://real-solution-backend.vercel.app'
 //database configuration
 const MONGODB_URL = 'mongodb+srv://shanjayalath225:Ku3lqFWA4hlND82T@cybercluster.lqr2nw4.mongodb.net/CyberBack?retryWrites=true&w=majority'
@@ -48,7 +48,8 @@ const ItemsRoutes = {
     ITEM_CREATE: '/api/item/add',
     ITEM_UPDATE: '/api/item/update', //you must pass the id in user
     ITEM_DELETE_ONE: '/api/item/delete', //you must pass the id in user
-    ITEM_DELETE_ALL: '/api/item/delete_bulk',
+    ITEM_DELETE_ALL_WITH_NAME: '/api/item/delete_name',
+    ITEM_DELETE_ALL_WITH_ID: '/api/item/delete_select_item',
     ITEM_GET_ALL: '/api/item/get_all',
     ITEM_GET_ONE: '/api/item/get' //you must pass the id in user
 }

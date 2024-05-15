@@ -146,6 +146,16 @@ export const apiSlice = authMidleSlice.injectEndpoints({
                 };
             }
         }),
+        //Item Delete bulk
+        itemDeleteBulkWithId: builder.mutation({
+            query: (body:any) => {
+                return {
+                    url: ItemsRoutes.ITEM_DELETE_ALL_WITH_ID,
+                    method:"DELETE",
+                    body
+                };
+            }
+        }),
 
     })
 })
@@ -161,6 +171,7 @@ export const {
     useItemAddMutation,
     useItemUpdateMutation,
     useItemDeleteMutation,
+    useItemDeleteBulkWithIdMutation,
 
     useInvoiceCreateMutation,
     useInvoiceDeleteAllMutation,

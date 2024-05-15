@@ -13,28 +13,25 @@ const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set("Authorization", `Bearer ${token}`)
         }
-        if (!headers.has("Content-Type")) {
-            headers.set("Content-Type", "application/json");
-        }
+        // if (!headers.has("Content-Type")) {
+        //     headers.set("Content-Type", "application/json");
+        // }
         return headers
     }
 })
 
 const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions:any) => {
     let result = await baseQuery(args, api, extraOptions)
+
     if (result?.error?.status === 401 ) {
-        console.log('sending refresh token')
         // send refresh token to get new access token 
         const refreshResult = await baseQuery(UserRoutes.USER_REFRESH_TOKEN, api, extraOptions)
 
-        console.log("cccccccccc",refreshResult)
-
         if (refreshResult?.data) {
-            console.log("zzzzzzzzzzzzzzzzzz")
             // @ts-ignore
             const user = api.getState().auth.user
             // store the new token 
-            api.dispatch(setCredentials({user,token:refreshResult.data }))
+            api.dispatch(setCredentials({user,token:refreshResult.data.token }))
             // retry the original query with new access token 
             result = await baseQuery(args, api, extraOptions)
         } else {
