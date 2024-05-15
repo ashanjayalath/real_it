@@ -391,7 +391,7 @@ export default function ItemTable(props: { data: any, loadingState: boolean, col
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
+              Are you sure? You can&apos;t undo this action afterwards.
             </AlertDialogBody>
 
             <AlertDialogFooter>
