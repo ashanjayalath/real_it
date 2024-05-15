@@ -31,6 +31,7 @@ const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, 
             // @ts-ignore
             const user = api.getState().auth.user
             // store the new token 
+            // @ts-ignore
             api.dispatch(setCredentials({user,token:refreshResult.data.token }))
             // retry the original query with new access token 
             result = await baseQuery(args, api, extraOptions)
