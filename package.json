@@ -22,7 +22,7 @@
     "formik": "^2.4.5",
     "framer-motion": "^4.1.17",
     "micromatch": "^4.0.5",
-    "next": "14.0.2",
+    "next": "^14.2.3",
     "nextjs-progressbar": "^0.0.16",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -46,21 +46,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "lint": "next lint"
   },
   "devDependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -74,11 +60,6 @@
     "@types/react-highlight-words": "^0.16.7",
     "@types/react-table": "^7.7.12",
     "eslint": "^8.23.0",
-    "eslint-config-next": "^12.2.5",
-    "gh-pages": "^6.1.1"
-  },
-  "resolutions": {
-    "@types/react": "18.0.31",
-    "@types/react-dom": "18.0.11"
+    "eslint-config-next": "^12.2.5"
   }
 }
